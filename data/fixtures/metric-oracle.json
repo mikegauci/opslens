@@ -1,0 +1,219 @@
+{
+  "rows": [
+    {
+      "id": "a",
+      "player_id": "p1",
+      "brand_id": "harbor",
+      "provider_id": "nova",
+      "game_category": "slots",
+      "placed_at": "2026-09-15T00:00:00.000Z",
+      "settled_at": "2026-09-15T00:00:00.000Z",
+      "status": "settled",
+      "currency": "EUR",
+      "stake_minor": 1000,
+      "payout_minor": 0
+    },
+    {
+      "id": "b",
+      "player_id": "p1",
+      "brand_id": "harbor",
+      "provider_id": "orbit",
+      "game_category": "slots",
+      "placed_at": "2026-09-21T23:59:59.999Z",
+      "settled_at": "2026-09-21T23:59:59.999Z",
+      "status": "settled",
+      "currency": "EUR",
+      "stake_minor": 500,
+      "payout_minor": 1000
+    },
+    {
+      "id": "c",
+      "player_id": "p2",
+      "brand_id": "harbor",
+      "provider_id": "nova",
+      "game_category": "slots",
+      "placed_at": "2026-09-20T00:00:00.000Z",
+      "settled_at": "2026-09-20T00:00:00.000Z",
+      "status": "settled",
+      "currency": "EUR",
+      "stake_minor": 0,
+      "payout_minor": 200
+    },
+    {
+      "id": "d",
+      "player_id": "p1",
+      "brand_id": "harbor",
+      "provider_id": "nova",
+      "game_category": "slots",
+      "placed_at": "2026-09-22T00:00:00.000Z",
+      "settled_at": "2026-09-22T00:00:00.000Z",
+      "status": "settled",
+      "currency": "EUR",
+      "stake_minor": 1000,
+      "payout_minor": 3000
+    },
+    {
+      "id": "e",
+      "player_id": "p3",
+      "brand_id": "summit",
+      "provider_id": "orbit",
+      "game_category": "slots",
+      "placed_at": "2026-09-23T00:00:00.000Z",
+      "settled_at": "2026-09-23T00:00:00.000Z",
+      "status": "settled",
+      "currency": "EUR",
+      "stake_minor": 2000,
+      "payout_minor": 0
+    },
+    {
+      "id": "f",
+      "player_id": "p3",
+      "brand_id": "harbor",
+      "provider_id": "nova",
+      "game_category": "slots",
+      "placed_at": "2026-09-24T00:00:00.000Z",
+      "settled_at": "2026-09-24T00:00:00.000Z",
+      "status": "settled",
+      "currency": "EUR",
+      "stake_minor": 500,
+      "payout_minor": 500
+    },
+    {
+      "id": "g",
+      "player_id": "p4",
+      "brand_id": "harbor",
+      "provider_id": "pulse",
+      "game_category": "slots",
+      "placed_at": "2026-09-25T00:00:00.000Z",
+      "settled_at": "2026-09-25T00:00:00.000Z",
+      "status": "settled",
+      "currency": "EUR",
+      "stake_minor": 0,
+      "payout_minor": 0
+    },
+    {
+      "id": "h",
+      "player_id": "p5",
+      "brand_id": "harbor",
+      "provider_id": "nova",
+      "game_category": "slots",
+      "placed_at": "2026-09-29T00:00:00.000Z",
+      "settled_at": "2026-09-29T00:00:00.000Z",
+      "status": "settled",
+      "currency": "EUR",
+      "stake_minor": 100,
+      "payout_minor": 0
+    },
+    {
+      "id": "i",
+      "player_id": "p6",
+      "brand_id": "harbor",
+      "provider_id": "nova",
+      "game_category": "slots",
+      "placed_at": "2026-09-14T23:59:59.999Z",
+      "settled_at": "2026-09-14T23:59:59.999Z",
+      "status": "settled",
+      "currency": "EUR",
+      "stake_minor": 200,
+      "payout_minor": 0
+    },
+    {
+      "id": "j",
+      "player_id": "p7",
+      "brand_id": "harbor",
+      "provider_id": "orbit",
+      "game_category": "slots",
+      "placed_at": "2026-09-23T00:00:00.000Z",
+      "settled_at": null,
+      "status": "pending",
+      "currency": "EUR",
+      "stake_minor": 4000,
+      "payout_minor": null
+    },
+    {
+      "id": "k",
+      "player_id": "p8",
+      "brand_id": "harbor",
+      "provider_id": "orbit",
+      "game_category": "slots",
+      "placed_at": "2026-09-23T00:00:00.000Z",
+      "settled_at": null,
+      "status": "void",
+      "currency": "EUR",
+      "stake_minor": 9000,
+      "payout_minor": null
+    },
+    {
+      "id": "l",
+      "player_id": "p2",
+      "brand_id": "harbor",
+      "provider_id": "nova",
+      "game_category": "slots",
+      "placed_at": "2026-09-21T23:59:59.999Z",
+      "settled_at": "2026-09-22T00:00:00.000Z",
+      "status": "settled",
+      "currency": "EUR",
+      "stake_minor": 100,
+      "payout_minor": 500
+    }
+  ],
+  "cases": [
+    {
+      "name": "previous",
+      "to": "2026-09-22T00:00:00.000Z",
+      "ids": ["a", "b", "c"],
+      "stakes": 1500,
+      "payouts": 1200,
+      "ggr": 300,
+      "players": 2,
+      "from": "2026-09-15T00:00:00.000Z"
+    },
+    {
+      "name": "current",
+      "to": "2026-09-29T00:00:00.000Z",
+      "ids": ["d", "e", "f", "g", "l"],
+      "stakes": 3600,
+      "payouts": 4000,
+      "ggr": -400,
+      "players": 4,
+      "from": "2026-09-22T00:00:00.000Z"
+    },
+    {
+      "name": "current harbor",
+      "to": "2026-09-29T00:00:00.000Z",
+      "brand": "harbor",
+      "ids": ["d", "f", "g", "l"],
+      "stakes": 1600,
+      "payouts": 4000,
+      "ggr": -2400,
+      "players": 4,
+      "from": "2026-09-22T00:00:00.000Z"
+    },
+    {
+      "name": "zero stakes",
+      "to": "2026-09-29T00:00:00.000Z",
+      "provider": "pulse",
+      "ids": ["g"],
+      "stakes": 0,
+      "payouts": 0,
+      "ggr": 0,
+      "players": 1,
+      "from": "2026-09-22T00:00:00.000Z"
+    },
+    {
+      "name": "empty",
+      "to": "2026-09-27T00:00:00.000Z",
+      "ids": [],
+      "stakes": 0,
+      "payouts": 0,
+      "ggr": 0,
+      "players": 0,
+      "from": "2026-09-26T00:00:00.000Z"
+    }
+  ],
+  "contributions": {
+    "nova": -3200,
+    "orbit": 2500,
+    "pulse": 0
+  }
+}

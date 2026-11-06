@@ -8,7 +8,7 @@ This is an independent portfolio project using fictional brands and synthetic da
 
 ## Status
 
-Foundation stage. A React diagnostic route, typed Hono API, real PostgreSQL connectivity probe, streamed response and CI are implemented. Dashboards, seeded analytics, AI, Storybook and hosted deployments are still future work. See [working setup and hosting tradeoffs](docs/runtime.md).
+Foundation stage. A React diagnostic route, typed Hono API, real PostgreSQL connectivity probe, streamed response and CI are implemented. Repeatable 10k/100k synthetic datasets, independent metric fixtures, migrations and restricted database reads are implemented. Analytics endpoints, dashboards, AI, Storybook and hosted deployments are still future work. See [working setup and hosting tradeoffs](docs/runtime.md).
 
 The build prioritises a polished, explainable result over a fixed deadline. It uses React and TypeScript throughout the frontend; Angular is excluded.
 

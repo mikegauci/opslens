@@ -1,0 +1,56 @@
+[
+  {
+    "schemaVersion": 1,
+    "generatorVersion": 1,
+    "seed": 20261106,
+    "currency": "EUR",
+    "reportingTimezone": "UTC",
+    "from": "2026-07-01T00:00:00.000Z",
+    "to": "2026-09-29T00:00:00.000Z",
+    "asOf": "2026-09-30T00:00:00.000Z",
+    "emptyDay": "2026-08-15",
+    "previous": {
+      "from": "2026-09-15T00:00:00.000Z",
+      "to": "2026-09-22T00:00:00.000Z"
+    },
+    "current": {
+      "from": "2026-09-22T00:00:00.000Z",
+      "to": "2026-09-29T00:00:00.000Z"
+    },
+    "spike": {
+      "provider": "nova",
+      "payoutMultiplier": 10
+    },
+    "rowCount": 10000,
+    "file": "transactions-10000.csv",
+    "sha256": "af4d53dc19b8e92d9e6ec801c4c3adb20de9033d150c9a5f40dfc7912813f22c",
+    "encoding": "UTF-8; LF; header; empty field = null"
+  },
+  {
+    "schemaVersion": 1,
+    "generatorVersion": 1,
+    "seed": 20261106,
+    "currency": "EUR",
+    "reportingTimezone": "UTC",
+    "from": "2026-07-01T00:00:00.000Z",
+    "to": "2026-09-29T00:00:00.000Z",
+    "asOf": "2026-09-30T00:00:00.000Z",
+    "emptyDay": "2026-08-15",
+    "previous": {
+      "from": "2026-09-15T00:00:00.000Z",
+      "to": "2026-09-22T00:00:00.000Z"
+    },
+    "current": {
+      "from": "2026-09-22T00:00:00.000Z",
+      "to": "2026-09-29T00:00:00.000Z"
+    },
+    "spike": {
+      "provider": "nova",
+      "payoutMultiplier": 10
+    },
+    "rowCount": 100000,
+    "file": "transactions-100000.csv",
+    "sha256": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+    "encoding": "UTF-8; LF; header; empty field = null"
+  }
+]

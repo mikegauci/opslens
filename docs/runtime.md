@@ -1,4 +1,4 @@
-# PLAN-02 runtime spike
+# Runtime and local setup
 
 ## Decision
 
@@ -19,24 +19,25 @@ Sources consulted 6 November 2026: [Hono Node adapter/static paths](https://hono
 1. Install/use Node from `.nvmrc` (`nvm install && nvm use` if using nvm), then `npm install --global pnpm@12.11.2`.
 2. `pnpm install --frozen-lockfile`.
 3. `cp .env.example .env` and `docker compose up -d --wait db` with a running Docker engine. The database binds only to loopback, uses a named volume and uses development-only credentials. Stop it with `docker compose down`; add `--volumes` only when intentionally discarding its local data.
-4. `pnpm build && pnpm start`, then visit `http://127.0.0.1:3000/foundation`. It shows the real `SELECT 1` result and completion of a finite two-event diagnostic stream. It is not a dataset or live AI response.
-5. For editing with hot reload, leave the API running and use `pnpm --filter @opslens/web dev` in another terminal. Vite proxies `/api` to port 3000. `pnpm dev` is a convenience build-and-start of the production spike, without hot reload.
+4. `pnpm db:migrate && pnpm db:login && pnpm db:seed 100000 && pnpm db:verify`. Migrations and seeds use `MIGRATION_DATABASE_URL`; the API uses the separate restricted `DATABASE_URL`. Repeat migrations/seeds safely to select the same dataset; seed `10000` for the smaller comparison. Generated CSVs are optional: `pnpm data:generate`; their hashes are committed in `data/manifest.json`. See [data conventions and oracle](../data/README.md) and [schema/access review](../supabase/README.md). Use a disposable development database: seeding atomically replaces the active dataset.
+5. `pnpm build && pnpm start`, then visit `http://127.0.0.1:3000/foundation`. It shows the real `SELECT 1` result and completion of a finite two-event diagnostic stream. It is not a dataset or live AI response.
+6. For editing with hot reload, leave the API running and use `pnpm --filter @opslens/web dev` in another terminal. Vite proxies `/api` to port 3000. `pnpm dev` is a convenience build-and-start of the production spike, without hot reload.
 
-An existing PostgreSQL 17 instance also works: create a disposable `opslens` database and set `DATABASE_URL` accordingly. Local verification used Homebrew PostgreSQL 17.11 because Docker's daemon was unavailable. No Supabase resource is needed for this connectivity spike. PLAN-03 establishes schemas, repeatable seed/migrations and restricted application grants; the empty development database's owner role must not become the deployed analytics role.
+An existing PostgreSQL 17 instance also works: create a disposable `opslens` database and set `DATABASE_URL` accordingly. Local verification used Homebrew PostgreSQL 17.11 because Docker's daemon was unavailable. No Supabase resource is needed. PLAN-03 establishes the private schema, checksummed migration runner, repeatable 10k/100k seeds and restricted `opslens_app` login. The local development owner is only for migrations/seeds. Supabase CLI 3.0.0 scaffolded the first migration; running the app does not require that CLI or its Docker stack. Hosted Data API exposure and advisors remain unverified.
 
-Required server variable: `DATABASE_URL`. Optional: `PORT` (3000), `HOST` (`127.0.0.1`; use `0.0.0.0` behind managed ingress). Node loads ignored `.env`; real hosting injects secrets. Never place server variables in Vite-prefixed variables. Pool: at most five connections, three-second connect/statement timeouts. Use a provider's TLS-verified/pooler connection string in hosting; do not disable certificate verification. Budget connection counts against instances before scaling.
+Required runtime server variable: `DATABASE_URL` (restricted application login). Data setup/check commands also require server-only `MIGRATION_DATABASE_URL` (owner login). `pnpm db:login` configures the application password from `DATABASE_URL` on the same database; production secret provisioning is outside this local workflow. Optional: `PORT` (3000), `HOST` (`127.0.0.1`; use `0.0.0.0` behind managed ingress). Node loads ignored `.env`; real hosting injects secrets. Never place server variables in Vite-prefixed variables. Pool: at most five connections, three-second connect/statement timeouts. Use a provider's TLS-verified/pooler connection string in hosting; do not disable certificate verification. Budget connection counts against instances before scaling.
 
 ## Verification and contracts
 
 Run `pnpm exec playwright install chromium` once on a supported OS; Linux CI installs browser system dependencies too. On this macOS 13 machine the current bundled Chromium is unsupported: use installed Chrome with `PLAYWRIGHT_CHANNEL=chrome pnpm check` (and the same variable for `pnpm benchmark`). This is an explicit local fallback, not evidence for the pinned CI browser. Keep the database running, stop any app on port 3000, then run `pnpm check`.
 
 - Biome checks code/style and TypeScript checks all packages.
-- Vitest covers integer money, API availability/error responses and SSE ordering. API unit tests inject the database boundary; the production browser smoke performs the actual PostgreSQL query.
+- Vitest covers integer money, API availability/error responses, SSE ordering, and deterministic hashes/story properties at both dataset sizes. `data:check` rejects committed manifest drift. `db:verify` reconciles every stored row/hash, independently authored fixture SQL/expected values, schema constraints, private-schema grants/RLS and actual application write/DDL denials. API unit tests inject the database boundary; the production browser smoke performs the actual PostgreSQL query.
 - Playwright starts the production Node server, verifies the route → generated client → API → PostgreSQL → UI flow, error/retry recovery, and that the first HTTP stream chunk precedes completion. No AI key or remote provider is needed.
 - API schemas are declared once with Hono/Zod. `pnpm contracts:generate` exports OpenAPI and generates `schema.d.ts` using openapi-typescript's Node API. Commit both outputs. `pnpm contracts:check` regenerates and fails on tracked changes. Do not hand-edit generated files. [Generator API](https://openapi-ts.dev/node), [typed fetch client](https://openapi-ts.dev/openapi-fetch/).
 - Unknown API routes return JSON 404, never SPA HTML. Database failure returns a non-sensitive 503; startup without `DATABASE_URL` fails clearly.
 
-CI runs the same checks on Ubuntu 24.04 with a real PostgreSQL service and Chromium. Official Node-24 action revisions are pinned by SHA. There are no live AI calls or dummy badges. Full dashboard, accessibility, seed-volume and AI checks are added with those capabilities. CI artifacts retain failing browser traces. Dependency versions are exact, peers were checked against registry metadata, and the lockfile is required; upgrades repeat this verification.
+CI runs the same checks on Ubuntu 24.04 with a real PostgreSQL service and Chromium. Before the gate it simulates Data API roles, migrates twice, seeds each size twice, verifies 10k and leaves 100k selected for the full gate. Official Node-24 action revisions are pinned by SHA. There are no live AI calls or dummy badges. Full dashboard, accessibility and AI checks are added with those capabilities. CI artifacts retain failing browser traces. Dependency versions are exact, peers were checked against registry metadata, and the lockfile is required; upgrades repeat this verification.
 
 ## Initial performance conditions
 

@@ -24,7 +24,7 @@ This policy does not by itself authorize implementing every item in the backlog.
 
 ## Current state
 
-PLAN-02 establishes the five-package workspace, Node runtime spike, generated contracts and CI. Read `docs/runtime.md` for actual setup and limits. Dataset generation, dashboard features, hosted deployment, AI and reusable skills remain future work.
+PLAN-02 establishes the five-package workspace, Node runtime spike, generated contracts and CI. Read `docs/runtime.md` for actual setup and limits. PLAN-03 adds deterministic data, an independent metric oracle, repeatable migrations/seeds and restricted database reads. Analytics endpoints, dashboard features, hosted deployment, AI and reusable skills remain future work.
 
 ## Implementation conventions
 
@@ -60,6 +60,6 @@ Foundation conventions:
 - Use Node from `.nvmrc`, exact dependency versions and `pnpm install --frozen-lockfile`. Review registry peer requirements and installed declarations before using new APIs.
 - After API schema changes run `pnpm contracts:generate` and commit both generated outputs. Never hand-edit them. `pnpm contracts:check` must pass on the committed result.
 - Run `pnpm check` with PostgreSQL available and port 3000 free; it includes lint, types, domain/API tests, generated-contract drift, build and the production browser smoke. Update tests at the boundary that changed. See `docs/runtime.md` for browser installation.
-- Keep `DATABASE_URL` server-only. Do not weaken TLS or introduce public arbitrary SQL. The foundation database owner is local-only; PLAN-03 must establish restricted query access before real analytics.
+- Keep `DATABASE_URL` server-only. Do not weaken TLS or introduce public arbitrary SQL. Use the restricted `opslens_app` login for runtime queries; reserve `MIGRATION_DATABASE_URL` for migrations/seeds and rollback-only data verification. See `data/README.md` and `supabase/README.md`.
 - Record runtime/host, data volume, cold/warm state and test conditions with measurements. Local Node proof does not establish a hosted provider's streaming behavior.
 - Keep accepted/corrected AI-development evidence concise in `docs/development-evidence.md`; describe only observed work. Mark self-review honestly.
