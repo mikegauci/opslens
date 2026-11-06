@@ -24,7 +24,8 @@
     "db:migrate": "node --env-file-if-exists=.env --import tsx scripts/db/migrate.ts",
     "db:login": "node --env-file-if-exists=.env --import tsx scripts/db/login.ts",
     "db:seed": "node --env-file-if-exists=.env --import tsx scripts/db/seed.ts",
-    "db:verify": "node --env-file-if-exists=.env --import tsx scripts/db/verify.ts"
+    "db:verify": "node --env-file-if-exists=.env --import tsx scripts/db/verify.ts",
+    "benchmark:api": "node --env-file-if-exists=.env --import tsx scripts/benchmark-api.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.6.6",

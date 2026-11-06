@@ -39,6 +39,10 @@ Run `pnpm exec playwright install chromium` once on a supported OS; Linux CI ins
 
 CI runs the same checks on Ubuntu 24.04 with a real PostgreSQL service and Chromium. Before the gate it simulates Data API roles, migrates twice, seeds each size twice, verifies 10k and leaves 100k selected for the full gate. Official Node-24 action revisions are pinned by SHA. There are no live AI calls or dummy badges. Full dashboard, accessibility and AI checks are added with those capabilities. CI artifacts retain failing browser traces. Dependency versions are exact, peers were checked against registry metadata, and the lockfile is required; upgrades repeat this verification.
 
+## Analytics API
+
+PLAN-04 adds validated `/api/summary`, `/api/trend`, `/api/contributions` and `/api/activity`, generated client contracts and one shared read-only analytics service. See [API scope, error/cancellation contracts and measured query plans](analytics-api.md). `pnpm db:verify` now also reconciles the unchanged oracle through the HTTP adapter/generated client and tests real blocked-query cancellation, statement timeout and pool recovery; the fixture replacement still rolls back. Production HTTP checks reconcile the charts/summary on the selected bulk seed. Use `pnpm benchmark:api` for reproducible API samples/plans after selecting a seed and refreshing PostgreSQL statistics; it does not seed data or measure browser interactions.
+
 ## Initial performance conditions
 
 [Raw baseline](foundation-baseline.json), captured 6 November 2026, records the hardware, browser, OS, runtime and every round trip. This is one local observation on a four-thread Intel i7-7660U with 16 GiB RAM, macOS 13.7.8, Node 24.20.0, Chrome 156, loopback PostgreSQL 17.11 and no network/CPU throttling. The server was already running; the fresh browser's first journey warmed the pool and included the deliberate 200 ms stream delay. There are **zero dataset rows**, so this establishes no 10k/100k query or production performance claim.

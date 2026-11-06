@@ -24,7 +24,7 @@ This policy does not by itself authorize implementing every item in the backlog.
 
 ## Current state
 
-PLAN-02 establishes the five-package workspace, Node runtime spike, generated contracts and CI. Read `docs/runtime.md` for actual setup and limits. PLAN-03 adds deterministic data, an independent metric oracle, repeatable migrations/seeds and restricted database reads. Analytics endpoints, dashboard features, hosted deployment, AI and reusable skills remain future work.
+PLAN-02 establishes the five-package workspace, Node runtime spike, generated contracts and CI. Read `docs/runtime.md` for actual setup and limits. PLAN-03 adds deterministic data, an independent metric oracle, repeatable migrations/seeds and restricted database reads. PLAN-04 adds validated analytics endpoints, generated client contracts, snapshot/dataset evidence and measured query plans; see `docs/analytics-api.md`. Dashboard features, hosted deployment, AI and reusable skills remain future work.
 
 ## Implementation conventions
 

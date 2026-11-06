@@ -1,6 +1,7 @@
 import { fileURLToPath } from "node:url";
 import { serve } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
+import { createAnalyticsService } from "@opslens/analytics/service";
 import pg from "pg";
 import { createApp } from "./app";
 
@@ -19,7 +20,7 @@ const app = createApp(async () => {
     "SELECT 1::integer AS result",
   );
   return result.rows[0].result;
-});
+}, createAnalyticsService(pool));
 // Keep the location stable in both src/ and dist/.
 const webRoot = fileURLToPath(new URL("../../web/dist/", import.meta.url));
 app.get("/assets/*", serveStatic({ root: webRoot }));

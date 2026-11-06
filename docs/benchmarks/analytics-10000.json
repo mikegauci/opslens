@@ -1,0 +1,1106 @@
+{
+  "capturedAt": "2026-11-06T16:09:10.763Z",
+  "node": "v24.20.0",
+  "os": "Darwin 22.6.0",
+  "cpu": "Intel(R) Core(TM) i7-7660U CPU @ 2.50GHz",
+  "logicalCpus": 4,
+  "memoryBytes": 17179869184,
+  "postgres": "PostgreSQL 17.11 (Homebrew) on x86_64-apple-darwin22.6.0, compiled by Apple clang version 14.0.3 (clang-1403.0.22.14.1), 64-bit",
+  "conditions": "Production Node build; loopback PostgreSQL; restricted login; concurrency 1; 21 HTTP requests/scenario incl full JSON consumption; no throttling/compression; health warmed connection pool; DB/OS caches already warm after seed/ANALYZE, firstMs is not cold-start. Plans collected after HTTP samples, no forced planner options.",
+  "manifest": {
+    "to": "2026-09-29T00:00:00.000Z",
+    "asOf": "2026-09-30T00:00:00.000Z",
+    "file": "transactions-10000.csv",
+    "from": "2026-07-01T00:00:00.000Z",
+    "seed": 20261106,
+    "spike": {
+      "provider": "nova",
+      "payoutMultiplier": 10
+    },
+    "sha256": "af4d53dc19b8e92d9e6ec801c4c3adb20de9033d150c9a5f40dfc7912813f22c",
+    "current": {
+      "to": "2026-09-29T00:00:00.000Z",
+      "from": "2026-09-22T00:00:00.000Z"
+    },
+    "currency": "EUR",
+    "emptyDay": "2026-08-15",
+    "encoding": "UTF-8; LF; header; empty field = null",
+    "previous": {
+      "to": "2026-09-22T00:00:00.000Z",
+      "from": "2026-09-15T00:00:00.000Z"
+    },
+    "rowCount": 10000,
+    "schemaVersion": 1,
+    "generatorVersion": 1,
+    "reportingTimezone": "UTC"
+  },
+  "results": [
+    {
+      "name": "summary",
+      "kind": "summary",
+      "query": {
+        "from": "2026-09-22T00:00:00.000Z",
+        "to": "2026-09-29T00:00:00.000Z"
+      },
+      "bytes": 804,
+      "firstMs": 24.240718000000015,
+      "warmMedianMs": 8.119592000000011,
+      "warmMaxMs": 15.880416999999966,
+      "samplesMs": [
+        24.240718000000015, 7.464248999999995, 9.183183999999983,
+        8.0162610000001, 8.186612999999966, 6.8728589999999485,
+        7.442592000000104, 7.631903999999963, 7.553157999999939,
+        8.751999999999953, 8.800467000000026, 8.611911000000077, 7.292282,
+        8.168671000000018, 13.896187000000054, 7.376128999999992,
+        6.610018000000082, 9.433876999999939, 8.070513000000005,
+        15.880416999999966, 8.364741000000095
+      ],
+      "sql": {
+        "text": "SELECT coalesce(sum(stake_minor),0)::text AS stakes,\n coalesce(sum(payout_minor),0)::text AS payouts,\n coalesce(sum(stake_minor-payout_minor),0)::text AS ggr,\n count(DISTINCT player_id)::text AS players FROM opslens_private.transactions WHERE settled_at >= $1 AND settled_at < $2 AND status = $3",
+        "values": [
+          "2026-09-22T00:00:00.000Z",
+          "2026-09-29T00:00:00.000Z",
+          "settled"
+        ]
+      },
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Aggregate",
+            "Strategy": "Plain",
+            "Partial Mode": "Simple",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 469.39,
+            "Total Cost": 469.42,
+            "Plan Rows": 1,
+            "Plan Width": 128,
+            "Actual Startup Time": 2.547,
+            "Actual Total Time": 2.548,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 154,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 456.23,
+                "Total Cost": 458.42,
+                "Plan Rows": 877,
+                "Plan Width": 27,
+                "Actual Startup Time": 2.395,
+                "Actual Total Time": 2.432,
+                "Actual Rows": 668,
+                "Actual Loops": 1,
+                "Sort Key": ["player_id"],
+                "Sort Method": "quicksort",
+                "Sort Space Used": 56,
+                "Sort Space Type": "Memory",
+                "Shared Hit Blocks": 154,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Relation Name": "transactions",
+                    "Alias": "transactions",
+                    "Startup Cost": 0,
+                    "Total Cost": 413.36,
+                    "Plan Rows": 877,
+                    "Plan Width": 27,
+                    "Actual Startup Time": 0.02,
+                    "Actual Total Time": 2.052,
+                    "Actual Rows": 668,
+                    "Actual Loops": 1,
+                    "Filter": "((settled_at >= '2026-09-22 02:00:00+02'::timestamp with time zone) AND (settled_at < '2026-09-29 02:00:00+02'::timestamp with time zone) AND (status = 'settled'::text))",
+                    "Rows Removed by Filter": 9332,
+                    "Shared Hit Blocks": 151,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 79,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.61,
+          "Triggers": [],
+          "Execution Time": 2.612
+        }
+      ]
+    },
+    {
+      "name": "trend",
+      "kind": "trend",
+      "query": {
+        "from": "2026-09-22T00:00:00.000Z",
+        "to": "2026-09-29T00:00:00.000Z"
+      },
+      "bytes": 1371,
+      "firstMs": 15.068180999999981,
+      "warmMedianMs": 6.9187950000000455,
+      "warmMaxMs": 17.634411999999998,
+      "samplesMs": [
+        15.068180999999981, 8.210491000000047, 9.046044000000052,
+        17.634411999999998, 12.595360999999912, 8.175362999999948,
+        5.754034999999931, 6.7349850000000515, 6.510449999999992,
+        7.063882999999919, 5.077738000000068, 6.349227000000042,
+        6.907978000000071, 7.050695000000019, 6.224449999999933,
+        6.991402999999991, 6.607868000000053, 6.92961200000002,
+        7.091936000000032, 6.076212000000055, 6.499305000000049
+      ],
+      "sql": {
+        "text": "SELECT to_char(settled_at AT TIME ZONE 'UTC', 'YYYY-MM-DD') AS day, coalesce(sum(stake_minor),0)::text AS stakes,\n coalesce(sum(payout_minor),0)::text AS payouts,\n coalesce(sum(stake_minor-payout_minor),0)::text AS ggr,\n count(DISTINCT player_id)::text AS players FROM opslens_private.transactions WHERE settled_at >= $1 AND settled_at < $2 AND status = $3 GROUP BY day ORDER BY day",
+        "values": [
+          "2026-09-22T00:00:00.000Z",
+          "2026-09-29T00:00:00.000Z",
+          "settled"
+        ]
+      },
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Aggregate",
+            "Strategy": "Sorted",
+            "Partial Mode": "Simple",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 460.61,
+            "Total Cost": 513.06,
+            "Plan Rows": 873,
+            "Plan Width": 160,
+            "Actual Startup Time": 5.946,
+            "Actual Total Time": 6.097,
+            "Actual Rows": 7,
+            "Actual Loops": 1,
+            "Group Key": [
+              "(to_char((settled_at AT TIME ZONE 'UTC'::text), 'YYYY-MM-DD'::text))"
+            ],
+            "Shared Hit Blocks": 151,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 460.61,
+                "Total Cost": 462.81,
+                "Plan Rows": 877,
+                "Plan Width": 59,
+                "Actual Startup Time": 5.913,
+                "Actual Total Time": 5.952,
+                "Actual Rows": 668,
+                "Actual Loops": 1,
+                "Sort Key": [
+                  "(to_char((settled_at AT TIME ZONE 'UTC'::text), 'YYYY-MM-DD'::text))",
+                  "player_id"
+                ],
+                "Sort Method": "quicksort",
+                "Sort Space Used": 66,
+                "Sort Space Type": "Memory",
+                "Shared Hit Blocks": 151,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Relation Name": "transactions",
+                    "Alias": "transactions",
+                    "Startup Cost": 0,
+                    "Total Cost": 417.75,
+                    "Plan Rows": 877,
+                    "Plan Width": 59,
+                    "Actual Startup Time": 4.19,
+                    "Actual Total Time": 5.357,
+                    "Actual Rows": 668,
+                    "Actual Loops": 1,
+                    "Filter": "((settled_at >= '2026-09-22 02:00:00+02'::timestamp with time zone) AND (settled_at < '2026-09-29 02:00:00+02'::timestamp with time zone) AND (status = 'settled'::text))",
+                    "Rows Removed by Filter": 9332,
+                    "Shared Hit Blocks": 151,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.106,
+          "Triggers": [],
+          "Execution Time": 6.13
+        }
+      ]
+    },
+    {
+      "name": "contributions",
+      "kind": "contributions",
+      "query": {
+        "from": "2026-09-22T00:00:00.000Z",
+        "to": "2026-09-29T00:00:00.000Z"
+      },
+      "bytes": 810,
+      "firstMs": 6.448959999999943,
+      "warmMedianMs": 5.962948500000039,
+      "warmMaxMs": 6.3065560000000005,
+      "samplesMs": [
+        6.448959999999943, 6.205115000000092, 4.358990999999946,
+        6.180104999999912, 6.123124999999959, 5.87141900000006,
+        4.819202000000018, 6.273596999999995, 5.250815999999986,
+        5.469411000000036, 5.528204999999957, 5.417071999999962,
+        6.1766249999999445, 6.3065560000000005, 6.166645000000017,
+        5.962795000000028, 5.963102000000049, 6.037304000000063,
+        6.050696000000016, 5.0484379999998055, 5.5048689999998714
+      ],
+      "sql": {
+        "text": "SELECT provider_id,\n    coalesce(sum(stake_minor-payout_minor) FILTER (WHERE settled_at >= $4),0)::text AS current,\n    coalesce(sum(stake_minor-payout_minor) FILTER (WHERE settled_at < $4),0)::text AS previous\n    FROM opslens_private.transactions WHERE settled_at >= $1 AND settled_at < $2 AND status = $3 GROUP BY provider_id ORDER BY provider_id",
+        "values": [
+          "2026-09-15T00:00:00.000Z",
+          "2026-09-29T00:00:00.000Z",
+          "settled",
+          "2026-09-22T00:00:00.000Z"
+        ]
+      },
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Sort",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 443.87,
+            "Total Cost": 443.88,
+            "Plan Rows": 3,
+            "Plan Width": 69,
+            "Actual Startup Time": 1.197,
+            "Actual Total Time": 1.198,
+            "Actual Rows": 3,
+            "Actual Loops": 1,
+            "Sort Key": ["provider_id"],
+            "Sort Method": "quicksort",
+            "Sort Space Used": 25,
+            "Sort Space Type": "Memory",
+            "Shared Hit Blocks": 151,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Aggregate",
+                "Strategy": "Hashed",
+                "Partial Mode": "Simple",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 443.78,
+                "Total Cost": 443.85,
+                "Plan Rows": 3,
+                "Plan Width": 69,
+                "Actual Startup Time": 1.163,
+                "Actual Total Time": 1.164,
+                "Actual Rows": 3,
+                "Actual Loops": 1,
+                "Group Key": ["provider_id"],
+                "Planned Partitions": 0,
+                "HashAgg Batches": 1,
+                "Peak Memory Usage": 24,
+                "Disk Usage": 0,
+                "Shared Hit Blocks": 151,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Relation Name": "transactions",
+                    "Alias": "transactions",
+                    "Startup Cost": 0,
+                    "Total Cost": 413.36,
+                    "Plan Rows": 1738,
+                    "Plan Width": 29,
+                    "Actual Startup Time": 0.008,
+                    "Actual Total Time": 0.887,
+                    "Actual Rows": 1324,
+                    "Actual Loops": 1,
+                    "Filter": "((settled_at >= '2026-09-15 02:00:00+02'::timestamp with time zone) AND (settled_at < '2026-09-29 02:00:00+02'::timestamp with time zone) AND (status = 'settled'::text))",
+                    "Rows Removed by Filter": 8676,
+                    "Shared Hit Blocks": 151,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 3,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.102,
+          "Triggers": [],
+          "Execution Time": 1.225
+        }
+      ]
+    },
+    {
+      "name": "activity_first",
+      "kind": "activity",
+      "query": {
+        "from": "2026-09-22T00:00:00.000Z",
+        "to": "2026-09-29T00:00:00.000Z"
+      },
+      "bytes": 13838,
+      "firstMs": 9.775961000000052,
+      "warmMedianMs": 7.125787500000115,
+      "warmMaxMs": 13.841910999999982,
+      "samplesMs": [
+        9.775961000000052, 6.219714000000067, 6.749926000000187,
+        7.306652999999869, 7.364272000000028, 7.07774500000005,
+        7.17383000000018, 13.841910999999982, 5.874115000000074,
+        6.74396999999999, 5.330114999999978, 7.709293000000116,
+        7.430114999999887, 6.165966000000026, 13.47565099999997,
+        5.608852999999954, 5.369662999999946, 8.268499999999904,
+        9.383776000000125, 7.9960110000001805, 6.499456000000009
+      ],
+      "sql": {
+        "text": "SELECT * FROM opslens_private.transactions WHERE settled_at >= $1 AND settled_at < $2 AND status = $3 ORDER BY settled_at DESC, id DESC LIMIT $4 OFFSET $5",
+        "values": [
+          "2026-09-22T00:00:00.000Z",
+          "2026-09-29T00:00:00.000Z",
+          "settled",
+          51,
+          0
+        ]
+      },
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 442.62,
+            "Total Cost": 442.75,
+            "Plan Rows": 51,
+            "Plan Width": 83,
+            "Actual Startup Time": 0.94,
+            "Actual Total Time": 0.948,
+            "Actual Rows": 51,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 154,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 442.62,
+                "Total Cost": 444.81,
+                "Plan Rows": 877,
+                "Plan Width": 83,
+                "Actual Startup Time": 0.938,
+                "Actual Total Time": 0.941,
+                "Actual Rows": 51,
+                "Actual Loops": 1,
+                "Sort Key": ["settled_at DESC", "id DESC"],
+                "Sort Method": "top-N heapsort",
+                "Sort Space Used": 36,
+                "Sort Space Type": "Memory",
+                "Shared Hit Blocks": 154,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Relation Name": "transactions",
+                    "Alias": "transactions",
+                    "Startup Cost": 0,
+                    "Total Cost": 413.36,
+                    "Plan Rows": 877,
+                    "Plan Width": 83,
+                    "Actual Startup Time": 0.007,
+                    "Actual Total Time": 0.815,
+                    "Actual Rows": 668,
+                    "Actual Loops": 1,
+                    "Filter": "((settled_at >= '2026-09-22 02:00:00+02'::timestamp with time zone) AND (settled_at < '2026-09-29 02:00:00+02'::timestamp with time zone) AND (status = 'settled'::text))",
+                    "Rows Removed by Filter": 9332,
+                    "Shared Hit Blocks": 151,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 31,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.098,
+          "Triggers": [],
+          "Execution Time": 0.97
+        }
+      ]
+    },
+    {
+      "name": "activity_filtered",
+      "kind": "activity",
+      "query": {
+        "from": "2026-09-22T00:00:00.000Z",
+        "to": "2026-09-29T00:00:00.000Z",
+        "brand": "harbor",
+        "provider": "nova",
+        "limit": "100"
+      },
+      "bytes": 27174,
+      "firstMs": 9.048855000000003,
+      "warmMedianMs": 9.850490499999978,
+      "warmMaxMs": 15.395743000000039,
+      "samplesMs": [
+        9.048855000000003, 7.679030000000012, 12.349346999999852,
+        10.310694999999896, 6.835536000000047, 9.990659999999934,
+        10.42348099999981, 8.610881000000063, 10.179693000000043,
+        11.912919999999986, 10.373477000000094, 9.710321000000022,
+        9.352779000000055, 11.806606999999985, 7.572753000000148,
+        8.634275000000116, 8.043443000000025, 10.208014999999932,
+        15.395743000000039, 7.843975, 9.436697999999978
+      ],
+      "sql": {
+        "text": "SELECT * FROM opslens_private.transactions WHERE settled_at >= $1 AND settled_at < $2 AND status = $3 AND brand_id = $4 AND provider_id = $5 ORDER BY settled_at DESC, id DESC LIMIT $6 OFFSET $7",
+        "values": [
+          "2026-09-22T00:00:00.000Z",
+          "2026-09-29T00:00:00.000Z",
+          "settled",
+          "harbor",
+          "nova",
+          101,
+          0
+        ]
+      },
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 493.61,
+            "Total Cost": 493.86,
+            "Plan Rows": 101,
+            "Plan Width": 83,
+            "Actual Startup Time": 0.948,
+            "Actual Total Time": 0.966,
+            "Actual Rows": 101,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 151,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 493.61,
+                "Total Cost": 493.98,
+                "Plan Rows": 147,
+                "Plan Width": 83,
+                "Actual Startup Time": 0.947,
+                "Actual Total Time": 0.954,
+                "Actual Rows": 101,
+                "Actual Loops": 1,
+                "Sort Key": ["settled_at DESC", "id DESC"],
+                "Sort Method": "quicksort",
+                "Sort Space Used": 41,
+                "Sort Space Type": "Memory",
+                "Shared Hit Blocks": 151,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Relation Name": "transactions",
+                    "Alias": "transactions",
+                    "Startup Cost": 0,
+                    "Total Cost": 488.32,
+                    "Plan Rows": 147,
+                    "Plan Width": 83,
+                    "Actual Startup Time": 0.015,
+                    "Actual Total Time": 0.904,
+                    "Actual Rows": 124,
+                    "Actual Loops": 1,
+                    "Filter": "((settled_at >= '2026-09-22 02:00:00+02'::timestamp with time zone) AND (settled_at < '2026-09-29 02:00:00+02'::timestamp with time zone) AND (status = 'settled'::text) AND (brand_id = 'harbor'::text) AND (provider_id = 'nova'::text))",
+                    "Rows Removed by Filter": 9876,
+                    "Shared Hit Blocks": 151,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.074,
+          "Triggers": [],
+          "Execution Time": 0.991
+        }
+      ]
+    },
+    {
+      "name": "activity_deep",
+      "kind": "activity",
+      "query": {
+        "from": "2026-07-01T00:00:00.000Z",
+        "to": "2026-09-29T00:00:00.000Z",
+        "sort": "stake",
+        "offset": "5000",
+        "datasetHash": "af4d53dc19b8e92d9e6ec801c4c3adb20de9033d150c9a5f40dfc7912813f22c"
+      },
+      "bytes": 13794,
+      "firstMs": 14.763644999999997,
+      "warmMedianMs": 10.847558999999933,
+      "warmMaxMs": 27.352247999999918,
+      "samplesMs": [
+        14.763644999999997, 27.352247999999918, 14.516773000000057,
+        10.611347000000023, 12.483662999999979, 11.724868999999899,
+        10.556915000000117, 10.970634999999902, 10.091507999999976,
+        7.963784000000032, 10.599948999999924, 10.486272999999983,
+        10.638220000000047, 12.55345299999999, 12.816088000000036,
+        11.488921000000119, 10.435956999999917, 9.669595999999956,
+        10.724482999999964, 11.191190000000006, 12.46929799999998
+      ],
+      "sql": {
+        "text": "SELECT * FROM opslens_private.transactions WHERE settled_at >= $1 AND settled_at < $2 AND status = $3 ORDER BY stake_minor DESC, id DESC LIMIT $4 OFFSET $5",
+        "values": [
+          "2026-07-01T00:00:00.000Z",
+          "2026-09-29T00:00:00.000Z",
+          "settled",
+          51,
+          5000
+        ]
+      },
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 1182.5,
+            "Total Cost": 1182.63,
+            "Plan Rows": 51,
+            "Plan Width": 83,
+            "Actual Startup Time": 8.217,
+            "Actual Total Time": 8.226,
+            "Actual Rows": 51,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 154,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 1170,
+                "Total Cost": 1198.44,
+                "Plan Rows": 11376,
+                "Plan Width": 83,
+                "Actual Startup Time": 7.597,
+                "Actual Total Time": 7.986,
+                "Actual Rows": 5051,
+                "Actual Loops": 1,
+                "Sort Key": ["stake_minor DESC", "id DESC"],
+                "Sort Method": "quicksort",
+                "Sort Space Used": 1541,
+                "Sort Space Type": "Memory",
+                "Shared Hit Blocks": 154,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Relation Name": "transactions",
+                    "Alias": "transactions",
+                    "Startup Cost": 0,
+                    "Total Cost": 413.36,
+                    "Plan Rows": 11376,
+                    "Plan Width": 83,
+                    "Actual Startup Time": 0.01,
+                    "Actual Total Time": 1.762,
+                    "Actual Rows": 8711,
+                    "Actual Loops": 1,
+                    "Filter": "((settled_at >= '2026-07-01 02:00:00+02'::timestamp with time zone) AND (settled_at < '2026-09-29 02:00:00+02'::timestamp with time zone) AND (status = 'settled'::text))",
+                    "Rows Removed by Filter": 1289,
+                    "Shared Hit Blocks": 151,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 10,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.103,
+          "Triggers": [],
+          "Execution Time": 8.256
+        }
+      ]
+    },
+    {
+      "name": "placement_pending",
+      "kind": "activity",
+      "query": {
+        "from": "2026-09-22T00:00:00.000Z",
+        "to": "2026-09-29T00:00:00.000Z",
+        "basis": "placement",
+        "status": "pending"
+      },
+      "bytes": 12767,
+      "firstMs": 6.610445000000027,
+      "warmMedianMs": 5.891365500000006,
+      "warmMaxMs": 7.670667999999978,
+      "samplesMs": [
+        6.610445000000027, 6.760956999999962, 4.139007999999876,
+        5.371947999999975, 5.467431000000033, 5.928260000000137,
+        5.854470999999876, 6.882562000000007, 5.330873999999994,
+        4.994548000000123, 7.670667999999978, 5.2047439999998915,
+        7.281797000000097, 6.6989350000001195, 6.353200000000015,
+        6.600185999999894, 4.959135999999944, 5.667800999999827,
+        5.756378999999924, 6.571059999999989, 6.116496999999981
+      ],
+      "sql": {
+        "text": "SELECT * FROM opslens_private.transactions WHERE placed_at >= $1 AND placed_at < $2 AND status = $3 ORDER BY placed_at DESC, id DESC LIMIT $4 OFFSET $5",
+        "values": [
+          "2026-09-22T00:00:00.000Z",
+          "2026-09-29T00:00:00.000Z",
+          "pending",
+          51,
+          0
+        ]
+      },
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 416.28,
+            "Total Cost": 416.41,
+            "Plan Rows": 51,
+            "Plan Width": 83,
+            "Actual Startup Time": 0.818,
+            "Actual Total Time": 0.826,
+            "Actual Rows": 51,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 151,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 416.28,
+                "Total Cost": 416.51,
+                "Plan Rows": 90,
+                "Plan Width": 83,
+                "Actual Startup Time": 0.817,
+                "Actual Total Time": 0.821,
+                "Actual Rows": 51,
+                "Actual Loops": 1,
+                "Sort Key": ["placed_at DESC", "id DESC"],
+                "Sort Method": "quicksort",
+                "Sort Space Used": 32,
+                "Sort Space Type": "Memory",
+                "Shared Hit Blocks": 151,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Relation Name": "transactions",
+                    "Alias": "transactions",
+                    "Startup Cost": 0,
+                    "Total Cost": 413.36,
+                    "Plan Rows": 90,
+                    "Plan Width": 83,
+                    "Actual Startup Time": 0.02,
+                    "Actual Total Time": 0.801,
+                    "Actual Rows": 56,
+                    "Actual Loops": 1,
+                    "Filter": "((placed_at >= '2026-09-22 02:00:00+02'::timestamp with time zone) AND (placed_at < '2026-09-29 02:00:00+02'::timestamp with time zone) AND (status = 'pending'::text))",
+                    "Rows Removed by Filter": 9944,
+                    "Shared Hit Blocks": 151,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.073,
+          "Triggers": [],
+          "Execution Time": 0.841
+        }
+      ]
+    }
+  ],
+  "previousSummary": {
+    "sql": {
+      "text": "SELECT coalesce(sum(stake_minor),0)::text AS stakes,\n coalesce(sum(payout_minor),0)::text AS payouts,\n coalesce(sum(stake_minor-payout_minor),0)::text AS ggr,\n count(DISTINCT player_id)::text AS players FROM opslens_private.transactions WHERE settled_at >= $1 AND settled_at < $2 AND status = $3",
+      "values": [
+        "2026-09-15T00:00:00.000Z",
+        "2026-09-22T00:00:00.000Z",
+        "settled"
+      ]
+    },
+    "plan": [
+      {
+        "Plan": {
+          "Node Type": "Aggregate",
+          "Strategy": "Plain",
+          "Partial Mode": "Simple",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 468.26,
+          "Total Cost": 468.29,
+          "Plan Rows": 1,
+          "Plan Width": 128,
+          "Actual Startup Time": 1.928,
+          "Actual Total Time": 1.928,
+          "Actual Rows": 1,
+          "Actual Loops": 1,
+          "Shared Hit Blocks": 151,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Sort",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 455.33,
+              "Total Cost": 457.49,
+              "Plan Rows": 861,
+              "Plan Width": 27,
+              "Actual Startup Time": 1.713,
+              "Actual Total Time": 1.774,
+              "Actual Rows": 656,
+              "Actual Loops": 1,
+              "Sort Key": ["player_id"],
+              "Sort Method": "quicksort",
+              "Sort Space Used": 55,
+              "Sort Space Type": "Memory",
+              "Shared Hit Blocks": 151,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "transactions",
+                  "Alias": "transactions",
+                  "Startup Cost": 0,
+                  "Total Cost": 413.36,
+                  "Plan Rows": 861,
+                  "Plan Width": 27,
+                  "Actual Startup Time": 0.01,
+                  "Actual Total Time": 1.363,
+                  "Actual Rows": 656,
+                  "Actual Loops": 1,
+                  "Filter": "((settled_at >= '2026-09-15 02:00:00+02'::timestamp with time zone) AND (settled_at < '2026-09-22 02:00:00+02'::timestamp with time zone) AND (status = 'settled'::text))",
+                  "Rows Removed by Filter": 9344,
+                  "Shared Hit Blocks": 151,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.093,
+        "Triggers": [],
+        "Execution Time": 1.958
+      }
+    ]
+  }
+}

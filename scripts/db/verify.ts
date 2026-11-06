@@ -4,6 +4,8 @@ import { readFile } from "node:fs/promises";
 import pg from "pg";
 import { columns, csv, type Transaction } from "../data/dataset";
 import { admin, replaceRows } from "./shared";
+import { verifyApi } from "./verify-api";
+import { verifyCancellation } from "./verify-cancellation";
 
 type Slice = {
   name: string;
@@ -147,9 +149,14 @@ try {
       );
     }
   }
+  await verifyCancellation(client);
   // Fixture replacement is rolled back; the selected bulk dataset remains intact.
   await client.query("BEGIN");
-  await replaceRows(client, fixture.rows, { fixture: true });
+  await replaceRows(client, fixture.rows, {
+    ...manifest,
+    rowCount: 12,
+    sha256: "a".repeat(64),
+  });
   await client.query("SET LOCAL ROLE opslens_app");
   for (const slice of fixture.cases) {
     const result = await client.query(
@@ -190,6 +197,7 @@ try {
     6,
     "Placement slice includes pending/void and excludes l",
   );
+  await verifyApi(client, "a".repeat(64));
   await client.query("RESET ROLE");
   for (const [column, value] of [
     ["payout_minor", null],
