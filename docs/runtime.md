@@ -36,7 +36,7 @@ Run `pnpm exec playwright install chromium` once on a supported OS; Linux CI ins
 - API schemas are declared once with Hono/Zod. `pnpm contracts:generate` exports OpenAPI and generates `schema.d.ts` using openapi-typescript's Node API. Commit both outputs. `pnpm contracts:check` regenerates and fails on tracked changes. Do not hand-edit generated files. [Generator API](https://openapi-ts.dev/node), [typed fetch client](https://openapi-ts.dev/openapi-fetch/).
 - Unknown API routes return JSON 404, never SPA HTML. Database failure returns a non-sensitive 503; startup without `DATABASE_URL` fails clearly.
 
-CI runs the same checks with a real PostgreSQL service and Chromium. There are no live AI calls or dummy badges. Full dashboard, accessibility, seed-volume and AI checks are added with those capabilities. CI artifacts retain failing browser traces. Dependency versions are exact, peers were checked against registry metadata, and the lockfile is required; upgrades repeat this verification.
+CI runs the same checks on Ubuntu 24.04 with a real PostgreSQL service and Chromium. Official Node-24 action revisions are pinned by SHA. There are no live AI calls or dummy badges. Full dashboard, accessibility, seed-volume and AI checks are added with those capabilities. CI artifacts retain failing browser traces. Dependency versions are exact, peers were checked against registry metadata, and the lockfile is required; upgrades repeat this verification.
 
 ## Initial performance conditions
 
