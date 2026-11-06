@@ -1,0 +1,30 @@
+# Dependencies and generated builds
+node_modules/
+dist/
+build/
+storybook-static/
+coverage/
+playwright-report/
+test-results/
+.vite/
+.next/
+.vercel/
+
+# Local secrets and runtime state
+.env
+.env.*
+!.env.example
+*.local
+.supabase/
+supabase/.temp/
+supabase/.branches/
+superset/.env
+superset/superset_home/
+
+# Reproducible bulk data and local AI run output
+data/generated/
+evals/runs/private/
+
+# Host files
+.DS_Store
+*.log

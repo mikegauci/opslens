@@ -1,0 +1,27 @@
+name: Feature or improvement
+description: Plan a focused, reviewable change to OpsLens.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem and expected behaviour
+      description: Explain the concrete task and the result the user should see.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and dependencies
+      description: Link designs, contracts, related issues and relevant constraints.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Describe observable behaviours that establish completion.
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation and portfolio evidence
+      description: Identify relevant domain, API, browser, accessibility, performance or AI evaluation checks.
