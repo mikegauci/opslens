@@ -25,6 +25,7 @@ const app = createApp(async () => {
 const webRoot = fileURLToPath(new URL("../../web/dist/", import.meta.url));
 app.get("/assets/*", serveStatic({ root: webRoot }));
 app.get("/", serveStatic({ path: `${webRoot}index.html` }));
+app.get("/activity", serveStatic({ path: `${webRoot}index.html` }));
 app.get("/foundation", serveStatic({ path: `${webRoot}index.html` }));
 const port = Number(process.env.PORT ?? 3000);
 const server = serve(
