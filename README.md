@@ -8,7 +8,7 @@ This is an independent portfolio project using fictional brands and synthetic da
 
 ## Status
 
-Planning stage. The application, API, AI integration, Storybook, and deployments have not been built. No performance or evaluation results are claimed yet.
+Foundation stage. A React diagnostic route, typed Hono API, real PostgreSQL connectivity probe, streamed response and CI are implemented. Dashboards, seeded analytics, AI, Storybook and hosted deployments are still future work. See [working setup and hosting tradeoffs](docs/runtime.md).
 
 The build prioritises a polished, explainable result over a fixed deadline. It uses React and TypeScript throughout the frontend; Angular is excluded.
 
@@ -33,7 +33,7 @@ The build prioritises a polished, explainable result over a fixed deadline. It u
 
 React, TypeScript, Vite, Tailwind CSS, shadcn/ui, ECharts, TanStack Table/Virtual/Query, a small TypeScript API, PostgreSQL, OpenAPI-generated clients, Vitest, Playwright, Storybook, and OpenAI through the AI SDK.
 
-Exact dependency versions and deployment adapters will be verified and pinned during the foundation milestone. Setup commands will be documented when they actually work.
+Node 24, pnpm and the installed foundation dependencies are pinned with a committed lockfile. Start with [the local setup](docs/runtime.md); `pnpm check` runs lint, types, domain/API tests, contract drift, production build and browser smoke against PostgreSQL.
 
 ## Portfolio deliverables
 

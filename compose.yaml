@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres:17.11
+    environment:
+      POSTGRES_USER: opslens
+      POSTGRES_PASSWORD: opslens
+      POSTGRES_DB: opslens
+    ports:
+      - "127.0.0.1:54329:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U opslens -d opslens"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+    volumes:
+      - opslens-db:/var/lib/postgresql/data
+volumes:
+  opslens-db:

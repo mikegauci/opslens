@@ -1,0 +1,23 @@
+{
+  "measuredAt": "2026-11-06T15:30:10.321Z",
+  "system": {
+    "platform": "darwin",
+    "release": "22.6.0",
+    "arch": "x64",
+    "cpu": "Intel(R) Core(TM) i7-7660U CPU @ 2.50GHz",
+    "logicalCpus": 4,
+    "memoryGiB": 16,
+    "node": "v24.20.0"
+  },
+  "browser": "156.0.8078.80",
+  "conditions": "Production Vite build + Node Hono; local loopback API and PostgreSQL 17.11; no throttling, no dataset rows; fresh browser/context, already running server; first journey includes pool warm-up and deliberate 200ms SSE delay; 10 serial health HTTP round trips after browser warmed the pool; first Node fetch includes a fresh HTTP connection, not isolated SQL timings. No cloud/cold-process claim.",
+  "firstJourneyMs": 1907.016513999999,
+  "domContentLoadedMs": 394.09999999403954,
+  "documentTransferBytes": 772,
+  "resourceTransferBytes": 230076,
+  "healthRoundTripMs": [
+    98.09012900000016, 6.854239999998754, 9.967930999999226, 18.470565999999963,
+    35.13504599999942, 17.790521999999328, 15.338942999998835, 8.05470299999979,
+    6.918936000000031, 10.986901000000216
+  ]
+}
