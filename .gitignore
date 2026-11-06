@@ -28,3 +28,7 @@ evals/runs/private/
 # Host files
 .DS_Store
 *.log
+
+# Python local bytecode
+__pycache__/
+*.pyc
