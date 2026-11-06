@@ -1,4 +1,6 @@
-import createClient from "openapi-fetch";
+import createClient, { type ClientOptions } from "openapi-fetch";
 import type { paths } from "./schema";
-export const api = createClient<paths>();
+export const createApiClient = (options?: ClientOptions) =>
+  createClient<paths>(options);
+export const api = createApiClient();
 export type { paths } from "./schema";

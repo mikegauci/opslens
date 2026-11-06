@@ -3,5 +3,13 @@
   "type": "module",
   "version": "0.0.0",
   "name": "@opslens/analytics",
-  "exports": "./src/index.ts"
+  "exports": {
+    ".": "./src/index.ts",
+    "./schemas": "./src/schemas.ts",
+    "./service": "./src/service.ts"
+  },
+  "dependencies": {
+    "zod": "4.6.7",
+    "pg": "8.23.1"
+  }
 }

@@ -1,5 +1,15 @@
 import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
 import { grossGamingRevenue } from "@opslens/analytics";
+import {
+  activityQuery,
+  errorSchema,
+  metricQuery,
+  responseSchemas,
+} from "@opslens/analytics/schemas";
+import {
+  AnalyticsError,
+  type AnalyticsService,
+} from "@opslens/analytics/service";
 import { streamSSE } from "hono/streaming";
 
 export type DatabaseProbe = () => Promise<number>;
@@ -13,7 +23,7 @@ const responseSchema = z.object({
 const unavailableSchema = z.object({
   error: z.literal("Database unavailable"),
 });
-export function createApp(probe: DatabaseProbe) {
+export function createApp(probe: DatabaseProbe, analytics?: AnalyticsService) {
   const app = new OpenAPIHono();
   app.openapi(
     createRoute({
@@ -77,9 +87,104 @@ export function createApp(probe: DatabaseProbe) {
       return response;
     },
   );
+  for (const kind of [
+    "summary",
+    "trend",
+    "contributions",
+    "activity",
+  ] as const) {
+    app.use(`/api/${kind}`, async (c, next) => {
+      const params = new URL(c.req.url).searchParams;
+      if ([...params.keys()].some((key) => params.getAll(key).length > 1)) {
+        return c.json(
+          {
+            error: {
+              code: "INVALID_QUERY",
+              message: "Repeated filters are not supported",
+            },
+          },
+          400,
+        );
+      }
+      await next();
+    });
+    app.openapi(
+      createRoute({
+        method: "get",
+        path: `/api/${kind}`,
+        operationId: kind,
+        request: { query: kind === "activity" ? activityQuery : metricQuery },
+        responses: {
+          200: {
+            description:
+              "Analytics with effective scope and immutable dataset evidence",
+            content: { "application/json": { schema: responseSchemas[kind] } },
+          },
+          400: {
+            description: "Invalid or incompatible filters",
+            content: { "application/json": { schema: errorSchema } },
+          },
+          409: {
+            description: "Dataset changed; restart pagination",
+            content: { "application/json": { schema: errorSchema } },
+          },
+          408: {
+            description:
+              "Request cancelled (response may not reach disconnected caller)",
+            content: { "application/json": { schema: errorSchema } },
+          },
+          503: {
+            description: "Analytics unavailable",
+            content: { "application/json": { schema: errorSchema } },
+          },
+          504: {
+            description: "Statement timeout",
+            content: { "application/json": { schema: errorSchema } },
+          },
+        },
+      }),
+      async (c) => {
+        c.header("Cache-Control", "no-store");
+        try {
+          if (!analytics)
+            throw new AnalyticsError("UNAVAILABLE", "Analytics unavailable");
+          const result = await analytics(kind, c.req.query(), c.req.raw.signal);
+          return c.json(responseSchemas[kind].parse(result), 200);
+        } catch (error) {
+          const failure =
+            error instanceof AnalyticsError
+              ? error
+              : new AnalyticsError("UNAVAILABLE", "Analytics unavailable");
+          const status = {
+            INVALID_QUERY: 400,
+            DATASET_CHANGED: 409,
+            UNAVAILABLE: 503,
+            TIMEOUT: 504,
+            CANCELLED: 408,
+          } as const;
+          return c.json(
+            { error: { code: failure.code, message: failure.message } },
+            status[failure.code],
+          );
+        }
+      },
+      (result, c) => {
+        if (!result.success)
+          return c.json(
+            {
+              error: {
+                code: "INVALID_QUERY" as const,
+                message: "Invalid analytics query",
+              },
+            },
+            400,
+          );
+      },
+    );
+  }
   app.doc("/api/openapi.json", {
     openapi: "3.0.0",
-    info: { title: "OpsLens API", version: "0.1.0" },
+    info: { title: "OpsLens API", version: "0.2.0" },
   });
   app.notFound((c) => c.json({ error: "Not found" }, 404));
   return app;
