@@ -226,6 +226,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@opslens/analytics':
+        specifier: workspace:*
+        version: link:../../packages/analytics
       '@opslens/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
