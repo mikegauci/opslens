@@ -24,7 +24,8 @@ jobs:
           --health-cmd "pg_isready -U opslens -d opslens"
           --health-interval 2s --health-timeout 3s --health-retries 15
     env:
-      DATABASE_URL: postgresql://opslens:opslens@127.0.0.1:54329/opslens
+      MIGRATION_DATABASE_URL: postgresql://opslens:opslens@127.0.0.1:54329/opslens
+      DATABASE_URL: postgresql://opslens_app:opslens_app_dev@127.0.0.1:54329/opslens
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
@@ -33,6 +34,11 @@ jobs:
       - run: npm install --global pnpm@12.11.2
       - run: pnpm install --frozen-lockfile
       - run: pnpm exec playwright install --with-deps chromium
+      # Simulate the Data API roles without provisioning Supabase.
+      - run: psql "$MIGRATION_DATABASE_URL" -v ON_ERROR_STOP=1 -c 'CREATE ROLE anon NOLOGIN; CREATE ROLE authenticated NOLOGIN; CREATE ROLE service_role NOLOGIN BYPASSRLS;'
+      - run: pnpm db:migrate && pnpm db:migrate && pnpm db:login
+      - run: pnpm db:seed 10000 && pnpm db:seed 10000 && pnpm db:verify
+      - run: pnpm db:seed 100000 && pnpm db:seed 100000
       - run: pnpm check
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()

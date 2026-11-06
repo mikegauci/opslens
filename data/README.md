@@ -1,0 +1,13 @@
+# Repeatable synthetic data
+
+Run `pnpm data:generate` from the repository root. It emits ignored `data/generated/transactions-10000.csv` and `transactions-100000.csv`, each with a sidecar manifest, and updates committed `data/manifest.json`. `pnpm data:check` regenerates in memory and rejects drift from the committed manifest. Review generator/version/hash changes together; never commit bulk exports.
+
+The generator uses a fixed uint32 LCG seed, stable column/ID order, UTC timestamps, integer EUR minor units, UTF-8 and LF (including the final newline). CSV fields cannot contain commas, quotes or newlines in this closed fictional vocabulary. Nulls are empty fields. SHA-256 covers the exact CSV bytes including the header. The manifest records versions, seed, reporting window, snapshot time, periods, story and row count. The 10k export is the first 10k rows of the 100k export.
+
+The fixed 90-day window is [1 July 2026, 29 September 2026), as of 30 September. Four explicit settled boundary probes include a row exactly at the exclusive end; it is intentionally in the export and excluded from reporting-window totals. Their placement dates are one second earlier. Ordinary rows use equal placement/settlement times; this is a final-status snapshot, not a financial event ledger. Every date on 15 August is intentionally empty. Pending and void records have neither settlement nor payout. Zero stakes and repeated fictional players are intentional.
+
+Nova's settled payouts in the final seven-day period are deliberately set to ten times stake (except the boundary probes), creating negative GGR and the largest negative contribution against the prior seven days. This is an injected payout pattern, with no implied external cause. Tests check the story at both sizes. The generator's ordinary variation is illustrative, not a fitted statistical model of real gaming activity.
+
+`pnpm db:migrate`, `pnpm db:login`, then `pnpm db:seed 10000` (or `100000`) load one active dataset. Seeds rebuild the approved data, reject manifest drift, and atomically replace rows/metadata rather than append. A failure rolls back. The manifest is stored in `opslens_private.dataset`; `pnpm db:verify` reads every row as the application role, reconstructs canonical CSV and checks its hash, then checks the independent fixture, constraints and denied writes. It requires both server-only connection strings. Never point seeds or verification at a database containing valuable application data.
+
+See [runtime setup](../docs/runtime.md), [the independent oracle](fixtures/README.md), and [access review](../supabase/README.md). This change establishes no API aggregate, hosted deployment or 100k interaction performance claim.
