@@ -166,7 +166,7 @@ User workflow rules: each new PR starts in a fresh Codex chat with a short promp
 
 Seek at least one genuine peer review and one developer trial of a reusable skill. If a reviewer is unavailable, describe the work as self-reviewed and the skill as personally used. Do not manufacture team-adoption evidence.
 
-The GitHub CLI currently reports an invalid sign-in. This planning step prepares a local repository; remote creation, issues, labels, and milestones are pending a working sign-in. The connected GitHub plugin has issue/PR operations but does not expose repository creation.
+GitHub authentication was verified on 6 November 2026 for `mikegauci` using the existing keyring sign-in with the required credential/network access. No new login was needed; the earlier restricted check had appeared to report invalid credentials. The repository remains local: remote creation, issues, labels, and milestones are not yet performed. The connected GitHub plugin has issue/PR operations but does not expose repository creation; the authenticated GitHub CLI is available for repository setup.
 
 ## Optional migration evidence
 

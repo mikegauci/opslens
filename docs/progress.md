@@ -9,7 +9,7 @@ Keep this file brief and update it with each PR. Describe only work and verifica
 - Separate Figma deliverable removed at the user's request; develop the design directly in React from brief screen notes.
 - Required workflow saved: one fresh Codex chat per new PR; push and auto-merge after required checks, without another approval request.
 - Application code, database, CI, AI integration and deployments have not been built.
-- GitHub remote and issues have not been created. The last GitHub CLI authentication check reported an invalid sign-in; verify access when remote setup is requested.
+- GitHub remote and issues have not been created. GitHub authentication was verified on 6 November 2026 for `mikegauci` using the existing keyring sign-in with the required credential/network access. No new login was needed. The earlier restricted check incorrectly appeared to indicate an invalid sign-in.
 
 ## Verification so far
 

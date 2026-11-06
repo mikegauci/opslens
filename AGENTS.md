@@ -17,6 +17,7 @@ The user has given standing authorization for the following workflow:
 - Reference the plan and backlog item in every PR. Push the branch, open the PR, and enable automatic merging after required checks pass. If auto-merge is unavailable, wait for the checks and merge directly using a supported merge method.
 - No additional user confirmation is needed to push or merge work within the authorized scope. Fix failed checks and conflicts; preserve required repository checks and rules.
 - Verify the PR actually merged; enabling auto-merge alone is not completion. Report an authentication, permission, or required-review blocker accurately if it prevents completion.
+- GitHub sign-in for `mikegauci` was verified using the existing keyring on 6 November 2026. A restricted execution can misleadingly report invalid authentication. If that recurs, retry the read-only authentication check with the tool's required credential/network permissions before asking the user to log in again. Never request pasted credentials.
 - Update `docs/progress.md` in the PR with completed work, actual verification, outstanding blockers and the next backlog item. Keep it compact so each new chat can resume from repository files.
 
 This policy does not by itself authorize implementing every item in the backlog. Follow the user's current requested scope.
