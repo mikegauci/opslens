@@ -1,12 +1,12 @@
 # GitHub setup and issue backlog
 
-These are local planning IDs, not existing GitHub issue numbers. Repository creation, labels, milestones, and issues have not been performed remotely.
+Private repository: [mikegauci/opslens](https://github.com/mikegauci/opslens). Milestones M0–M6, the planned labels and all 15 issues were created on 6 November 2026. PLAN IDs remain stable references; GitHub issue numbers are linked below. Issues spanning milestones use their first milestone; optional PLAN-15 remains outside the core release milestones.
 
 ## Repository setup
 
-- Proposed repository: `opslens`, under the user's verified personal GitHub account. Existing remotes suggest `mikegauci`; confirm after sign-in works.
+- Repository: `mikegauci/opslens`; account verified through the existing sign-in.
 - Description: 'React operations analytics with accessible charts, a shared UI library, and an evidence-backed AI copilot.'
-- Start private while building. Publish the finished portfolio repository when requested.
+- Created private while building. Publish the finished portfolio repository when requested.
 - Default branch: `main`. Use short feature branches and link PRs to their issues.
 - Start each new PR in a fresh Codex chat with concise references to the plan, backlog item, AGENTS.md and docs/progress.md.
 - Push and auto-merge authorized PRs after required checks pass; verify completion without requesting another user approval.
@@ -21,6 +21,8 @@ These are local planning IDs, not existing GitHub issue numbers. Repository crea
 
 ### PLAN-01 — Outline the investigation flow and screen structure
 
+GitHub: [#1](https://github.com/mikegauci/opslens/issues/1).
+
 Milestone: M0. Labels: product, design. Depends on: none.
 
 - [ ] Record a brief outline of the overview, explorer, details drawer, and contextual copilot.
@@ -30,6 +32,8 @@ Milestone: M0. Labels: product, design. Depends on: none.
 - [ ] No separate Figma file or duplicate design artifact is required.
 
 ### PLAN-02 — Establish the workspace, preview spike and CI
+
+GitHub: [#2](https://github.com/mikegauci/opslens/issues/2).
 
 Milestone: M1. Labels: infrastructure, quality. Depends on: initial PLAN-01 decisions.
 
@@ -42,6 +46,8 @@ Milestone: M1. Labels: infrastructure, quality. Depends on: initial PLAN-01 deci
 
 ### PLAN-03 — Generate the dataset and establish independent metric fixtures
 
+GitHub: [#3](https://github.com/mikegauci/opslens/issues/3).
+
 Milestone: M1/M2. Labels: data, quality. Depends on: metric contract and PLAN-02.
 
 - [ ] Generate repeatable 10k and 100k datasets over a fixed window with a manifest/hash.
@@ -51,6 +57,8 @@ Milestone: M1/M2. Labels: data, quality. Depends on: metric contract and PLAN-02
 - [ ] Restricted application access and any exposed-schema grants/RLS are reviewed.
 
 ### PLAN-04 — Implement the validated API and generated client
+
+GitHub: [#4](https://github.com/mikegauci/opslens/issues/4).
 
 Milestone: M1/M2. Labels: api, data, quality. Depends on: PLAN-02, PLAN-03.
 
@@ -62,6 +70,8 @@ Milestone: M1/M2. Labels: api, data, quality. Depends on: PLAN-02, PLAN-03.
 
 ### PLAN-05 — Build the Superset baseline
 
+GitHub: [#5](https://github.com/mikegauci/opslens/issues/5).
+
 Milestone: M2. Labels: data, documentation. Depends on: PLAN-03.
 
 - [ ] Run a pinned Superset setup locally and document a clean reproduction.
@@ -71,6 +81,8 @@ Milestone: M2. Labels: data, documentation. Depends on: PLAN-03.
 - [ ] No credentials or connection secrets appear in exported artifacts.
 
 ### PLAN-06 — Deliver the overview as a complete vertical slice
+
+GitHub: [#6](https://github.com/mikegauci/opslens/issues/6).
 
 Milestone: M3. Labels: frontend, design, quality. Depends on: PLAN-01, PLAN-04.
 
@@ -82,6 +94,8 @@ Milestone: M3. Labels: frontend, design, quality. Depends on: PLAN-01, PLAN-04.
 
 ### PLAN-07 — Deliver the activity explorer and drill-down
 
+GitHub: [#7](https://github.com/mikegauci/opslens/issues/7).
+
 Milestone: M3. Labels: frontend, quality. Depends on: PLAN-04, PLAN-06.
 
 - [ ] Server filtering/sorting and incremental loading work at 100k rows.
@@ -91,6 +105,8 @@ Milestone: M3. Labels: frontend, quality. Depends on: PLAN-04, PLAN-06.
 - [ ] Keyboard/screen-reader access is verified, with an accessible paginated mode if needed.
 
 ### PLAN-08 — Extract and document the shared component library
+
+GitHub: [#8](https://github.com/mikegauci/opslens/issues/8).
 
 Milestone: M3/M5. Labels: frontend, design, documentation. Depends on: concrete reuse in PLAN-06/07.
 
@@ -102,6 +118,8 @@ Milestone: M3/M5. Labels: frontend, design, documentation. Depends on: concrete 
 
 ### PLAN-09 — Curate the knowledge corpus and prove retrieval
 
+GitHub: [#9](https://github.com/mikegauci/opslens/issues/9).
+
 Milestone: M4. Labels: ai, documentation, quality. Depends on: stable metric definitions and PLAN-02.
 
 - [ ] Write 12-20 concise original documents with IDs, effective dates, scopes and versions.
@@ -112,6 +130,8 @@ Milestone: M4. Labels: ai, documentation, quality. Depends on: stable metric def
 
 ### PLAN-10 — Build the contextual copilot and analytics tools
 
+GitHub: [#10](https://github.com/mikegauci/opslens/issues/10).
+
 Milestone: M4. Labels: ai, api, frontend. Depends on: PLAN-04, PLAN-06, PLAN-09.
 
 - [ ] Read-only summary, comparison, contribution and activity-link tools validate scope and arguments.
@@ -121,6 +141,8 @@ Milestone: M4. Labels: ai, api, frontend. Depends on: PLAN-04, PLAN-06, PLAN-09.
 - [ ] The model has no arbitrary SQL, mutation, unrestricted URL or upload capability.
 
 ### PLAN-11 — Evaluate and harden the copilot
+
+GitHub: [#11](https://github.com/mikegauci/opslens/issues/11).
 
 Milestone: M4/M5. Labels: ai, quality. Depends on: PLAN-09, PLAN-10.
 
@@ -133,6 +155,8 @@ Milestone: M4/M5. Labels: ai, quality. Depends on: PLAN-09, PLAN-10.
 
 ### PLAN-12 — Demonstrate useful agent guidance and reusable skills
 
+GitHub: [#12](https://github.com/mikegauci/opslens/issues/12).
+
 Milestone: M5; evidence collection starts in M1. Labels: documentation, quality. Depends on: PLAN-02, PLAN-08 and real development experience.
 
 - [ ] Refine AGENTS.md based on observed failures or repeated work.
@@ -142,6 +166,8 @@ Milestone: M5; evidence collection starts in M1. Labels: documentation, quality.
 - [ ] Ask a developer to try one skill and record their actual feedback if available; describe the adoption level accurately.
 
 ### PLAN-13 — Verify accessibility, performance and release behaviour
+
+GitHub: [#13](https://github.com/mikegauci/opslens/issues/13).
 
 Milestone: M5/M6; checks run throughout. Labels: quality, infrastructure. Depends on: PLAN-06 through PLAN-11.
 
@@ -154,6 +180,8 @@ Milestone: M5/M6; checks run throughout. Labels: quality, infrastructure. Depend
 
 ### PLAN-14 — Package the case study and portfolio release
 
+GitHub: [#14](https://github.com/mikegauci/opslens/issues/14).
+
 Milestone: M6. Labels: documentation, design. Depends on: PLAN-05, PLAN-08, PLAN-11 through PLAN-13.
 
 - [ ] README links to the actual demo, Storybook, comparison and evaluation artifacts.
@@ -165,11 +193,15 @@ Milestone: M6. Labels: documentation, design. Depends on: PLAN-05, PLAN-08, PLAN
 
 ### PLAN-15 — Demonstrate incremental replacement without Angular
 
+GitHub: [#15](https://github.com/mikegauci/opslens/issues/15).
+
 Milestone: after core release. Labels: optional, frontend, quality. Depends on: PLAN-13.
 
 - [ ] Replace one small static HTML legacy screen with React behind a route flag.
 - [ ] Preserve deep links and the API contract; demonstrate parity checks and rollback.
 - [ ] Explain what the exercise proves and what a large production migration would additionally require.
+
+PLAN-01 notes: [Investigation flow and screen structure](screen-notes.md).
 
 ## Suggested first implementation sequence
 

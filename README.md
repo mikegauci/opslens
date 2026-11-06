@@ -26,7 +26,8 @@ The build prioritises a polished, explainable result over a fixed deadline. It u
 2. [GitHub backlog](docs/github-backlog.md): repository setup and issue-ready acceptance criteria.
 3. [Metric contract](docs/metric-contract.md): definitions, date handling, and edge cases.
 4. [AI copilot plan](docs/ai-copilot.md): RAG, analytics tools, and evaluations.
-5. [Agent guidance](AGENTS.md): working conventions for this repository.
+5. [Screen notes](docs/screen-notes.md): investigation flow, scope and essential states.
+6. [Agent guidance](AGENTS.md): working conventions for this repository.
 
 ## Intended stack
 
