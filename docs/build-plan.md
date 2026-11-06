@@ -162,6 +162,8 @@ Use a dedicated `opslens` repository. `mikegauci` is the proposed owner inferred
 
 Use `main`, small feature branches, linked issues, and a simple board: Backlog, Ready, In progress, Review, Done. Keep one active implementation issue at a time unless independent work is useful. PRs should describe the behaviour and verification, and include relevant screenshots and AI-assisted decisions. Apply required status checks once working CI exists and the account supports them. Do not require an unavailable second reviewer.
 
+User workflow rules: each new PR starts in a fresh Codex chat with a short prompt referencing this plan, the backlog item, `AGENTS.md`, and `docs/progress.md`. Push and automatically merge authorized PRs once required checks pass, without another approval request. Verify the merge before continuing. Keep the progress file current for the next chat; do not carry full conversation history into it. See AGENTS.md for the complete workflow and blocker handling.
+
 Seek at least one genuine peer review and one developer trial of a reusable skill. If a reviewer is unavailable, describe the work as self-reviewed and the skill as personally used. Do not manufacture team-adoption evidence.
 
 The GitHub CLI currently reports an invalid sign-in. This planning step prepares a local repository; remote creation, issues, labels, and milestones are pending a working sign-in. The connected GitHub plugin has issue/PR operations but does not expose repository creation.

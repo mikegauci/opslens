@@ -2,6 +2,10 @@
 
 Describe the user-visible problem and what this change does. Link the issue.
 
+Plan reference: `docs/build-plan.md`.
+Backlog item: PLAN-XX in `docs/github-backlog.md` (and the GitHub issue when available).
+Update `docs/progress.md` with the handoff for the next chat.
+
 ## Validation
 
 List the meaningful checks actually performed and their results. Explain any relevant checks not performed.

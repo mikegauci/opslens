@@ -8,6 +8,8 @@ These are local planning IDs, not existing GitHub issue numbers. Repository crea
 - Description: 'React operations analytics with accessible charts, a shared UI library, and an evidence-backed AI copilot.'
 - Start private while building. Publish the finished portfolio repository when requested.
 - Default branch: `main`. Use short feature branches and link PRs to their issues.
+- Start each new PR in a fresh Codex chat with concise references to the plan, backlog item, AGENTS.md and docs/progress.md.
+- Push and auto-merge authorized PRs after required checks pass; verify completion without requesting another user approval.
 - Suggested topics: `react`, `typescript`, `shadcn-ui`, `data-visualization`, `rag`, `openai`, `playwright`, `storybook`.
 - Milestones: M0 Product and design; M1 Foundation; M2 Analytics baseline; M3 React experience; M4 Copilot; M5 Engineering evidence; M6 Portfolio release.
 - Labels: `product`, `design`, `frontend`, `api`, `data`, `ai`, `quality`, `documentation`, `infrastructure`, `optional`.

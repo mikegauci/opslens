@@ -6,6 +6,21 @@ Build a polished portfolio case study for an iGaming frontend role. The primary 
 
 Read `docs/build-plan.md`, `docs/metric-contract.md`, and the relevant backlog issue before implementation. The user's instructions override this file.
 
+## Required PR and chat workflow
+
+The user has given standing authorization for the following workflow:
+
+- Use one new Codex chat for each new PR. Create that chat before starting its implementation. Do not start a second PR in a chat that has already handled one.
+- When continuing authorized work, create the next chat with the available Codex chat tools. This is user-authorized chat creation, not subagent delegation. Do not create speculative chats or start work outside the requested scope.
+- Keep the new chat prompt short: repository path, one backlog item, acceptance criteria, and references to this file, `docs/build-plan.md`, `docs/github-backlog.md`, and `docs/progress.md`. Include other documents only when relevant. Do not copy the previous conversation history.
+- Start from the latest merged main branch. Finish the preceding PR before starting another chat against the same checkout.
+- Reference the plan and backlog item in every PR. Push the branch, open the PR, and enable automatic merging after required checks pass. If auto-merge is unavailable, wait for the checks and merge directly using a supported merge method.
+- No additional user confirmation is needed to push or merge work within the authorized scope. Fix failed checks and conflicts; preserve required repository checks and rules.
+- Verify the PR actually merged; enabling auto-merge alone is not completion. Report an authentication, permission, or required-review blocker accurately if it prevents completion.
+- Update `docs/progress.md` in the PR with completed work, actual verification, outstanding blockers and the next backlog item. Keep it compact so each new chat can resume from repository files.
+
+This policy does not by itself authorize implementing every item in the backlog. Follow the user's current requested scope.
+
 ## Current state
 
 This checkout contains planning documents and GitHub templates only. Application directories, package scripts, CI, skills, and deployment configuration described in the plan are future work. Do not report them as implemented.
