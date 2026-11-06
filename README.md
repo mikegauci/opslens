@@ -36,4 +36,4 @@ Exact dependency versions and deployment adapters will be verified and pinned du
 
 ## Portfolio deliverables
 
-The final repository will link to the live demo, Storybook, Figma design, Superset comparison, evaluation report, and a short walkthrough. Those links will be added as each deliverable exists.
+The final repository will link to the live demo, Storybook, Superset comparison, evaluation report, and a short walkthrough. Those links will be added as each deliverable exists. Design will be developed directly in React from brief screen notes; a separate Figma file is excluded.

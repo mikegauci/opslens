@@ -8,6 +8,8 @@ Create one coherent, high-quality case study demonstrating React/TypeScript deli
 
 The user prioritises a solid, enticing, interview-ready result over a deadline. Progress is measured by working milestones and evidence, rather than a promised number of hours. The project strengthens an application; employment history still establishes production tenure and experience across teams.
 
+The user has excluded a separate Figma deliverable to avoid duplicating design work and spending tokens on it. Use brief screen notes, established shadcn/ui patterns, and browser review of the working React interface. Do not create a Figma counterpart later unless the user requests it.
+
 ## Product story
 
 An operations analyst sees that gross gaming revenue changed compared with the previous complete period. They identify which fictional provider contributed most, open the corresponding transactions, and ask the copilot how the metric is defined and what to investigate next.
@@ -116,7 +118,7 @@ Prefer a same-origin deployment so `/api` and the app share a release and URL. S
 
 | Milestone | Deliverable | Exit condition |
 | --- | --- | --- |
-| M0: Product and design | Two-screen Figma design, user flow, metric contract, source/AI interaction design | The primary investigation can be followed on paper, including empty/error states |
+| M0: Product and design | Brief screen notes, primary user flow, metric contract, source/AI interaction outline | The investigation and essential states are clear enough to begin implementation |
 | M1: Foundation | Workspace, preview spike, CI, initial agent instructions, local database seed, generated client | Fresh checkout can run; a real API-backed metric works and CI checks it |
 | M2: Analytics baseline | Fixed-seed 100k dataset, API queries, Superset baseline and golden fixtures | Independent calculations agree for normal and edge-case filter slices |
 | M3: React experience | Overview, explorer, URL filters, chart drill-down, virtualisation, extracted UI package | The complete non-AI investigation works with keyboard and browser navigation |
@@ -170,7 +172,7 @@ After the core release gate, replace one static HTML legacy screen with React be
 
 ## Final application package
 
-- Clear README with real demo, Storybook, Figma and walkthrough links.
+- Clear README with real demo, Storybook and walkthrough links.
 - Three-minute demonstration of the seeded investigation and cited copilot response.
 - Short case study explaining the problem, chosen approach, tradeoffs, measured outcomes and limitations.
 - Sanitised Superset-before/React-after comparison with matching metric results.
@@ -188,7 +190,7 @@ After the core release gate, replace one static HTML legacy screen with React be
 | shadcn/ui and Tailwind | Coherent tokens, component variants and custom reusable components | Installing a starter alone is insufficient evidence |
 | Visualisation and real data volumes | Linked ECharts charts, 100k server-backed dataset and measured performance | Synthetic records demonstrate realistic volume, not live production traffic |
 | Accessibility and testing | Critical-flow tests, manual assistive-technology review, documented fixes | Automation alone does not establish full accessibility |
-| Figma and design judgement | Actual two-screen design, annotated gaps and implementation comparison | Peer design feedback is reported only when obtained |
+| Design judgement | Working React screens, browser review and short notes explaining flow improvements | Figma-specific work is excluded and is not claimed as project evidence |
 | Superset or BI familiarity | Actual baseline dashboard and reconciled React replacement | This is a focused replacement exercise, not a complete BI platform |
 | Virtualised tables | Server-backed TanStack explorer with measured rendering and transfer costs | Virtualisation does not replace server data operations |
 | iGaming or support-tool familiarity | Explicit metric definitions, transaction states and operational investigation | The project does not replace industry employment experience |

@@ -17,15 +17,15 @@ These are local planning IDs, not existing GitHub issue numbers. Repository crea
 
 ## Initial issues
 
-### PLAN-01 — Specify the investigation flow and design the two screens
+### PLAN-01 — Outline the investigation flow and screen structure
 
 Milestone: M0. Labels: product, design. Depends on: none.
 
-- [ ] Figma contains overview, explorer, details drawer, and contextual copilot states.
-- [ ] Show desktop and constrained-width layouts, keyboard focus, loading, empty, error, stale, and source states.
-- [ ] Annotate design decisions about negative GGR, absent comparisons, settlement versus placement dates, and filter scope.
-- [ ] The seeded investigation can be followed from overview to cited answer on paper.
-- [ ] Link the actual Figma file and exported design snapshots; do not imply a design-only image proves Figma collaboration.
+- [ ] Record a brief outline of the overview, explorer, details drawer, and contextual copilot.
+- [ ] Choose established shadcn/ui patterns and a small set of design tokens; refine the interface directly in React.
+- [ ] Note essential decisions about negative GGR, absent comparisons, settlement versus placement dates, and filter scope.
+- [ ] The primary investigation is clear enough to implement; review responsive, focus, loading, empty, error, stale, and source states in the browser as features are built.
+- [ ] No separate Figma file or duplicate design artifact is required.
 
 ### PLAN-02 — Establish the workspace, preview spike and CI
 
@@ -76,7 +76,7 @@ Milestone: M3. Labels: frontend, design, quality. Depends on: PLAN-01, PLAN-04.
 - [ ] Date/brand/provider filters survive reload and browser navigation through the URL.
 - [ ] Chart interactions identify the corresponding explorer scope.
 - [ ] Responsive, loading, empty, unavailable, retry and stale states work.
-- [ ] Tests cover calculations through rendered behaviour and independent API fixtures; visual review compares with Figma.
+- [ ] Tests cover calculations through rendered behaviour and independent API fixtures; browser review checks the screen notes and primary investigation flow.
 
 ### PLAN-07 — Deliver the activity explorer and drill-down
 
@@ -154,7 +154,7 @@ Milestone: M5/M6; checks run throughout. Labels: quality, infrastructure. Depend
 
 Milestone: M6. Labels: documentation, design. Depends on: PLAN-05, PLAN-08, PLAN-11 through PLAN-13.
 
-- [ ] README links to the actual demo, Storybook, Figma, comparison and evaluation artifacts.
+- [ ] README links to the actual demo, Storybook, comparison and evaluation artifacts.
 - [ ] Record a three-minute investigation walkthrough and concise architecture/tradeoff notes.
 - [ ] Screenshots and case study describe measured outcomes with honest limits.
 - [ ] Clean up secrets, placeholders, inactive links and unsupported claims; choose a license.
