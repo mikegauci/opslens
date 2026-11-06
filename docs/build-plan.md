@@ -166,7 +166,7 @@ User workflow rules: each new PR starts in a fresh Codex chat with a short promp
 
 Seek at least one genuine peer review and one developer trial of a reusable skill. If a reviewer is unavailable, describe the work as self-reviewed and the skill as personally used. Do not manufacture team-adoption evidence.
 
-GitHub authentication was verified on 6 November 2026 for `mikegauci` using the existing keyring sign-in with the required credential/network access. No new login was needed; the earlier restricted check had appeared to report invalid credentials. The repository remains local: remote creation, issues, labels, and milestones are not yet performed. The connected GitHub plugin has issue/PR operations but does not expose repository creation; the authenticated GitHub CLI is available for repository setup.
+GitHub authentication was verified on 6 November 2026 for `mikegauci` using the existing keyring sign-in with the required credential/network access. No new login was needed; the earlier restricted check had appeared to report invalid credentials. The private `mikegauci/opslens` remote now contains the planning baseline; milestones M0–M6, labels and all 15 backlog issues have been created. PLAN-01 screen decisions are in [screen notes](screen-notes.md). The connected GitHub plugin has issue/PR operations but does not expose repository creation; the authenticated GitHub CLI is available for repository setup.
 
 ## Optional migration evidence
 
