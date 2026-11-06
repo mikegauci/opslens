@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "name": "@opslens/api",
+  "scripts": {
+    "build": "esbuild src/server.ts --bundle --platform=node --format=esm --external:pg --outfile=dist/server.js"
+  },
+  "exports": "./src/app.ts",
+  "dependencies": {
+    "hono": "4.13.16",
+    "@hono/node-server": "2.1.6",
+    "@hono/zod-openapi": "1.6.3",
+    "zod": "4.6.7",
+    "pg": "8.23.1",
+    "@opslens/analytics": "workspace:*"
+  }
+}

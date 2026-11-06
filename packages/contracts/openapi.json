@@ -1,0 +1,104 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "OpsLens API",
+    "version": "0.1.0"
+  },
+  "components": {
+    "schemas": {},
+    "parameters": {}
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Real database connectivity probe; no analytics dataset yet",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "database": {
+                      "type": "string",
+                      "enum": [
+                        "connected"
+                      ]
+                    },
+                    "result": {
+                      "type": "number",
+                      "enum": [
+                        1
+                      ]
+                    },
+                    "runtime": {
+                      "type": "string",
+                      "enum": [
+                        "node"
+                      ]
+                    },
+                    "synthetic": {
+                      "type": "boolean",
+                      "enum": [
+                        true
+                      ]
+                    },
+                    "exampleGgrMinor": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "database",
+                    "result",
+                    "runtime",
+                    "synthetic",
+                    "exampleGgrMinor"
+                  ]
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Database unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "enum": [
+                        "Database unavailable"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/stream": {
+      "get": {
+        "operationId": "streamProbe",
+        "responses": {
+          "200": {
+            "description": "Finite diagnostic SSE: ready, then complete. No AI provider.",
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

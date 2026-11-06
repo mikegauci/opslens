@@ -24,7 +24,7 @@ This policy does not by itself authorize implementing every item in the backlog.
 
 ## Current state
 
-This checkout contains planning documents and GitHub templates only. Application directories, package scripts, CI, skills, and deployment configuration described in the plan are future work. Do not report them as implemented.
+PLAN-02 establishes the five-package workspace, Node runtime spike, generated contracts and CI. Read `docs/runtime.md` for actual setup and limits. Dataset generation, dashboard features, hosted deployment, AI and reusable skills remain future work.
 
 ## Implementation conventions
 
@@ -55,4 +55,11 @@ Record useful AI-assisted development examples as they occur: accepted output, c
 
 Synthetic data, small migration demonstrations, and peer pilots must be described accurately. Do not claim production scale, years of experience, team adoption, or measured outcomes without evidence.
 
-The relevant validation commands must be established in the foundation milestone. Before that, validate document consistency and links; do not claim application tests passed.
+Foundation conventions:
+
+- Use Node from `.nvmrc`, exact dependency versions and `pnpm install --frozen-lockfile`. Review registry peer requirements and installed declarations before using new APIs.
+- After API schema changes run `pnpm contracts:generate` and commit both generated outputs. Never hand-edit them. `pnpm contracts:check` must pass on the committed result.
+- Run `pnpm check` with PostgreSQL available and port 3000 free; it includes lint, types, domain/API tests, generated-contract drift, build and the production browser smoke. Update tests at the boundary that changed. See `docs/runtime.md` for browser installation.
+- Keep `DATABASE_URL` server-only. Do not weaken TLS or introduce public arbitrary SQL. The foundation database owner is local-only; PLAN-03 must establish restricted query access before real analytics.
+- Record runtime/host, data volume, cold/warm state and test conditions with measurements. Local Node proof does not establish a hosted provider's streaming behavior.
+- Keep accepted/corrected AI-development evidence concise in `docs/development-evidence.md`; describe only observed work. Mark self-review honestly.

@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "name": "@opslens/contracts",
+  "exports": "./src/index.ts",
+  "dependencies": {
+    "openapi-fetch": "0.17.0"
+  }
+}

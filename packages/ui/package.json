@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "name": "@opslens/ui",
+  "exports": "./src/index.tsx",
+  "peerDependencies": {
+    "react": "19.3.1"
+  }
+}
