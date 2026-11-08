@@ -18,6 +18,13 @@
 
 - PLAN-12 ([#12](https://github.com/mikegauci/opslens/issues/12)) adds [add-dashboard-metric](../.agents/skills/add-dashboard-metric/SKILL.md) and [chart-review](../.agents/skills/chart-review/SKILL.md) and updates AGENTS.md with lessons from stale-response testing and independent baseline reconciliation. Overview shows hold for the selected settlement scope, with an explicit unavailable state for zero stakes and a percentage-point comparison when both periods have hold.
 
+## Actual PLAN-13 verification
+
+- Started from merged PLAN-12 PR #27 at `c97da99`. The [release verification report](release-verification.md) records the production investigation, clean setup, measured 10k/100k results, and release checks against restricted PostgreSQL 17.11.
+- Fixed mismatched chart action names and the daily SVG role that hid its link semantics. `PLAYWRIGHT_CHANNEL=chrome pnpm check` passed 30 unit/API, 20 production browser/HTTP and three Storybook checks. Axe and keyboard checks cover desktop and mobile investigation, details and no-key Copilot. All six Superset panels match React and independent SQL at the default, Harbor and Nova scopes.
+- Verified missing database and model configuration, database outages, invalid/unknown requests, the recorded example, wrong-origin denial and exhausted quota with the built server. PostgreSQL quota tests and 19 scripted cases passed. Live document evidence remains disabled.
+- Native desktop startup failed on retry, so a manual desktop keyboard and VoiceOver pass is outstanding. Hosted ingress and live model checks are also open. No peer feedback was available, and the optional PLAN-12 skill trial was deferred.
+
 ## Actual PLAN-12 verification
 
 - Started from merged PLAN-11 PR #26 at `4c9b995`. Both project skills passed the skill-creator validator. The metric skill was used for the hold change and chart-review was exercised on the Overview's charts in the running production build.
@@ -78,6 +85,6 @@
 
 ## Next work and workflow
 
-After PLAN-12 merges, the next backlog item is **PLAN-13 / [#13](https://github.com/mikegauci/opslens/issues/13)** for accessibility, performance and release verification. Start that work only when authorized, from merged main in a fresh chat. Live analytics evaluation, hosted retrieval and human relevance review remain release prerequisites.
+The next backlog item after PLAN-13 is **PLAN-14 / [#14](https://github.com/mikegauci/opslens/issues/14)** for case study and portfolio packaging. Start it only when authorized, from merged main in a fresh chat. Manual desktop keyboard and screen-reader review, hosted runtime verification, live analytics evaluation, hosted retrieval and human relevance review remain release prerequisites.
 
 One PR per chat, latest merged main, no concurrent checkout edits. Push, confirm CI passed for the exact PR head before any merge command, then verify the merge and issue closure. Use the authorized direct merge if auto-merge is unavailable. The existing GitHub keyring works with credential and network permissions.

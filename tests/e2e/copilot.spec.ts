@@ -207,4 +207,16 @@ test("dashboard and placement investigation remain available without model crede
     page.getByRole("heading", { name: "Activity", exact: true }),
   ).toBeVisible();
   await expect(page.getByRole("table", { name: /Transactions/ })).toBeVisible();
+
+  await page.getByRole("button", { name: "Ask Copilot" }).press("Enter");
+  await dialog
+    .getByText("Recorded example · GGR change and Nova")
+    .press("Enter");
+  await link.press("Enter");
+  await expect(page).toHaveURL(recordedUrl.toString());
+  const transactions = page.getByRole("table", { name: /Transactions/ });
+  await expect(
+    transactions.getByRole("cell", { name: / \/ nova$/ }).first(),
+  ).toBeVisible();
+  await expect(dialog).toBeHidden();
 });
