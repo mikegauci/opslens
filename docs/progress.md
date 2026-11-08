@@ -18,6 +18,12 @@
 
 - PLAN-12 ([#12](https://github.com/mikegauci/opslens/issues/12)) adds [add-dashboard-metric](../.agents/skills/add-dashboard-metric/SKILL.md) and [chart-review](../.agents/skills/chart-review/SKILL.md) and updates AGENTS.md with lessons from stale-response testing and independent baseline reconciliation. Overview shows hold for the selected settlement scope, with an explicit unavailable state for zero stakes and a percentage-point comparison when both periods have hold.
 
+## PLAN-14 portfolio package
+
+- Started from merged PLAN-13 PR #28 at `31ad72c`. [PLAN-14 / #14](https://github.com/mikegauci/opslens/issues/14) packages the [case study and screenshots](portfolio/case-study.md), [three-minute production recording and transcript](portfolio/walkthrough.md), [interview notes](portfolio/interview-notes.md) and [launch checklist](portfolio/launch.md). The README links to verified local app and Storybook entry points, the reconciled Superset baseline and the evaluation evidence.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm check` passed 30 unit/API tests, 20 production browser/HTTP checks and three Storybook checks against the retained 100k PostgreSQL snapshot. Captured Overview at 1280 px and 390 px, scoped Nova Activity and the labelled recorded Copilot. The capture checked the recorded link’s exact interval, provider, settlement basis, settled status and dataset hash. Model credentials were unset.
+- Reviewed portfolio links, the sanitised Superset export and common OpenAI/GitHub token and private-key signatures in tracked files and reachable patches. The only tracked environment file is the development example. GitHub reported zero deployments. Live document evidence remains disabled. Hosting and budget, audience and access, repository visibility and license await owner decisions.
+
 ## Actual PLAN-13 verification
 
 - Started from merged PLAN-12 PR #27 at `c97da99`. The [release verification report](release-verification.md) records the production investigation, clean setup, measured 10k/100k results, and release checks against restricted PostgreSQL 17.11.
@@ -85,6 +91,6 @@
 
 ## Next work and workflow
 
-The next backlog item after PLAN-13 is **PLAN-14 / [#14](https://github.com/mikegauci/opslens/issues/14)** for case study and portfolio packaging. Start it only when authorized, from merged main in a fresh chat. Manual desktop keyboard and screen-reader review, hosted runtime verification, live analytics evaluation, hosted retrieval and human relevance review remain release prerequisites.
+PLAN-14 is the final core package. [PLAN-15 / #15](https://github.com/mikegauci/opslens/issues/15) is the optional migration exercise and requires separate authorization. The [launch checklist](portfolio/launch.md) carries the pending publication decisions and verification, including native desktop keyboard and screen-reader review. Live analytics and hosted document evidence have separate evaluation gates.
 
 One PR per chat, latest merged main, no concurrent checkout edits. Push, confirm CI passed for the exact PR head before any merge command, then verify the merge and issue closure. Use the authorized direct merge if auto-merge is unavailable. The existing GitHub keyring works with credential and network permissions.

@@ -1,6 +1,6 @@
 # Local Superset baseline (PLAN-05 / #5)
 
-This is a local comparison against fictional EUR transactions, not a hosted service or a public SQL endpoint. Money is displayed in **EUR minor units** to preserve exact integers. Divide by 100 for the React display in EUR. Periods are UTC, inclusive start/exclusive end; default current is 22–29 September 2026, compared with 15–22 September.
+This local baseline uses fictional EUR transactions. Money is displayed in **EUR minor units** to preserve exact integers. Divide by 100 for the React display in EUR. Periods are UTC, inclusive start/exclusive end; default current is 22–29 September 2026, compared with 15–22 September.
 
 ## Reproduce
 
@@ -21,7 +21,7 @@ superset/local.sh superset run -h 127.0.0.1 -p 8088 --with-threads
 
 Metadata, random secret key and random local admin password live under `/tmp/opslens-superset`, outside Git. Log in as `baseline` using the local `admin-password` file. Do not publish this development service. No owner connection is passed to Superset. No `.env` is needed. Local configuration enables trusted-admin Jinja templates; only use this with the closed synthetic vocabulary and local administrator access.
 
-The dashboard script creates four cards, a daily GGR line and a signed provider change bar. Dataset template parameters control dates, brand and provider; edit all three virtual datasets to the same scope before comparing. This baseline does not claim React's URL filters or linked transaction drill-down. React adds named filter controls, preserved URLs, data alternatives, independent retry and exact activity links. `/activity` remains the documented scope preview until PLAN-07.
+The dashboard script creates four cards, a daily GGR line and a signed provider change bar. Dataset template parameters control dates, brand and provider; edit all three virtual datasets to the same scope before comparing. React adds named filter controls, preserved URLs, data alternatives, independent retry and exact links into the Activity explorer. [Portfolio comparison](../docs/portfolio/case-study.md#superset-baseline-and-react-result)
 
 Independent parameterised PostgreSQL queries are in `sql/`. Superset's virtual dataset SQL is the same text with trusted local template substitutions. Zero days/providers are retained, distinct players are counted across providers, pending/void rows are excluded, and comparison contribution is current minus equal previous period.
 

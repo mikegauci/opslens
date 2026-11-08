@@ -1,40 +1,23 @@
 # OpsLens
 
-**An iGaming operations dashboard with an evidence-backed AI copilot.**
+**Investigate a weekly revenue change, from the first signal to the matching transactions.**
 
-OpsLens helps an operations analyst spot a change in revenue, inspect the transactions behind it, and interpret the result using documented metric definitions and investigation guides.
+OpsLens is an independent iGaming frontend portfolio project with fictional brands and 100,000 deterministic synthetic transactions. The seeded investigation follows a GGR drop to Nova, opens the matching settled transactions, and uses a labelled recorded Copilot answer to explain Nova’s contribution.
 
-This is an independent portfolio project using fictional brands and synthetic data. It is not affiliated with BetForge.
+| Review | Start here |
+| --- | --- |
+| Three-minute walkthrough | [MP4 recording](docs/portfolio/investigation.mp4) · [Transcript and click path](docs/portfolio/walkthrough.md) |
+| Case study and screenshots | [Investigation, architecture and measured results](docs/portfolio/case-study.md) |
+| Interactive demo | [Local setup](docs/runtime.md#fresh-checkout) · [Open the running local app](http://127.0.0.1:3000/) |
+| Component library | [Run Storybook and use the UI package](packages/ui/README.md#update-and-verify) · [Open the running local Storybook](http://127.0.0.1:6006/) |
+| BI comparison | [Superset baseline and reproduction](superset/README.md) · [Independent reconciliation](superset/reconciliation.json) |
+| Evaluation and release evidence | [Copilot](evals/copilot/README.md) · [Retrieval](evals/retrieval/README.md) · [Release checks and benchmarks](docs/release-verification.md) |
+| Interview and launch review | [Interview notes](docs/portfolio/interview-notes.md) · [Launch checklist](docs/portfolio/launch.md) |
 
-## Status
+The app and Storybook run locally. The portfolio recording uses the production build with model credentials unset. Live document evidence is disabled.
 
-Overview and Activity are implemented against the typed Hono API and deterministic PostgreSQL data. The shared UI package includes a local Storybook with a keyboard walkthrough and consumer guide. See [local app setup](docs/runtime.md) and [UI package and Storybook](packages/ui/README.md).
+## Implementation
 
-The build prioritises a polished, explainable result over a fixed deadline. It uses React and TypeScript throughout the frontend; Angular is excluded.
+React and TypeScript power Overview and Activity. The charts use native SVG and CSS, the Activity table uses TanStack Table and Virtual, and both screens consume a shared themed UI package. Hono serves the Vite build and validated analytics on the same origin. PostgreSQL filters, aggregates and pages data behind a restricted server login. The client types are generated from OpenAPI.
 
-## Planned experience
-
-- An overview with five metrics, including hold percentage, and two linked charts for investigating period changes.
-- An activity explorer with server filtering, incremental loading, a virtualised table, and transaction details.
-- An operations copilot that combines retrieved documentation with validated analytics queries and cites its evidence.
-- A shared component package documented in Storybook.
-- A reproducible Superset dashboard used to check the React replacement.
-
-## Start here
-
-1. [Build plan](docs/build-plan.md): scope, architecture, milestones, and release criteria.
-2. [GitHub backlog](docs/github-backlog.md): repository setup and issue-ready acceptance criteria.
-3. [Metric contract](docs/metric-contract.md): definitions, date handling, and edge cases.
-4. [AI copilot plan](docs/ai-copilot.md): RAG, analytics tools, and evaluations.
-5. [Screen notes](docs/screen-notes.md): investigation flow, scope and essential states.
-6. [Agent guidance](AGENTS.md): working conventions for this repository.
-
-## Intended stack
-
-React, TypeScript, Vite, Tailwind CSS, shadcn/ui, ECharts, TanStack Table/Virtual/Query, a small TypeScript API, PostgreSQL, OpenAPI-generated clients, Vitest, Playwright, Storybook, and OpenAI through the AI SDK.
-
-Node 24, pnpm and the installed foundation dependencies are pinned with a committed lockfile. Start with [the local setup](docs/runtime.md); `pnpm check` runs lint, types, domain/API tests, contract drift, production browser checks against PostgreSQL, and the static Storybook build and browser checks.
-
-## Portfolio deliverables
-
-The final repository will link to the live demo, Storybook, Superset comparison, evaluation report, and a short walkthrough. Those links will be added as each deliverable exists. Design will be developed directly in React from brief screen notes; a separate Figma file is excluded.
+Use the Node version in `.nvmrc` and the pinned pnpm version. `pnpm check` verifies the metric oracle, API contracts, builds, production browser flow and Storybook. [Metric definitions](docs/metric-contract.md) · [Build plan](docs/build-plan.md) · [Development evidence](docs/development-evidence.md)
