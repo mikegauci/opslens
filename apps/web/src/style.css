@@ -183,6 +183,9 @@ details summary {
 .table-scroll {
   overflow-x: auto;
 }
+.table-scroll td:last-child {
+  white-space: normal;
+}
 table {
   width: 100%;
   border-collapse: collapse;

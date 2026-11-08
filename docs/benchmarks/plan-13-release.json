@@ -1,0 +1,698 @@
+{
+  "browser": [
+    {
+      "measuredAt": "2026-11-08T15:04:08.645Z",
+      "node": "v24.20.0",
+      "os": "Darwin 22.6.0",
+      "cpu": "Intel(R) Core(TM) i7-7660U CPU @ 2.50GHz",
+      "logicalCpus": 4,
+      "memoryGiB": 16,
+      "browser": "156.0.8078.80",
+      "conditions": "Production Node and PostgreSQL on the same loopback host, no remote region, throttling or ingress compression. One browser, five serial fresh contexts, warm database/OS, running server. First browser request can open a new pool connection. Heap is total JavaScript after explicit GC. Timings include Playwright and readiness polling.",
+      "samples": [
+        {
+          "dataset": {
+            "schemaVersion": 1,
+            "generatorVersion": 1,
+            "seed": 20261106,
+            "sha256": "af4d53dc19b8e92d9e6ec801c4c3adb20de9033d150c9a5f40dfc7912813f22c",
+            "rowCount": 10000,
+            "from": "2026-07-01T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "asOf": "2026-09-30T00:00:00.000Z"
+          },
+          "overviewMs": 718.9227089999999,
+          "filterMs": 152.12094500000012,
+          "drillMs": 275.23726399999987,
+          "detailsMs": 42.49979500000018,
+          "overviewTransferBytes": 409425,
+          "activityTransferBytes": 27474,
+          "overviewHeapBytes": 3661700,
+          "activityHeapBytes": 4296344
+        },
+        {
+          "dataset": {
+            "schemaVersion": 1,
+            "generatorVersion": 1,
+            "seed": 20261106,
+            "sha256": "af4d53dc19b8e92d9e6ec801c4c3adb20de9033d150c9a5f40dfc7912813f22c",
+            "rowCount": 10000,
+            "from": "2026-07-01T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "asOf": "2026-09-30T00:00:00.000Z"
+          },
+          "overviewMs": 467.8965870000002,
+          "filterMs": 130.00531299999966,
+          "drillMs": 342.1841279999999,
+          "detailsMs": 44.13138400000025,
+          "overviewTransferBytes": 409104,
+          "activityTransferBytes": 27474,
+          "overviewHeapBytes": 3607116,
+          "activityHeapBytes": 4326536
+        },
+        {
+          "dataset": {
+            "schemaVersion": 1,
+            "generatorVersion": 1,
+            "seed": 20261106,
+            "sha256": "af4d53dc19b8e92d9e6ec801c4c3adb20de9033d150c9a5f40dfc7912813f22c",
+            "rowCount": 10000,
+            "from": "2026-07-01T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "asOf": "2026-09-30T00:00:00.000Z"
+          },
+          "overviewMs": 378.20527200000015,
+          "filterMs": 236.2614309999999,
+          "drillMs": 335.5044770000004,
+          "detailsMs": 51.568309999999656,
+          "overviewTransferBytes": 409104,
+          "activityTransferBytes": 27474,
+          "overviewHeapBytes": 3626504,
+          "activityHeapBytes": 4318472
+        },
+        {
+          "dataset": {
+            "schemaVersion": 1,
+            "generatorVersion": 1,
+            "seed": 20261106,
+            "sha256": "af4d53dc19b8e92d9e6ec801c4c3adb20de9033d150c9a5f40dfc7912813f22c",
+            "rowCount": 10000,
+            "from": "2026-07-01T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "asOf": "2026-09-30T00:00:00.000Z"
+          },
+          "overviewMs": 550.732481,
+          "filterMs": 134.88689200000044,
+          "drillMs": 242.15499600000112,
+          "detailsMs": 42.38494600000013,
+          "overviewTransferBytes": 409104,
+          "activityTransferBytes": 27474,
+          "overviewHeapBytes": 3604628,
+          "activityHeapBytes": 4332292
+        },
+        {
+          "dataset": {
+            "schemaVersion": 1,
+            "generatorVersion": 1,
+            "seed": 20261106,
+            "sha256": "af4d53dc19b8e92d9e6ec801c4c3adb20de9033d150c9a5f40dfc7912813f22c",
+            "rowCount": 10000,
+            "from": "2026-07-01T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "asOf": "2026-09-30T00:00:00.000Z"
+          },
+          "overviewMs": 356.21069499999976,
+          "filterMs": 118.5091029999985,
+          "drillMs": 279.7810270000009,
+          "detailsMs": 43.596293000000514,
+          "overviewTransferBytes": 409104,
+          "activityTransferBytes": 27474,
+          "overviewHeapBytes": 3602936,
+          "activityHeapBytes": 4339588
+        }
+      ]
+    },
+    {
+      "measuredAt": "2026-11-08T15:04:22.015Z",
+      "node": "v24.20.0",
+      "os": "Darwin 22.6.0",
+      "cpu": "Intel(R) Core(TM) i7-7660U CPU @ 2.50GHz",
+      "logicalCpus": 4,
+      "memoryGiB": 16,
+      "browser": "156.0.8078.80",
+      "conditions": "Production Node and PostgreSQL on the same loopback host, no remote region, throttling or ingress compression. One browser, five serial fresh contexts, warm database/OS, running server. First browser request can open a new pool connection. Heap is total JavaScript after explicit GC. Timings include Playwright and readiness polling.",
+      "samples": [
+        {
+          "dataset": {
+            "schemaVersion": 1,
+            "generatorVersion": 1,
+            "seed": 20261106,
+            "sha256": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+            "rowCount": 100000,
+            "from": "2026-07-01T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "asOf": "2026-09-30T00:00:00.000Z"
+          },
+          "overviewMs": 460.72520899999995,
+          "filterMs": 192.00023899999997,
+          "drillMs": 274.8033180000002,
+          "detailsMs": 42.97679900000003,
+          "overviewTransferBytes": 409470,
+          "activityTransferBytes": 27482,
+          "overviewHeapBytes": 3552060,
+          "activityHeapBytes": 4266864
+        },
+        {
+          "dataset": {
+            "schemaVersion": 1,
+            "generatorVersion": 1,
+            "seed": 20261106,
+            "sha256": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+            "rowCount": 100000,
+            "from": "2026-07-01T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "asOf": "2026-09-30T00:00:00.000Z"
+          },
+          "overviewMs": 424.98800200000005,
+          "filterMs": 145.74873400000024,
+          "drillMs": 332.3703940000005,
+          "detailsMs": 35.84404799999993,
+          "overviewTransferBytes": 409149,
+          "activityTransferBytes": 27482,
+          "overviewHeapBytes": 3558324,
+          "activityHeapBytes": 4294116
+        },
+        {
+          "dataset": {
+            "schemaVersion": 1,
+            "generatorVersion": 1,
+            "seed": 20261106,
+            "sha256": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+            "rowCount": 100000,
+            "from": "2026-07-01T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "asOf": "2026-09-30T00:00:00.000Z"
+          },
+          "overviewMs": 381.0141870000007,
+          "filterMs": 166.09279100000003,
+          "drillMs": 230.31913900000018,
+          "detailsMs": 41.95932599999924,
+          "overviewTransferBytes": 409149,
+          "activityTransferBytes": 27482,
+          "overviewHeapBytes": 3640436,
+          "activityHeapBytes": 4202168
+        },
+        {
+          "dataset": {
+            "schemaVersion": 1,
+            "generatorVersion": 1,
+            "seed": 20261106,
+            "sha256": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+            "rowCount": 100000,
+            "from": "2026-07-01T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "asOf": "2026-09-30T00:00:00.000Z"
+          },
+          "overviewMs": 346.4736990000001,
+          "filterMs": 190.25257500000043,
+          "drillMs": 197.52547700000014,
+          "detailsMs": 35.336795000000166,
+          "overviewTransferBytes": 409149,
+          "activityTransferBytes": 27482,
+          "overviewHeapBytes": 3631308,
+          "activityHeapBytes": 4289444
+        },
+        {
+          "dataset": {
+            "schemaVersion": 1,
+            "generatorVersion": 1,
+            "seed": 20261106,
+            "sha256": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+            "rowCount": 100000,
+            "from": "2026-07-01T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "asOf": "2026-09-30T00:00:00.000Z"
+          },
+          "overviewMs": 766.7026079999996,
+          "filterMs": 213.75560799999948,
+          "drillMs": 477.70390899999984,
+          "detailsMs": 66.6221000000005,
+          "overviewTransferBytes": 409149,
+          "activityTransferBytes": 27482,
+          "overviewHeapBytes": 3599772,
+          "activityHeapBytes": 4285120
+        }
+      ]
+    }
+  ],
+  "api": [
+    {
+      "capturedAt": "2026-11-08T14:12:51.187Z",
+      "source": "Merged PLAN-12 baseline c97da99; PLAN-13 changes only the web UI and tests.",
+      "conditions": "Node production HTTP on loopback; restricted PostgreSQL login; one client; 21 serial HTTP requests per scenario with full JSON consumption; health opened the pool. Warm database/OS after seed and verification. No manual ANALYZE before these samples. First request is not a cold process. EXPLAIN collected separately after each scenario.",
+      "node": "v24.20.0",
+      "postgres": "PostgreSQL 17.11 (Homebrew) on x86_64-apple-darwin22.6.0, compiled by Apple clang version 14.0.3 (clang-1403.0.22.14.1), 64-bit",
+      "dataset": {
+        "to": "2026-09-29T00:00:00.000Z",
+        "asOf": "2026-09-30T00:00:00.000Z",
+        "file": "transactions-10000.csv",
+        "from": "2026-07-01T00:00:00.000Z",
+        "seed": 20261106,
+        "spike": {
+          "provider": "nova",
+          "payoutMultiplier": 10
+        },
+        "sha256": "af4d53dc19b8e92d9e6ec801c4c3adb20de9033d150c9a5f40dfc7912813f22c",
+        "current": {
+          "to": "2026-09-29T00:00:00.000Z",
+          "from": "2026-09-22T00:00:00.000Z"
+        },
+        "currency": "EUR",
+        "emptyDay": "2026-08-15",
+        "encoding": "UTF-8; LF; header; empty field = null",
+        "previous": {
+          "to": "2026-09-22T00:00:00.000Z",
+          "from": "2026-09-15T00:00:00.000Z"
+        },
+        "rowCount": 10000,
+        "schemaVersion": 1,
+        "generatorVersion": 1,
+        "reportingTimezone": "UTC"
+      },
+      "results": [
+        {
+          "name": "summary",
+          "kind": "summary",
+          "query": {
+            "from": "2026-09-22T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z"
+          },
+          "bytes": 871,
+          "samplesMs": [
+            25.637601000000018, 9.087740000000053, 14.233500999999933,
+            9.785491000000093, 14.52736200000004, 11.878113999999982,
+            10.267385999999988, 12.99101399999995, 9.079573000000096,
+            9.00668399999995, 8.97393199999999, 9.094455000000039,
+            8.403646000000094, 7.787916999999993, 6.678519999999935,
+            9.164908999999966, 7.89070700000002, 6.89054699999997,
+            8.452494999999999, 7.534172000000012, 7.9306479999999056
+          ],
+          "explainExecutionMs": 2.695
+        },
+        {
+          "name": "trend",
+          "kind": "trend",
+          "query": {
+            "from": "2026-09-22T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z"
+          },
+          "bytes": 1371,
+          "samplesMs": [
+            16.545616999999993, 7.025789000000032, 6.951297000000068,
+            9.378371000000016, 8.222097000000076, 8.536229999999932,
+            6.899081999999908, 6.452164000000039, 6.166328000000021,
+            6.067262000000028, 5.63045000000011, 6.567383999999947,
+            7.413935000000038, 6.747579999999971, 5.809880000000021,
+            6.967326000000185, 8.316138999999794, 5.338541999999961,
+            5.823190000000068, 5.880333000000064, 6.766401999999971
+          ],
+          "explainExecutionMs": 10.393
+        },
+        {
+          "name": "contributions",
+          "kind": "contributions",
+          "query": {
+            "from": "2026-09-22T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z"
+          },
+          "bytes": 810,
+          "samplesMs": [
+            6.814795000000004, 8.933146999999963, 6.011887000000115,
+            5.5861600000000635, 6.491516000000047, 6.958041999999978,
+            7.056724000000031, 6.095239999999876, 5.444786000000022,
+            5.859136000000035, 5.1749059999999645, 5.219938000000184,
+            5.1204190000000835, 6.36598099999992, 7.06566399999997,
+            5.993669999999838, 5.448255000000017, 5.975233000000117,
+            5.519969000000174, 5.5453869999998915, 5.846080000000029
+          ],
+          "explainExecutionMs": 2.723
+        },
+        {
+          "name": "activity_first",
+          "kind": "activity",
+          "query": {
+            "from": "2026-09-22T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z"
+          },
+          "bytes": 13838,
+          "samplesMs": [
+            14.953813000000082, 4.639370999999983, 14.180908999999929,
+            10.25626699999998, 7.522410000000036, 6.607803999999987,
+            6.204078999999865, 5.439391999999998, 6.326913000000104,
+            6.582877999999937, 7.1216900000001715, 4.366522000000032,
+            7.261629999999968, 6.48135000000002, 6.522281000000021,
+            6.863395000000082, 5.682843000000048, 6.065490000000182,
+            7.050894999999855, 7.556503000000021, 6.279025000000047
+          ],
+          "explainExecutionMs": 1.364
+        },
+        {
+          "name": "activity_filtered",
+          "kind": "activity",
+          "query": {
+            "from": "2026-09-22T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "brand": "harbor",
+            "provider": "nova",
+            "limit": "100"
+          },
+          "bytes": 27174,
+          "samplesMs": [
+            7.626851999999872, 6.4621430000001965, 4.905089000000089,
+            6.807117999999946, 7.35659899999996, 8.078068999999914,
+            7.4594929999998385, 6.743870999999899, 7.5539940000001025,
+            6.436922999999979, 6.715993000000026, 6.282261999999946,
+            6.224991999999929, 7.045468000000028, 6.309927000000016,
+            6.722573999999895, 5.439919000000145, 5.561103999999887,
+            6.805196999999907, 7.374358999999913, 6.755455999999867
+          ],
+          "explainExecutionMs": 1.153
+        },
+        {
+          "name": "activity_deep",
+          "kind": "activity",
+          "query": {
+            "from": "2026-07-01T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "sort": "stake",
+            "offset": "5000",
+            "datasetHash": "af4d53dc19b8e92d9e6ec801c4c3adb20de9033d150c9a5f40dfc7912813f22c"
+          },
+          "bytes": 13794,
+          "samplesMs": [
+            10.539549000000079, 8.57776899999999, 9.866380000000163,
+            10.040690999999924, 8.998646000000008, 9.595051999999896,
+            8.740748000000167, 9.966644000000088, 9.829269999999951,
+            9.81916000000001, 9.119389000000183, 11.06528000000003,
+            10.052392000000054, 9.47341100000017, 7.3613900000000285,
+            10.314014999999927, 9.744355999999925, 8.523612999999841, 10.930746,
+            9.641581000000087, 10.218621999999868
+          ],
+          "explainExecutionMs": 6.543
+        },
+        {
+          "name": "placement_pending",
+          "kind": "activity",
+          "query": {
+            "from": "2026-09-22T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "basis": "placement",
+            "status": "pending"
+          },
+          "bytes": 12767,
+          "samplesMs": [
+            5.435591999999815, 4.8872029999999995, 5.565245000000004,
+            6.351247000000058, 6.461502999999993, 5.493140000000039,
+            5.824440999999979, 5.495317000000114, 4.15876900000012,
+            6.578862000000072, 5.906468000000132, 6.182270000000017,
+            6.08766700000001, 4.054755999999998, 5.899247000000059,
+            5.326345000000174, 6.183061999999836, 6.292635999999902,
+            5.69747099999995, 5.693862999999965, 5.488792999999987
+          ],
+          "explainExecutionMs": 1.119
+        }
+      ]
+    },
+    {
+      "capturedAt": "2026-11-08T14:14:22.535Z",
+      "source": "Merged PLAN-12 baseline c97da99; PLAN-13 changes only the web UI and tests.",
+      "conditions": "Node production HTTP on loopback; restricted PostgreSQL login; one client; 21 serial HTTP requests per scenario with full JSON consumption; health opened the pool. Warm database/OS after seed and verification. No manual ANALYZE before these samples. First request is not a cold process. EXPLAIN collected separately after each scenario.",
+      "node": "v24.20.0",
+      "postgres": "PostgreSQL 17.11 (Homebrew) on x86_64-apple-darwin22.6.0, compiled by Apple clang version 14.0.3 (clang-1403.0.22.14.1), 64-bit",
+      "dataset": {
+        "to": "2026-09-29T00:00:00.000Z",
+        "asOf": "2026-09-30T00:00:00.000Z",
+        "file": "transactions-100000.csv",
+        "from": "2026-07-01T00:00:00.000Z",
+        "seed": 20261106,
+        "spike": {
+          "provider": "nova",
+          "payoutMultiplier": 10
+        },
+        "sha256": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+        "current": {
+          "to": "2026-09-29T00:00:00.000Z",
+          "from": "2026-09-22T00:00:00.000Z"
+        },
+        "currency": "EUR",
+        "emptyDay": "2026-08-15",
+        "encoding": "UTF-8; LF; header; empty field = null",
+        "previous": {
+          "to": "2026-09-22T00:00:00.000Z",
+          "from": "2026-09-15T00:00:00.000Z"
+        },
+        "rowCount": 100000,
+        "schemaVersion": 1,
+        "generatorVersion": 1,
+        "reportingTimezone": "UTC"
+      },
+      "results": [
+        {
+          "name": "summary",
+          "kind": "summary",
+          "query": {
+            "from": "2026-09-22T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z"
+          },
+          "bytes": 880,
+          "samplesMs": [
+            64.521928, 34.79033700000002, 33.27083600000003, 33.39120799999989,
+            31.67237799999998, 33.848162, 32.46678399999996, 30.38971300000003,
+            35.20302300000003, 33.795960000000036, 32.62284, 29.888635000000022,
+            32.887343999999985, 32.14531699999998, 33.69866100000013,
+            32.284073000000035, 32.776926, 34.62538200000017,
+            35.571707999999944, 33.50461199999995, 35.3501940000001
+          ],
+          "explainExecutionMs": 23.338
+        },
+        {
+          "name": "trend",
+          "kind": "trend",
+          "query": {
+            "from": "2026-09-22T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z"
+          },
+          "bytes": 1398,
+          "samplesMs": [
+            32.380505000000085, 25.57888200000002, 26.74781599999983,
+            26.397953000000143, 26.111190999999963, 26.45148599999993,
+            26.123448000000053, 26.586442999999917, 23.157393000000184,
+            60.26532400000019, 39.71049100000005, 26.114070999999967,
+            26.864774000000125, 28.566741999999977, 26.13017600000012,
+            25.195672999999942, 24.96900400000004, 25.69816999999989,
+            25.764067999999952, 24.77249800000004, 28.637377000000015
+          ],
+          "explainExecutionMs": 26.107
+        },
+        {
+          "name": "contributions",
+          "kind": "contributions",
+          "query": {
+            "from": "2026-09-22T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z"
+          },
+          "bytes": 819,
+          "samplesMs": [
+            19.344399000000294, 17.224146999999903, 16.49210600000015,
+            18.618654999999762, 16.966316000000006, 17.58103099999971,
+            17.030213999999887, 16.783430999999837, 18.952582999999777,
+            20.423029000000042, 21.358776000000034, 17.008876000000328,
+            24.616153999999824, 22.748843999999735, 22.93406300000015,
+            18.590400000000045, 17.05816199999981, 16.34952899999962,
+            17.042309999999816, 17.890461999999843, 17.216399999999794
+          ],
+          "explainExecutionMs": 13.281
+        },
+        {
+          "name": "activity_first",
+          "kind": "activity",
+          "query": {
+            "from": "2026-09-22T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z"
+          },
+          "bytes": 13834,
+          "samplesMs": [
+            18.827573999999913, 16.362609999999677, 25.773987999999918,
+            18.380932999999914, 17.197302000000036, 18.664120999999795,
+            14.87631599999986, 15.265171999999893, 15.63139799999999,
+            17.47436199999993, 15.938586000000214, 15.723197000000255,
+            17.704027999999653, 16.151432999999997, 15.70727799999986,
+            18.896146999999928, 16.141729999999825, 16.258722999999918,
+            17.55087800000001, 16.494316000000254, 15.660310999999638
+          ],
+          "explainExecutionMs": 13.727
+        },
+        {
+          "name": "activity_filtered",
+          "kind": "activity",
+          "query": {
+            "from": "2026-09-22T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "brand": "harbor",
+            "provider": "nova",
+            "limit": "100"
+          },
+          "bytes": 27182,
+          "samplesMs": [
+            17.08179599999994, 16.666509000000133, 17.405317000000196,
+            16.694015000000036, 16.08573299999989, 17.581391000000167,
+            17.11839699999973, 16.85509200000024, 19.918278999999984,
+            19.105962999999974, 34.47003699999959, 22.99458199999981,
+            20.133699999999862, 16.034872000000178, 16.499088999999913,
+            17.639145999999982, 16.038752999999815, 17.576199000000088,
+            17.40248100000008, 16.661983999999848, 16.49413800000002
+          ],
+          "explainExecutionMs": 12.814
+        },
+        {
+          "name": "activity_deep",
+          "kind": "activity",
+          "query": {
+            "from": "2026-07-01T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "sort": "stake",
+            "offset": "5000",
+            "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1"
+          },
+          "bytes": 13786,
+          "samplesMs": [
+            33.06804299999976, 34.06108399999994, 35.82063599999992,
+            32.734465999999884, 37.27214599999979, 35.440998000000036,
+            38.326244999999744, 31.745476000000053, 34.8613449999998,
+            35.78276499999993, 38.26785999999993, 34.85072600000012,
+            35.980579000000034, 33.12828200000013, 31.733302000000094,
+            34.84974000000011, 31.8420329999999, 34.55879100000038,
+            33.04577900000004, 32.767501000000266, 32.75876599999992
+          ],
+          "explainExecutionMs": 33.398
+        },
+        {
+          "name": "placement_pending",
+          "kind": "activity",
+          "query": {
+            "from": "2026-09-22T00:00:00.000Z",
+            "to": "2026-09-29T00:00:00.000Z",
+            "basis": "placement",
+            "status": "pending"
+          },
+          "bytes": 12771,
+          "samplesMs": [
+            14.799829000000045, 16.00907099999995, 18.599870999999894,
+            14.877539999999954, 14.700628999999935, 15.161008000000038,
+            15.090177000000494, 15.542467000000215, 16.582964000000175,
+            15.176251999999295, 16.060927000000447, 15.22714300000007,
+            15.766104999999698, 15.957961000000068, 16.306180000000495,
+            16.05401399999937, 13.027039999999943, 15.313701000000037,
+            14.87533699999949, 15.200501999999688, 16.772667000000183
+          ],
+          "explainExecutionMs": 10.121
+        }
+      ]
+    }
+  ],
+  "virtualActivity": {
+    "capturedAt": "2026-11-08T14:14:35.790Z",
+    "source": "Merged PLAN-12 baseline c97da99; PLAN-13 changes only the web UI and tests.",
+    "conditions": "Production Node on loopback; fresh browser, warmed pool and PostgreSQL/OS caches; concurrency one; no network/CPU throttling or ingress compression. Heap after explicit GC is total browser JS heap, not retained-row size or process RSS. Timings are single observations, not percentiles. SQL EXPLAIN samples separate from browser samples.",
+    "firstReadyMs": 552.1703830000001,
+    "incrementalReadyMs": [
+      105.65071500000022, 98.86663499999986, 73.98607099999981,
+      68.65309200000002, 70.083349, 79.21558000000005, 59.89312999999993,
+      87.04229399999986, 116.96479500000032
+    ],
+    "firstDomRows": 14,
+    "loadedDomRows": 14,
+    "scrolledDomRows": 14,
+    "scrollToLastMs": 30.41570300000012,
+    "first": {
+      "Nodes": 609,
+      "LayoutDuration": 0.054156,
+      "RecalcStyleDuration": 0.019864,
+      "ScriptDuration": 0.102842,
+      "JSHeapUsedSize": 3492720,
+      "JSHeapTotalSize": 4001792
+    },
+    "loaded": {
+      "Nodes": 616,
+      "LayoutDuration": 0.060616,
+      "RecalcStyleDuration": 0.024591,
+      "ScriptDuration": 0.139195,
+      "JSHeapUsedSize": 4662768,
+      "JSHeapTotalSize": 5312512
+    },
+    "scrolled": {
+      "Nodes": 621,
+      "LayoutDuration": 0.061489,
+      "RecalcStyleDuration": 0.025166,
+      "ScriptDuration": 0.141511,
+      "JSHeapUsedSize": 5160336,
+      "JSHeapTotalSize": 5906432
+    },
+    "transfers": [
+      {
+        "bytes": 27052,
+        "offset": "0"
+      },
+      {
+        "bytes": 27003,
+        "offset": "100"
+      },
+      {
+        "bytes": 27039,
+        "offset": "200"
+      },
+      {
+        "bytes": 26986,
+        "offset": "300"
+      },
+      {
+        "bytes": 27030,
+        "offset": "400"
+      },
+      {
+        "bytes": 27045,
+        "offset": "500"
+      },
+      {
+        "bytes": 27075,
+        "offset": "600"
+      },
+      {
+        "bytes": 27032,
+        "offset": "700"
+      },
+      {
+        "bytes": 27042,
+        "offset": "800"
+      },
+      {
+        "bytes": 27030,
+        "offset": "900"
+      }
+    ],
+    "queries": [
+      {
+        "input": {
+          "from": "2026-09-22T00:00:00.000Z",
+          "to": "2026-09-29T00:00:00.000Z",
+          "limit": "100"
+        },
+        "explainExecutionMs": 14.34,
+        "tempWrittenBlocks": 0
+      },
+      {
+        "input": {
+          "from": "2026-09-22T00:00:00.000Z",
+          "to": "2026-09-29T00:00:00.000Z",
+          "limit": "100",
+          "provider": "nova",
+          "brand": "harbor"
+        },
+        "explainExecutionMs": 12.377,
+        "tempWrittenBlocks": 0
+      },
+      {
+        "input": {
+          "from": "2026-07-01T00:00:00.000Z",
+          "to": "2026-09-29T00:00:00.000Z",
+          "limit": "100",
+          "offset": "50000",
+          "sort": "stake",
+          "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1"
+        },
+        "explainExecutionMs": 83.048,
+        "tempWrittenBlocks": 1116
+      }
+    ]
+  }
+}

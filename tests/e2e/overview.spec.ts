@@ -115,7 +115,7 @@ test("literal oracle renders period metrics, daily values, signed provider chang
   ).toHaveText("-€24.00");
   await expect(hold.locator(".ops-metric-value")).toHaveText("-150.00%");
   const provider = page.getByRole("link", {
-    name: "Investigate Nova, change -€32.00",
+    name: "Nova -€32.00 · Investigate provider activity",
     exact: true,
   });
   await provider.focus();

@@ -90,22 +90,18 @@ function AnalyticsPanel({
 function ScopeLink({
   href,
   enabled,
-  children,
   label,
 }: {
   href: string;
   enabled: boolean;
-  children: ReactNode;
-  label?: string;
+  label: string;
 }) {
   return enabled ? (
-    <a href={href} aria-label={label}>
-      {children}
+    <a href={href}>
+      {label} <span aria-hidden="true">→</span>
     </a>
   ) : (
-    <span aria-disabled="true" title={label}>
-      {children}
-    </span>
+    <span aria-disabled="true">{label}</span>
   );
 }
 function Filters({
@@ -449,10 +445,11 @@ function Dashboard({
           </p>
           {trend.data ? (
             <>
+              {/* biome-ignore lint/a11y/useSemanticElements: SVG needs a named group that exposes its links. */}
               <svg
                 className="chart"
                 viewBox="0 0 600 240"
-                role="img"
+                role="group"
                 aria-label="Daily GGR chart with zero reference; exact values and activity links in the table below"
               >
                 <line x1="24" x2="576" y1="110" y2="110" className="zero" />
@@ -517,9 +514,7 @@ function Dashboard({
                               enabled={current}
                               href={href({ ...query, from: d.from, to: d.to })}
                               label={`View activity for ${day(d.from)}`}
-                            >
-                              View day →
-                            </ScopeLink>
+                            />
                           </td>
                         </tr>
                       ))}
@@ -566,7 +561,7 @@ function Dashboard({
                         ? href({ ...query, provider: p.provider })
                         : undefined
                     }
-                    aria-label={`Investigate ${names[p.provider]}, change ${signed(p.change ?? 0)}`}
+                    aria-label={`${names[p.provider]} ${signed(p.change ?? 0)} · Investigate provider activity`}
                     aria-disabled={!current || undefined}
                   >
                     <span>{names[p.provider]}</span>
@@ -622,9 +617,7 @@ function Dashboard({
                               enabled={current}
                               href={href({ ...query, provider: p.provider })}
                               label={`View ${names[p.provider]} activity`}
-                            >
-                              View provider →
-                            </ScopeLink>
+                            />
                           </td>
                         </tr>
                       ))}
