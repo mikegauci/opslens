@@ -17,7 +17,7 @@
     "test:e2e": "playwright test",
     "contracts:generate": "tsx scripts/generate-contracts.ts",
     "contracts:check": "pnpm contracts:generate && git diff --exit-code -- packages/contracts/openapi.json packages/contracts/src/schema.d.ts",
-    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm data:check && pnpm db:verify && pnpm db:verify:superset && pnpm contracts:check && pnpm build && pnpm test:e2e",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm data:check && pnpm db:verify && pnpm db:verify:superset && pnpm contracts:check && pnpm build && pnpm test:e2e && pnpm check:storybook",
     "benchmark": "tsx scripts/benchmark.ts",
     "data:generate": "node --import tsx scripts/data/generate.ts",
     "data:check": "node --import tsx scripts/data/generate.ts --check",
@@ -27,7 +27,8 @@
     "db:verify": "node --env-file-if-exists=.env --import tsx scripts/db/verify.ts",
     "benchmark:api": "node --env-file-if-exists=.env --import tsx scripts/benchmark-api.ts",
     "benchmark:activity": "node --env-file-if-exists=.env --import tsx scripts/benchmark-activity.ts",
-    "db:verify:superset": "node --env-file-if-exists=.env --import tsx scripts/db/verify-superset.ts"
+    "db:verify:superset": "node --env-file-if-exists=.env --import tsx scripts/db/verify-superset.ts",
+    "check:storybook": "pnpm --filter @opslens/ui storybook:build && playwright test --config playwright.storybook.config.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.6.6",

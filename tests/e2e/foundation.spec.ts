@@ -138,7 +138,7 @@ test("production overview renders the selected bulk dataset and preserves provid
     ["Settled payouts", "payouts"],
   ]) {
     await expect(
-      page.getByRole("article", { name }).locator(".metric-value"),
+      page.getByRole("article", { name }).locator(".ops-metric-value"),
     ).toHaveText(
       new Intl.NumberFormat("en-IE", {
         style: "currency",

@@ -1,53 +1,18 @@
-:root {
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-  color: #202536;
-  background: #f6f7fb;
-  font-synthesis: none;
-  line-height: 1.5;
-  font-size: 14px;
-  --muted: #596277;
-  --border: #dce0eb;
-  --primary: #4338ca;
-}
-* {
-  box-sizing: border-box;
-}
 body {
   margin: 0;
 }
-a {
-  color: var(--primary);
-  text-underline-offset: 3px;
-}
-button,
-input,
-select {
-  font: inherit;
-  border-radius: 6px;
-  min-height: 42px;
-}
-button {
-  background: var(--primary);
-  color: white;
-  border: 1px solid transparent;
-  padding: 8px 14px;
-  cursor: pointer;
-  font-weight: 600;
-}
-button:hover {
-  background: #312e81;
-}
-:focus-visible {
-  outline: 2px solid #4338ca;
-  outline-offset: 3px;
-}
-input,
-select {
-  border: 1px solid #aeb6c8;
+.ops-quiet {
   background: white;
-  padding: 8px;
-  color: inherit;
-  width: 100%;
+  border: 1px solid var(--ops-border);
+  color: var(--ops-primary);
+  font-size: 12px;
+  padding: 6px 10px;
+}
+.ops-quiet:hover {
+  background: #f0efff;
+}
+.topbar .ops-badge {
+  margin-left: auto;
 }
 .app-shell {
   max-width: 1600px;
@@ -55,7 +20,7 @@ select {
 }
 .topbar {
   background: white;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--ops-border);
   padding: 20px 32px;
   display: flex;
   gap: 40px;
@@ -79,17 +44,7 @@ select {
   border-bottom: 2px solid transparent;
 }
 .topbar nav a[aria-current="page"] {
-  border-bottom-color: var(--primary);
-}
-.badge {
-  margin-left: auto;
-  color: #51421a;
-  background: #fff5d6;
-  border: 1px solid #e8dcae;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  white-space: nowrap;
+  border-bottom-color: var(--ops-primary);
 }
 main {
   padding: 32px;
@@ -107,15 +62,6 @@ h1 {
   letter-spacing: -0.8px;
   margin: 6px 0 10px;
 }
-h2 {
-  font-size: 16px;
-  margin: 0;
-}
-h3 {
-  font-size: 13px;
-  font-weight: 600;
-  margin: 0;
-}
 p {
   margin: 12px 0;
 }
@@ -124,11 +70,11 @@ p {
   letter-spacing: 1.4px;
   font-size: 11px;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--ops-primary);
   margin: 0;
 }
 .intro {
-  color: var(--muted);
+  color: var(--ops-muted);
   margin: 0;
 }
 .period {
@@ -139,59 +85,13 @@ p {
 }
 .period span,
 .caption {
-  color: var(--muted);
+  color: var(--ops-muted);
   font-size: 12px;
-}
-.filters {
-  display: flex;
-  gap: 16px;
-  align-items: end;
-  flex-wrap: wrap;
-  background: white;
-  padding: 20px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-}
-.filters > label,
-.filters .filter-field {
-  display: grid;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  flex: 1;
-  min-width: 140px;
-}
-.filters a {
-  padding: 10px 0;
 }
 .active-scope {
   font-size: 12px;
-  color: var(--muted);
+  color: var(--ops-muted);
   margin: 12px 0 24px;
-}
-.panel {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 24px;
-  margin-bottom: 24px;
-  min-width: 0;
-}
-.panel-heading {
-  display: flex;
-  gap: 16px;
-  justify-content: space-between;
-  align-items: center;
-}
-.quiet {
-  background: white;
-  border: 1px solid var(--border);
-  color: var(--primary);
-  font-size: 12px;
-  padding: 6px 10px;
-}
-.quiet:hover {
-  background: #f0efff;
 }
 .snapshot {
   overflow-wrap: anywhere;
@@ -201,30 +101,6 @@ p {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
   margin: 20px 0;
-}
-.metric {
-  padding: 20px;
-  border-radius: 8px;
-  background: #f7f8fc;
-  border: 1px solid #e6e8f1;
-}
-.metric.primary {
-  background: #eeedff;
-  border-color: #d8d4fc;
-}
-.metric-value {
-  font-size: clamp(22px, 2.3vw, 32px);
-  font-weight: 700;
-  letter-spacing: -0.6px;
-  font-variant-numeric: tabular-nums;
-  margin: 12px 0 8px;
-  overflow-wrap: anywhere;
-}
-.delta {
-  font-size: 12px;
-  color: #4e5467;
-  margin: 0;
-  font-variant-numeric: tabular-nums;
 }
 .charts {
   display: grid;
@@ -244,11 +120,11 @@ p {
   stroke-dasharray: 4;
 }
 .trend-line {
-  stroke: var(--primary);
+  stroke: var(--ops-primary);
   stroke-width: 2;
 }
 .trend-dot {
-  fill: var(--primary);
+  fill: var(--ops-primary);
 }
 .contribution-chart {
   margin: 0;
@@ -324,21 +200,10 @@ th {
   font-weight: 600;
 }
 thead {
-  color: var(--muted);
+  color: var(--ops-muted);
 }
 [aria-disabled="true"] {
   color: #666d7c;
-}
-.state,
-.error {
-  border-radius: 6px;
-  padding: 12px;
-  background: #fff7e4;
-  color: #684811;
-}
-.error {
-  background: #fff0f0;
-  color: #8c2335;
 }
 .skeleton {
   min-height: 220px;
@@ -347,24 +212,25 @@ thead {
   margin-top: 20px;
 }
 footer {
-  color: var(--muted);
+  color: var(--ops-muted);
   font-size: 12px;
   padding: 0 0 24px;
-}
-.page-shell {
-  max-width: 800px;
-  margin: 8vh auto;
-}
-.page-shell section {
-  padding: 24px;
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  margin: 32px 0;
 }
 dd {
   margin: 0 0 20px;
 }
+.filter-field {
+  display: grid;
+  gap: 6px;
+  flex: 1;
+  min-width: 140px;
+}
+
+.filter-field label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
 @media (max-width: 1100px) {
   .metrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -393,28 +259,11 @@ dd {
     margin-top: 20px;
     font-size: 12px;
   }
-  .filters {
-    padding: 16px;
-    gap: 12px;
-  }
-  .filters > label,
-  .filters .filter-field {
+  .filter-field {
     min-width: 100%;
-  }
-  .panel {
-    padding: 16px;
-  }
-  .panel-heading {
-    align-items: start;
-  }
-  .panel-heading button {
-    max-width: 150px;
   }
   .metrics {
     grid-template-columns: 1fr;
-  }
-  .metric-value {
-    font-size: 30px;
   }
   .chart {
     height: 200px;
@@ -425,11 +274,6 @@ dd {
     gap: 8px;
     grid-template-columns: 40px 1fr 95px;
   }
-}
-
-.filters .filter-field label {
-  font-size: 12px;
-  font-weight: 600;
 }
 
 .activity-filters label:has(input) {
@@ -469,7 +313,7 @@ dd {
   position: sticky;
   top: 0;
   z-index: 1;
-  background: var(--surface, #fff);
+  background: var(--ops-surface);
 }
 .virtual-scroll tr {
   display: flex;
@@ -535,9 +379,4 @@ dd {
 .virtual-scroll th {
   padding: 6px 8px;
   flex-shrink: 0;
-}
-button:disabled,
-button[aria-disabled="true"] {
-  cursor: default;
-  opacity: 0.55;
 }

@@ -74,7 +74,7 @@ test("literal oracle renders four totals, daily values, signed provider changes 
   };
   for (const [name, value] of Object.entries(expected))
     await expect(
-      page.getByRole("article", { name }).locator(".metric-value"),
+      page.getByRole("article", { name }).locator(".ops-metric-value"),
     ).toHaveText(value);
   await expect(
     page.getByRole("article", { name: "Gross gaming revenue" }),
@@ -108,7 +108,7 @@ test("literal oracle renders four totals, daily values, signed provider changes 
   await expect(
     page
       .getByRole("article", { name: "Gross gaming revenue" })
-      .locator(".metric-value"),
+      .locator(".ops-metric-value"),
   ).toHaveText("-€24.00");
   const provider = page.getByRole("link", {
     name: "Investigate Nova, change -€32.00",
@@ -171,12 +171,12 @@ test("URL filters reload and navigate back/forward; invalid and out-of-window sc
   await expect(
     page
       .getByRole("article", { name: "Active settled players" })
-      .locator(".metric-value"),
+      .locator(".ops-metric-value"),
   ).toHaveText("1");
   await expect(
     page
       .getByRole("article", { name: "Settled stakes" })
-      .locator(".metric-value"),
+      .locator(".ops-metric-value"),
   ).toHaveText("€0.00");
   await page.reload();
   await expect(page.getByLabel("Provider", { exact: true })).toHaveValue(
@@ -222,7 +222,7 @@ test("zero activity and unavailable comparison remain distinct", async ({
   await expect(
     page
       .getByRole("article", { name: "Gross gaming revenue" })
-      .locator(".metric-value"),
+      .locator(".ops-metric-value"),
   ).toHaveText("€0.00");
   await page.goto(
     "/?from=2026-07-01T00:00:00.000Z&to=2026-07-02T00:00:00.000Z",
@@ -282,7 +282,7 @@ test("initial loading, isolated failure, retry, stale scope and superseded respo
   await expect(
     page
       .getByRole("article", { name: "Gross gaming revenue" })
-      .locator(".metric-value"),
+      .locator(".ops-metric-value"),
   ).toHaveText("-€4.00");
   await page.unroute("**/api/summary?*");
   await page.getByRole("button", { name: "Retry period metrics" }).click();
@@ -312,7 +312,7 @@ test("initial loading, isolated failure, retry, stale scope and superseded respo
   await expect(
     page
       .getByRole("article", { name: "Gross gaming revenue" })
-      .locator(".metric-value"),
+      .locator(".ops-metric-value"),
   ).toHaveText("€20.00");
   const late = page.waitForResponse(
     (response) =>
@@ -333,7 +333,7 @@ test("initial loading, isolated failure, retry, stale scope and superseded respo
   await expect(
     page
       .getByRole("article", { name: "Gross gaming revenue" })
-      .locator(".metric-value"),
+      .locator(".ops-metric-value"),
   ).toHaveText("€20.00");
 });
 

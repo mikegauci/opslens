@@ -1,0 +1,187 @@
+.opslens-theme {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  color: var(--ops-text);
+  background: var(--ops-canvas);
+  font-synthesis: none;
+  line-height: 1.5;
+  font-size: 14px;
+  --ops-canvas: #f6f7fb;
+  --ops-surface: #fff;
+  --ops-text: #202536;
+  --ops-muted: #596277;
+  --ops-danger: #8c2335;
+  --ops-danger-surface: #fff0f0;
+  --ops-notice: #684811;
+  --ops-notice-surface: #fff7e4;
+  --ops-focus: #4338ca;
+  --ops-control-radius: 6px;
+  --ops-panel-radius: 8px;
+  --ops-gap: 16px;
+  --ops-border: #dce0eb;
+  --ops-primary: #4338ca;
+}
+:where(.opslens-theme) * {
+  box-sizing: border-box;
+}
+:where(.opslens-theme) a {
+  color: var(--ops-primary);
+  text-underline-offset: 3px;
+}
+:where(.opslens-theme) button,
+:where(.opslens-theme) input,
+:where(.opslens-theme) select {
+  font: inherit;
+  border-radius: var(--ops-control-radius);
+  min-height: 42px;
+}
+:where(.opslens-theme) button {
+  background: var(--ops-primary);
+  color: white;
+  border: 1px solid transparent;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+:where(.opslens-theme) button:hover {
+  background: #312e81;
+}
+:where(.opslens-theme) :focus-visible {
+  outline: 2px solid var(--ops-focus);
+  outline-offset: 3px;
+}
+:where(.opslens-theme) input,
+:where(.opslens-theme) select {
+  border: 1px solid #aeb6c8;
+  background: var(--ops-surface);
+  padding: 8px;
+  color: inherit;
+  width: 100%;
+}
+:where(.opslens-theme) button:disabled,
+:where(.opslens-theme) button[aria-disabled="true"] {
+  cursor: default;
+  opacity: 0.55;
+}
+:where(.opslens-theme) h2 {
+  font-size: 16px;
+  margin: 0;
+}
+:where(.opslens-theme) h3 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0;
+}
+.ops-badge {
+  color: #51421a;
+  background: #fff5d6;
+  border: 1px solid #e8dcae;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.ops-filter-bar {
+  display: flex;
+  gap: var(--ops-gap);
+  align-items: end;
+  flex-wrap: wrap;
+  background: var(--ops-surface);
+  padding: 20px;
+  border: 1px solid var(--ops-border);
+  border-radius: var(--ops-panel-radius);
+}
+.ops-filter-bar > label {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  flex: 1;
+  min-width: 140px;
+}
+.ops-filter-bar a {
+  padding: 10px 0;
+}
+.ops-panel {
+  background: var(--ops-surface);
+  border: 1px solid var(--ops-border);
+  border-radius: var(--ops-panel-radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  min-width: 0;
+}
+.ops-panel-heading {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: center;
+}
+.ops-metric {
+  padding: 20px;
+  border-radius: var(--ops-panel-radius);
+  background: #f7f8fc;
+  border: 1px solid #e6e8f1;
+}
+.ops-metric[data-variant="featured"] {
+  background: #eeedff;
+  border-color: #d8d4fc;
+}
+.ops-metric-value {
+  font-size: clamp(22px, 2.3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  font-variant-numeric: tabular-nums;
+  margin: 12px 0 8px;
+  overflow-wrap: anywhere;
+}
+.ops-metric-detail {
+  font-size: 12px;
+  color: #4e5467;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.ops-state {
+  border-radius: var(--ops-control-radius);
+  padding: 12px;
+  background: var(--ops-notice-surface);
+  color: var(--ops-notice);
+}
+.ops-state[data-variant="error"] {
+  background: var(--ops-danger-surface);
+  color: var(--ops-danger);
+}
+.page-shell {
+  padding: 32px;
+  max-width: 800px;
+  margin: 8vh auto;
+}
+.page-shell section {
+  padding: 24px;
+  background: var(--ops-surface);
+  border: 1px solid var(--ops-border);
+  border-radius: var(--ops-panel-radius);
+  margin: 32px 0;
+}
+@media (max-width: 600px) {
+  .page-shell {
+    padding: 20px 16px;
+  }
+  .ops-filter-bar {
+    padding: 16px;
+    gap: 12px;
+  }
+  .ops-filter-bar > label {
+    min-width: 100%;
+  }
+  .ops-panel {
+    padding: 16px;
+  }
+  .ops-panel-heading {
+    align-items: start;
+  }
+  .ops-panel-heading button {
+    max-width: 150px;
+  }
+  .ops-metric-value {
+    font-size: 30px;
+  }
+}

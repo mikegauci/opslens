@@ -8,7 +8,7 @@ This is an independent portfolio project using fictional brands and synthetic da
 
 ## Status
 
-Foundation stage. A React diagnostic route, typed Hono API, real PostgreSQL connectivity probe, streamed response and CI are implemented. Repeatable 10k/100k synthetic datasets, independent metric fixtures, migrations and restricted database reads are implemented. Analytics endpoints, dashboards, AI, Storybook and hosted deployments are still future work. See [working setup and hosting tradeoffs](docs/runtime.md).
+Overview and Activity are implemented against the typed Hono API and deterministic PostgreSQL data. The shared UI package includes a local Storybook with a keyboard walkthrough and consumer guide. See [local app setup](docs/runtime.md) and [UI package and Storybook](packages/ui/README.md).
 
 The build prioritises a polished, explainable result over a fixed deadline. It uses React and TypeScript throughout the frontend; Angular is excluded.
 
@@ -33,7 +33,7 @@ The build prioritises a polished, explainable result over a fixed deadline. It u
 
 React, TypeScript, Vite, Tailwind CSS, shadcn/ui, ECharts, TanStack Table/Virtual/Query, a small TypeScript API, PostgreSQL, OpenAPI-generated clients, Vitest, Playwright, Storybook, and OpenAI through the AI SDK.
 
-Node 24, pnpm and the installed foundation dependencies are pinned with a committed lockfile. Start with [the local setup](docs/runtime.md); `pnpm check` runs lint, types, domain/API tests, contract drift, production build and browser smoke against PostgreSQL.
+Node 24, pnpm and the installed foundation dependencies are pinned with a committed lockfile. Start with [the local setup](docs/runtime.md); `pnpm check` runs lint, types, domain/API tests, contract drift, production browser checks against PostgreSQL, and the static Storybook build and browser checks.
 
 ## Portfolio deliverables
 

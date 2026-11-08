@@ -1,0 +1,37 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Guide/Using OpsLens UI" />
+
+# Using OpsLens UI
+
+The Overview uses the same panel, filter form, badge and feedback primitives as Activity. Overview also uses metric cards for reporting values. The **Support inbox** stories arrange those pieces into a shift handoff with synthetic counts and native queue filtering.
+
+## Theme tokens
+
+Import `@opslens/ui/theme.css` once and put `opslens-theme` on an ancestor. Override tokens on that ancestor or a narrower container after loading the theme.
+
+| Purpose | CSS custom properties | Defaults |
+| --- | --- | --- |
+| Backgrounds | `--ops-canvas`, `--ops-surface` | `#f6f7fb`, `#fff` |
+| Text and borders | `--ops-text`, `--ops-muted`, `--ops-border` | `#202536`, `#596277`, `#dce0eb` |
+| Actions and focus | `--ops-primary`, `--ops-focus` | `#4338ca`, `#4338ca` |
+| Feedback | `--ops-notice`, `--ops-notice-surface`, `--ops-danger`, `--ops-danger-surface` | `#684811`, `#fff7e4`, `#8c2335`, `#fff0f0` |
+| Shape and spacing | `--ops-control-radius`, `--ops-panel-radius`, `--ops-gap` | 6 px, 8 px, 16 px |
+
+The theme applies native control styles and a 2 px focus ring within its scope. Label status and emphasis in text as well as colour.
+
+## Composition and variants
+
+- **Panel** is a named region. Its heading defaults to level 2. Use the actions slot for native controls and `headingRef` when the app needs to move focus to results after navigation.
+- **FilterBar** is a native form. Supply an accessible form name, labelled fields and a submit button. The consumer owns validation, values and submission.
+- **StatusBadge** is an inline text label. Use it to describe a status or data context.
+- **MetricCard** accepts a preformatted value and a comparison or context. Use `featured` for the metric that deserves first attention and `default` for supporting metrics.
+- **AsyncState** offers loading, empty, notice and error variants. Keep a persistent `role="status"` region for routine updates. Error renders its own alert. Give any retry action a specific label and place it in the panel actions or alongside the feedback.
+
+## Keyboard and states
+
+Open **Support inbox → Retry With Keyboard**. Tab through the Queue field, Apply queue and Retry counts. Press Enter to recover. Focus stays on the same button as its label changes to Refresh counts. Return to Queue, select Archive and submit to see the empty state. The Loading story shows progress while refresh is unavailable.
+
+## Consuming the package
+
+Add `"@opslens/ui": "workspace:*"` to a React workspace app with a bundler that compiles TSX. Import the theme and components from the package exports. Pass in formatted values, content and callbacks. See [the package README](https://github.com/mikegauci/opslens/blob/main/packages/ui/README.md) for the update and verification workflow.
