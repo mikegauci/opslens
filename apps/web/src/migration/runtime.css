@@ -1,0 +1,11 @@
+.migration-runtime {
+  max-width: 38rem;
+  margin: 2rem auto;
+  padding-inline: 1rem;
+}
+.migration-runtime section {
+  background: var(--ops-surface);
+  border: 1px solid var(--ops-border);
+  border-radius: var(--ops-panel-radius);
+  padding: 1rem;
+}

@@ -29,7 +29,7 @@ Required runtime server variable: `DATABASE_URL` (restricted application login).
 
 ## Verification and contracts
 
-Run `pnpm exec playwright install chromium` once on a supported OS; Linux CI installs browser system dependencies too. On this macOS 13 machine the current bundled Chromium is unsupported: use installed Chrome with `PLAYWRIGHT_CHANNEL=chrome pnpm check` (and the same variable for `pnpm benchmark`). This is an explicit local fallback, not evidence for the pinned CI browser. Keep the database running and leave ports 3000 and 6006 free, then run `pnpm check`.
+Run `pnpm exec playwright install chromium` once on a supported OS; Linux CI installs browser system dependencies too. On this macOS 13 machine the current bundled Chromium is unsupported: use installed Chrome with `PLAYWRIGHT_CHANNEL=chrome pnpm check` (and the same variable for `pnpm benchmark`). This is an explicit local fallback, not evidence for the pinned CI browser. Keep the database running and leave ports 3000, 3015 and 6006 free, then run `pnpm check`.
 
 - Biome checks code/style and TypeScript checks all packages.
 - Vitest covers integer money, API availability/error responses, SSE ordering, and deterministic hashes/story properties at both dataset sizes. `data:check` rejects committed manifest drift. `db:verify` reconciles every stored row/hash, independently authored fixture SQL/expected values, schema constraints, private-schema grants/RLS and actual application write/DDL denials. API unit tests inject the database boundary; the production browser smoke performs the actual PostgreSQL query.
@@ -71,3 +71,7 @@ PLAN-06 browser tests include a rollback-only oracle HTTP adapter plus a separat
 Open `/activity` directly or follow a provider or day link from Overview. The default table exposes one complete 100-row page. Select **Virtual scrolling** to load additional batches into a window of up to 1,000 rows, then continue at the next offset in pages. The server handles filtering, sorting and paging in both views. Choose placement basis to inspect pending or void transactions. The date inputs and shareable URL use canonical UTC timestamps with an exclusive end.
 
 After `pnpm build`, run `pnpm benchmark:activity` with the restricted connection and the 100k seed selected. The script starts a separate loopback server on port 3107. On this Mac, set `PLAYWRIGHT_CHANNEL=chrome`. The output records browser rendering and heap, HTTP transfer and separate database query plans in `docs/benchmarks/activity-100000.json`.
+
+## Optional route migration — PLAN-15
+
+The [runtime-status migration exercise](runtime-migration.md) ships static HTML and React variants of one route in the same build. The production browser suite uses port 3015 for the React opt-in alongside the default server on port 3000.
