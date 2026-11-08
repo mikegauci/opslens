@@ -78,6 +78,19 @@ app.get("/assets/*", serveStatic({ root: webRoot }));
 app.get("/", serveStatic({ path: `${webRoot}index.html` }));
 app.get("/activity", serveStatic({ path: `${webRoot}index.html` }));
 app.get("/foundation", serveStatic({ path: `${webRoot}index.html` }));
+// Both migration documents ship in the same build. Only this route reads the flag.
+const runtimeDocument =
+  process.env.OPSLENS_RUNTIME_REACT === "1"
+    ? "runtime-react.html"
+    : "runtime-legacy.html";
+app.get(
+  "/migration/runtime",
+  async (c, next) => {
+    c.header("Cache-Control", "no-store");
+    await next();
+  },
+  serveStatic({ path: `${webRoot}${runtimeDocument}` }),
+);
 const knowledgeRoot = fileURLToPath(
   new URL("../../../knowledge/documents/", import.meta.url),
 );

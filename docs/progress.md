@@ -18,6 +18,12 @@
 
 - PLAN-12 ([#12](https://github.com/mikegauci/opslens/issues/12)) adds [add-dashboard-metric](../.agents/skills/add-dashboard-metric/SKILL.md) and [chart-review](../.agents/skills/chart-review/SKILL.md) and updates AGENTS.md with lessons from stale-response testing and independent baseline reconciliation. Overview shows hold for the selected settlement scope, with an explicit unavailable state for zero stakes and a percentage-point comparison when both periods have hold.
 
+## PLAN-15 migration exercise
+
+- Started from merged PLAN-14 PR #29 at `e266bd3`. [PLAN-15 / #15](https://github.com/mikegauci/opslens/issues/15) adds the isolated runtime-status fixture and React replacement. Both ship in one production build, use the existing health contract and serve the same bookmark. The route defaults to static HTML. [Cutover, rollback and production considerations](runtime-migration.md).
+- Local `PLAYWRIGHT_CHANNEL=chrome pnpm check` passed 30 unit/API tests, 22 production browser/HTTP checks and three Storybook checks against the retained 100k PostgreSQL snapshot. The two new browser checks exercise real health responses, bookmark and focus preservation, simulated 503 recovery and browser Back in both modes. Generated contracts have no drift.
+- Reloaded one bookmarked URL through same-origin server restarts with the flag unset, set to `1`, then set to `0`, using the same built assets. Each mode returned the expected HTML and real database status. Chrome screenshots matched byte for byte at each of 1280 px and 390 px.
+
 ## PLAN-14 portfolio package
 
 - Started from merged PLAN-13 PR #28 at `31ad72c`. [PLAN-14 / #14](https://github.com/mikegauci/opslens/issues/14) packages the [case study and screenshots](portfolio/case-study.md), [three-minute production recording and transcript](portfolio/walkthrough.md), [interview notes](portfolio/interview-notes.md) and [launch checklist](portfolio/launch.md). The README links to verified local app and Storybook entry points, the reconciled Superset baseline and the evaluation evidence.
@@ -91,6 +97,6 @@
 
 ## Next work and workflow
 
-PLAN-14 is the final core package. [PLAN-15 / #15](https://github.com/mikegauci/opslens/issues/15) is the optional migration exercise and requires separate authorization. The [launch checklist](portfolio/launch.md) carries the pending publication decisions and verification, including native desktop keyboard and screen-reader review. Live analytics and hosted document evidence have separate evaluation gates.
+PLAN-14 is the final core package. PLAN-15 is the final optional exercise. Once this PR merges and closes #15, zero core and zero optional backlog plans remain. The [launch checklist](portfolio/launch.md) carries the pending publication decisions and verification, including native desktop keyboard and screen-reader review. Live analytics and hosted document evidence have separate evaluation gates.
 
 One PR per chat, latest merged main, no concurrent checkout edits. Push, confirm CI passed for the exact PR head before any merge command, then verify the merge and issue closure. Use the authorized direct merge if auto-merge is unavailable. The existing GitHub keyring works with credential and network permissions.
