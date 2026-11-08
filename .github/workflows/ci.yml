@@ -40,6 +40,9 @@ jobs:
       - run: pnpm db:seed 10000 && pnpm db:seed 10000 && pnpm db:verify
       - run: pnpm db:seed 100000 && pnpm db:seed 100000
       - run: pnpm check
+      - run: pnpm db:verify:copilot
+        env:
+          OPSLENS_QUOTA_TEST: "1"
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         if: failure()
         with:

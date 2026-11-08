@@ -179,6 +179,29 @@ test("dashboard and placement investigation remain available without model crede
   await expect(
     dialog.getByRole("button", { name: "Ask question" }),
   ).toBeDisabled();
+  await dialog.getByText("Recorded example · GGR change and Nova").click();
+  await expect(
+    dialog.getByText(/Fixed synthetic snapshot with 100,000 rows/),
+  ).toBeVisible();
+  await expect(
+    dialog.getByText(/All brands.*All providers.*settlement time/),
+  ).toBeVisible();
+  const link = dialog.getByRole("link", {
+    name: "View Nova transactions in the recorded scope",
+  });
+  const recordedUrl = new URL(
+    (await link.getAttribute("href")) ?? "",
+    page.url(),
+  );
+  expect(Object.fromEntries(recordedUrl.searchParams)).toEqual({
+    from: "2026-09-22T00:00:00.000Z",
+    to: "2026-09-29T00:00:00.000Z",
+    provider: "nova",
+    basis: "settlement",
+    status: "settled",
+    datasetHash:
+      "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+  });
   await page.keyboard.press("Escape");
   await expect(
     page.getByRole("heading", { name: "Activity", exact: true }),

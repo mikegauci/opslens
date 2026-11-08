@@ -103,6 +103,8 @@ try {
     "CREATE TABLE public.forbidden (id integer)",
     "UPDATE opslens_private.dataset SET manifest = '{}' WHERE false",
     "SELECT * FROM opslens_meta.migrations",
+    "SELECT * FROM opslens_private.copilot_quota",
+    "UPDATE opslens_private.copilot_quota SET requests = 1 WHERE false",
   ]) {
     await app.query("BEGIN");
     try {
@@ -118,7 +120,10 @@ try {
   const tables = await client.query(
     "SELECT relname, relrowsecurity, pg_get_userbyid(relowner) AS owner FROM pg_class WHERE relnamespace = 'opslens_private'::regnamespace AND relkind = 'r' ORDER BY relname",
   );
-  assert.equal(tables.rowCount, 2);
+  assert.deepEqual(
+    tables.rows.map(({ relname }) => relname),
+    ["copilot_quota", "dataset", "transactions"],
+  );
   for (const table of tables.rows) {
     assert.equal(table.relrowsecurity, true);
     assert.notEqual(table.owner, "opslens_app");
@@ -137,7 +142,7 @@ try {
       ).rows[0].allowed,
       false,
     );
-    for (const table of ["transactions", "dataset"]) {
+    for (const table of ["transactions", "dataset", "copilot_quota"]) {
       assert.equal(
         (
           await client.query(

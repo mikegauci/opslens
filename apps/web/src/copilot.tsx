@@ -8,12 +8,13 @@ import {
 } from "@opslens/analytics/copilot";
 import { api } from "@opslens/contracts";
 import { type FormEvent, useEffect, useRef, useState } from "react";
+import manifests from "../../../data/manifest.json";
 import { money } from "./scope";
 
 const errors: Record<CopilotError, string> = {
   failed: "The answer could not be verified. Retry your question.",
   timeout: "The copilot timed out. Retry your question.",
-  quota: "The model is at its request limit. Try again later.",
+  quota: "The live copilot request limit was reached. Try again later.",
   scope:
     "These dates are outside the available dataset. Change the dashboard filters, then apply the new scope.",
   dataset:
@@ -45,9 +46,11 @@ function scopeText(scope: CopilotScope) {
   return `${interval(scope)} · ${scope.brand ?? "All brands"} · ${scope.provider ? providers[scope.provider] : "All providers"} · ${scope.basis} time · ${scope.basis === "settlement" ? "settled" : (scope.status ?? "all statuses")}`;
 }
 function activityLink(
-  result: Extract<CopilotEvidence, { kind: "activity" }>["result"],
+  scope: Omit<CopilotScope, "status"> & {
+    status?: CopilotScope["status"] | null;
+  },
+  datasetHash: string,
 ) {
-  const { scope, dataset } = result.metadata;
   return `/activity?${new URLSearchParams({
     from: scope.from,
     to: scope.to,
@@ -55,7 +58,7 @@ function activityLink(
     ...(scope.provider ? { provider: scope.provider } : {}),
     ...(scope.status ? { status: scope.status } : {}),
     basis: scope.basis,
-    datasetHash: dataset.sha256,
+    datasetHash,
   })}`;
 }
 function EvidenceCard({ item }: { item: CopilotEvidence }) {
@@ -139,7 +142,9 @@ function EvidenceCard({ item }: { item: CopilotEvidence }) {
         </>
       ) : null}
       {item.kind === "activity" ? (
-        <a href={activityLink(item.result)}>View matching transactions</a>
+        <a href={activityLink(metadata.scope, metadata.dataset.sha256)}>
+          View matching transactions
+        </a>
       ) : null}
       <p className="muted">
         {scopeText({
@@ -152,6 +157,41 @@ function EvidenceCard({ item }: { item: CopilotEvidence }) {
         {metadata.dataset.asOf} · Queried {item.queriedAt}
       </small>
     </article>
+  );
+}
+
+const recordedDataset = manifests[1];
+const recordedScope = {
+  ...recordedDataset.current,
+  basis: "settlement",
+  status: "settled",
+} as const;
+
+function RecordedExample() {
+  return (
+    <details className="copilot-card">
+      <summary>Recorded example · GGR change and Nova</summary>
+      <p>
+        Fixed synthetic snapshot with 100,000 rows, as of {recordedDataset.asOf}
+        . The example uses its original filters and figures.
+      </p>
+      <p>{scopeText(recordedScope)}</p>
+      <p>Which provider contributed most to the weekly GGR change?</p>
+      <p>
+        GGR moved from {money(11676900)} to {money(-96524500)} against the
+        preceding equal UTC week. Nova contributed {money(-107802900)} of the
+        {money(-108201400)} change. The figures show Nova’s contribution to the
+        change. The snapshot contains no operational incident evidence.
+      </p>
+      <a
+        href={activityLink(
+          { ...recordedScope, provider: "nova" },
+          recordedDataset.sha256,
+        )}
+      >
+        View Nova transactions in the recorded scope
+      </a>
+    </details>
   );
 }
 
@@ -281,6 +321,7 @@ export function Copilot({ dashboardScope }: { dashboardScope: CopilotScope }) {
         signal: request.signal,
       });
       if (active.current !== request) return;
+      if (response.status === 429) throw new Error(errors.quota);
       if (response.status === 503) {
         setError(
           "Live copilot is unavailable. You can continue investigating in the dashboard.",
@@ -494,6 +535,9 @@ export function Copilot({ dashboardScope }: { dashboardScope: CopilotScope }) {
         ) : null}
         <p role="status">{statusText[state]}</p>
         {state === "error" ? <p role="alert">{error}</p> : null}
+        {availability?.available === false || state === "error" ? (
+          <RecordedExample />
+        ) : null}
         {answer ? (
           <section aria-label="Answer">
             <h3>Answer</h3>

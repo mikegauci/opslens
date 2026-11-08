@@ -31,7 +31,9 @@
     "check:storybook": "pnpm --filter @opslens/ui storybook:build && playwright test --config playwright.storybook.config.ts",
     "knowledge:check": "node --import tsx scripts/knowledge/cli.ts check",
     "knowledge:ingest": "node --env-file-if-exists=.env --import tsx scripts/knowledge/cli.ts ingest",
-    "knowledge:eval": "node --env-file-if-exists=.env --import tsx scripts/knowledge/cli.ts eval"
+    "knowledge:eval": "node --env-file-if-exists=.env --import tsx scripts/knowledge/cli.ts eval",
+    "copilot:eval": "node --env-file-if-exists=.env --import tsx scripts/copilot/live.ts",
+    "db:verify:copilot": "node --env-file-if-exists=.env --import tsx scripts/copilot/verify-db.ts"
   },
   "devDependencies": {
     "@ai-sdk/openai": "4.0.109",

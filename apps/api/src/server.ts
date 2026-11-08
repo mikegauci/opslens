@@ -1,11 +1,15 @@
 import { readFile } from "node:fs/promises";
+import { isIP } from "node:net";
 import { fileURLToPath } from "node:url";
 import { createOpenAI } from "@ai-sdk/openai";
 import { serve } from "@hono/node-server";
+import { getConnInfo } from "@hono/node-server/conninfo";
 import { serveStatic } from "@hono/node-server/serve-static";
 import { createAnalyticsService } from "@opslens/analytics/service";
 import pg from "pg";
 import { createApp } from "./app";
+import type { CopilotProvider } from "./copilot";
+import { createCopilotQuota } from "./copilot-quota";
 
 if (!process.env.DATABASE_URL)
   throw new Error("DATABASE_URL is required; see .env.example");
@@ -19,19 +23,45 @@ const pool = new pg.Pool({
 pool.on("error", () => console.error("Idle database connection failed"));
 const port = Number(process.env.PORT ?? 3000);
 const host = process.env.HOST ?? "127.0.0.1";
-const modelId = process.env.OPSLENS_COPILOT_MODEL;
-const copilot =
-  host === "127.0.0.1" &&
-  process.env.OPSLENS_COPILOT_LOCAL === "1" &&
-  modelId &&
-  process.env.OPENAI_API_KEY
-    ? {
-        model: createOpenAI({ apiKey: process.env.OPENAI_API_KEY }).responses(
-          modelId,
-        ),
-        allowedOrigin: `http://127.0.0.1:${port}`,
-      }
-    : undefined;
+function configureCopilot(): CopilotProvider | undefined {
+  const modelId = process.env.OPSLENS_COPILOT_MODEL?.trim();
+  const apiKey = process.env.OPENAI_API_KEY?.trim();
+  if (!modelId || !apiKey) return;
+  const model = createOpenAI({ apiKey }).responses(modelId);
+  const origin = process.env.OPSLENS_COPILOT_PUBLIC_ORIGIN;
+  if (origin) {
+    const secret = process.env.OPSLENS_COPILOT_QUOTA_SECRET;
+    if (
+      !origin.startsWith("https://") ||
+      URL.parse(origin)?.origin !== origin ||
+      !secret ||
+      Buffer.byteLength(secret) < 32
+    ) {
+      console.error(
+        "Public copilot requires an HTTPS origin and a quota secret of at least 32 bytes.",
+      );
+      return;
+    }
+    const reserve = createCopilotQuota(pool, secret);
+    return {
+      model,
+      publicDemo: {
+        origin,
+        reserve: (context) => {
+          const address = getConnInfo(context).remote.address?.replace(
+            /^::ffff:/,
+            "",
+          );
+          if (!address || !isIP(address)) throw new Error("No socket address");
+          return reserve(address);
+        },
+      },
+    };
+  }
+  if (host === "127.0.0.1" && process.env.OPSLENS_COPILOT_LOCAL === "1")
+    return { model, allowedOrigin: `http://127.0.0.1:${port}` };
+}
+const copilot = configureCopilot();
 const app = createApp(
   async () => {
     const result = await pool.query<{ result: number }>(
