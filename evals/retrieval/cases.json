@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "reviewStatus": "pending-human-review",
+  "cases": [
+    {
+      "id": "ggr-negative",
+      "scope": "metrics",
+      "historical": false,
+      "query": "How is GGR calculated and what does a negative result tell me?",
+      "relevant": ["MET-GGR@1", "MET-STAKES@1"],
+      "required": ["MET-GGR@1"],
+      "review": "Explain the settled stakes minus settled payouts formula and say payouts exceeded stakes. Do not interpret it as accounting profit."
+    },
+    {
+      "id": "distinct-player",
+      "scope": "metrics",
+      "historical": false,
+      "query": "Can I add provider player counts to get the unique player total?",
+      "relevant": ["MET-PLAYERS@1"],
+      "required": ["MET-PLAYERS@1"],
+      "review": "Explain that the same synthetic player can appear at multiple providers and that the total is recomputed over the combined scope."
+    },
+    {
+      "id": "utc-boundary",
+      "scope": "data",
+      "historical": false,
+      "query": "A bet was placed on 23 September and settled exactly at UTC midnight on 25 September. Is it eligible for the 24 September Overview?",
+      "relevant": ["DATA-UTC@1", "DATA-STATE@1"],
+      "required": ["DATA-UTC@1"],
+      "review": "Exclude it from 24 September because the settlement instant is at the exclusive end. Its placement day does not determine eligibility."
+    },
+    {
+      "id": "nova-story",
+      "scope": "runbooks",
+      "historical": false,
+      "query": "What should I investigate for the seeded Nova payout pattern in the final complete week?",
+      "relevant": ["RUN-NOVA@1", "RUN-PAYOUT@1", "RUN-DRILL@1"],
+      "required": ["RUN-NOVA@1"],
+      "review": "Identify the synthetic multiplier with its boundary exceptions and link the proposed investigation to actual scoped aggregates and settled rows."
+    },
+    {
+      "id": "current-comparison",
+      "scope": "runbooks",
+      "historical": false,
+      "query": "How should I compare a three-day selection when prior GGR is negative?",
+      "relevant": ["RUN-COMPARE@2"],
+      "required": ["RUN-COMPARE@2"],
+      "review": "Use complete equal periods and absolute EUR change. Historical v1 should never appear."
+    },
+    {
+      "id": "conflicting-versions",
+      "scope": "runbooks",
+      "historical": true,
+      "query": "An old OpsLens draft says to compare a three-day selection against the whole previous calendar week and permits a signed percentage on negative prior GGR. What changed between RUN-COMPARE v1 and v2 and which rule applies now?",
+      "relevant": ["RUN-COMPARE@1", "RUN-COMPARE@2"],
+      "required": ["RUN-COMPARE@1", "RUN-COMPARE@2"],
+      "review": "Describe both versions accurately, cite both and apply the current equal-period and absolute EUR rules."
+    },
+    {
+      "id": "missing-incident",
+      "scope": null,
+      "historical": false,
+      "query": "What was the exact incident ticket and root cause of Nova's September production outage?",
+      "relevant": ["DATA-LIMITS@1", "RUN-NOVA@1"],
+      "required": [],
+      "review": "There is no supporting document for the incident or root cause. Abstain on both claims. The relevant documents describe the evidence gap and synthetic story."
+    },
+    {
+      "id": "missing-payout-provider-id",
+      "scope": null,
+      "historical": false,
+      "query": "What is the real-world merchant account number that paid out my winnings last Tuesday?",
+      "relevant": [],
+      "required": [],
+      "review": "There is no supporting document. Do not guess an account number, confirm a payout or ask for personal details."
+    }
+  ]
+}

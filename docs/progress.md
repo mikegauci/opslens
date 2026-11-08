@@ -10,6 +10,14 @@
 - PLAN-05 establishes the local Superset baseline below.
 - PLAN-08 ([#8](https://github.com/mikegauci/opslens/issues/8)) adds five typed UI components and a scoped theme. Overview and Activity share panels, filters, badges and feedback. Overview and the Support inbox story also use metric cards. Data requests, UTC filters and transaction interactions live in the app. Storybook and the consumer workflow are documented in the [UI package](../packages/ui/README.md).
 
+- PLAN-09 ([#9](https://github.com/mikegauci/opslens/issues/9)) adds 16 versioned evidence documents and eight retrieval cases covering definitions, investigations, missing evidence and a conflict between current and historical guidance. The hosted commands, local manifest and review procedure are documented in the [evidence library](../knowledge/README.md).
+
+## Actual PLAN-09 verification
+
+- Started from merged PR #23 at `432392e`. Frozen install and peer checks passed with AI SDK 7.0.163 and OpenAI provider 4.0.109. Corpus SHA-256 is `c74f9718222be51677a426d665b37614d297dd17baef4e2a707c14c7fd8f40dc`.
+- Full local `PLAYWRIGHT_CHANNEL=chrome pnpm check` passed on Node 24.20.0, pnpm 12.11.2, PostgreSQL 17.11 and Chrome 156 with OpenAI credentials unset. The gate includes 20 unit and API tests, 13 production browser and HTTP checks, three Storybook checks, corpus and data validation, database reconciliation and contract drift.
+- Four simulated HTTP tests exercise the installed Responses provider, retrieval and citation metadata, relevance score arithmetic, interrupted ingestion and duplicate or changed version rejection. Without an OpenAI API key or hosted store/model configuration, the live commands exited unavailable. No hosted manifest or real retrieval and citation results were produced. The case labels and answer rubric await human review, so there are no human-reviewed relevance scores.
+
 ## Actual PLAN-08 verification
 
 - Started from merged PR #22 at `1009015`. Node 24.20.0, pnpm 12.11.2, PostgreSQL 17.11 and local Chrome 156 on Intel macOS 13.7.8. Frozen install passed with Storybook 10.6.6 and Vite 8.3.6.
@@ -43,6 +51,6 @@
 
 ## Next work and workflow
 
-After verifying the PLAN-08 merge, the next backlog item is **PLAN-09 / [#9](https://github.com/mikegauci/opslens/issues/9)**. Curate the versioned knowledge corpus and verify retrieval against it. Start in a fresh chat from merged main after reading the relevant plan, metric contract and backlog issue.
+The next backlog item is **PLAN-10 / [#10](https://github.com/mikegauci/opslens/issues/10)**, the contextual copilot and validated analytics tools. Complete the outstanding hosted retrieval and human relevance checks before enabling live document evidence. Start PLAN-10 in a fresh chat from merged main after reading the plan, metric contract, AI copilot plan and backlog issue.
 
 One PR per chat, latest merged main, no concurrent checkout edits. Push, wait for checks and verify the merge. Use the authorized direct merge if auto-merge is unavailable. The existing GitHub keyring works with credential and network permissions. PLAN-06 PR #20 merged at `7fdb9197ae34f282624417451b0d6269afa5544e` with final Linux CI 42254837392 passing.
