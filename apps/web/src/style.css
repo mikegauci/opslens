@@ -235,8 +235,11 @@ dd {
   .metrics {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
+  .metrics .ops-metric {
+    padding-inline: 16px;
+  }
   .metrics .ops-metric-value {
-    font-size: 24px;
+    font-size: 22px;
   }
 }
 
