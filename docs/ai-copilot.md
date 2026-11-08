@@ -66,9 +66,17 @@ Open **Ask Copilot** on Overview or Activity. The drawer pins the dates, brand, 
 
 `POST /api/copilot` streams validated server-sent events through the generated API client. Read-only tool cards carry exact amounts, comparison bounds, effective filters, dataset hash, as-of timestamp and query time. The model selects evidence IDs or a supported clarification. The panel renders explanations from verified figures and cited excerpts, and keeps completed checks visible as incomplete evidence after an interrupted answer. Activity links are constructed from validated metadata and pin the dataset. A provider drill-down can narrow an unfiltered link only when the provider appears in the contribution evidence. Raw transaction rows stay server-side.
 
-The dashboard runs with the database configuration alone. For a private local analytics session, set `OPSLENS_COPILOT_LOCAL=1`, `OPSLENS_COPILOT_MODEL` to an available OpenAI Responses model, and `OPENAI_API_KEY` in the server environment. Use `http://127.0.0.1:3000` with the default port. Public live access awaits persistent quotas and evaluation in PLAN-11. Requests are limited to 600 question characters, 4 KiB of JSON, six model steps, 400 output tokens per step and 40 seconds of upstream work.
+The dashboard runs with the database configuration alone. For a private local analytics session, set `OPSLENS_COPILOT_LOCAL=1`, `OPSLENS_COPILOT_MODEL` to an available OpenAI Responses model, and `OPENAI_API_KEY` in the server environment. Use `http://127.0.0.1:3000` with the default port. Requests are limited to 600 question characters, 4 KiB of JSON, six model steps, 400 output tokens per step and 40 seconds of upstream work.
 
 Live document evidence is disabled in the production entry point. The citation adapter and source links are exercised with simulated retrieval. Enable hosted sources only after the PLAN-09 retrieval and citation checks and human relevance review succeed for the selected corpus and provider.
+
+## PLAN-11 operation
+
+Public analytics is opt-in. After the [release gates](../evals/copilot/README.md) pass, set `OPSLENS_COPILOT_PUBLIC_ORIGIN` to the exact HTTPS browser origin, configure the server model and key, and share a random `OPSLENS_COPILOT_QUOTA_SECRET` of at least 32 bytes across instances. Apply the quota migration before starting the demo and use the same PostgreSQL database across instances. Each UTC day allows five admitted requests per socket address and 50 overall. Quota is reserved before model work, including requests subsequently cancelled or failed. Quota or database failures return a recoverable status. The server stores keyed address digests and discards buckets older than the previous day on the next reservation. It uses the socket peer address. An ingress or shared network can therefore share a visitor bucket.
+
+Each request allows up to six tool executions and six model steps, with 400 output tokens per step and a 40-second upstream deadline. The client shows a labelled, fixed 100,000-row example when the live service is unavailable or fails. Its September UTC scope and Nova Activity link are pinned to the recorded snapshot, regardless of the dashboard filters.
+
+Live document evidence remains disabled. The hosted retrieval runner is separate from the dashboard and requires its own verified hosted corpus, model and credentials.
 
 ## Evaluation plan
 

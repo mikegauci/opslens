@@ -906,6 +906,17 @@ export interface operations {
                 };
                 content?: never;
             };
+            /** @description Public demo request limit reached */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        error: string;
+                    };
+                };
+            };
             /** @description Copilot unavailable */
             503: {
                 headers: {

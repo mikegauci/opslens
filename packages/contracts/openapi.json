@@ -2158,6 +2158,24 @@
           "415": {
             "description": "Expected a JSON request body"
           },
+          "429": {
+            "description": "Public demo request limit reached",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ]
+                }
+              }
+            }
+          },
           "503": {
             "description": "Copilot unavailable",
             "content": {

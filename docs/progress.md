@@ -14,6 +14,16 @@
 
 - PLAN-10 ([#10](https://github.com/mikegauci/opslens/issues/10)) adds **Ask Copilot** to Overview and Activity, with confirmed filters, streamed read-only metric evidence, source excerpts, scoped transaction links, stop, retry and error states. Numerical explanations use verified cards and the model selects evidence IDs. The normal dashboard runs without AI credentials. Live analytics requires a private loopback opt-in, and hosted document evidence remains disabled. [Copilot setup and boundaries](ai-copilot.md#plan-10-implementation).
 
+- PLAN-11 ([#11](https://github.com/mikegauci/opslens/issues/11)) reserves 32 copilot evaluation cases, including nine held out before behavior changes, and adds a bounded live runner. The public analytics opt-in uses persistent PostgreSQL quotas. When live answers are unavailable, the drawer shows a labelled recorded example pinned to the 100,000-row snapshot. [Evaluation workflow](../evals/copilot/README.md) · [Public demo configuration](ai-copilot.md#plan-11-operation).
+
+## Actual PLAN-11 verification
+
+- Started from merged PLAN-10 PR #25 at `69b9285`. Evaluation suite v1 SHA-256 is `31c5bee81af89a7f2a02839d52fb3ed4f7f8075c0a664a9a40e7c56e7f0c059a`. Prompt version is `evidence-selection-v1` with AI SDK 7.0.163 and OpenAI provider 4.0.109. The 100,000-row dataset SHA-256 is `375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1` and corpus SHA-256 is `c74f9718222be51677a426d665b37614d297dd17baef4e2a707c14c7fd8f40dc`.
+- Local `PLAYWRIGHT_CHANNEL=chrome pnpm check` passed on Node 24.20.0 and PostgreSQL 17.11 with 30 unit/API tests, 15 production browser/HTTP checks and three Storybook checks. Contract drift, seed hashes, database grants and the Superset SQL oracle passed. The production browser verified the recorded example and fixed Activity URL from an unrelated pending placement scope.
+- `OPSLENS_QUOTA_TEST=1 pnpm db:verify:copilot` passed 18/18 analytical cases plus the mixed case. PostgreSQL used the actual 100,000-row data, with scripted model choices and a simulated document citation. Concurrent calls across two pools admitted five of 12 for one visitor and 45 of 60 additional visitors, stopping at 50 total. A new pool was also denied. Counter retention and database privileges passed. With the built HTTP server and an exhausted test quota, the accepted origin returned 429, a different origin returned 503 and document availability was false.
+- The 8 November 2026 analytics attempt (`pnpm copilot:eval --live`) exited before any provider calls because `OPENAI_API_KEY` and `OPSLENS_COPILOT_MODEL` were absent. Zero of ten planned held-out analytical runs executed. The hosted attempt (`pnpm knowledge:eval`) also exited before any provider calls because the key and retrieval model were absent. Zero of eight retrieval cases executed. There was no verified hosted corpus manifest available to this checkout.
+- Live numerical and grounded-answer scores, citation support, retrieval precision/recall, latency, token usage and billed cost are unmeasured. The cases and live outputs await human review. The 90% held-out target and critical-claim review gate remain pending. Public live mode requires a deliberate operator opt-in, and the server leaves live document evidence disabled.
+
 ## Actual PLAN-10 verification
 
 - Started from merged PLAN-09 PR #24 at `4ef4481`. The frozen pnpm install passed using the existing AI SDK 7.0.163 and OpenAI provider 4.0.109 pins.
@@ -60,6 +70,6 @@
 
 ## Next work and workflow
 
-The next backlog item is **PLAN-11 / [#11](https://github.com/mikegauci/opslens/issues/11)** for evaluation, persistent quotas and hardening. Complete the outstanding hosted retrieval and human relevance checks before enabling live document evidence. Start from merged main in a fresh authorized chat.
+The next backlog item is **PLAN-12 / [#12](https://github.com/mikegauci/opslens/issues/12)** for reusable agent guidance. Start from merged main in a fresh authorized chat. Live analytics evaluation, hosted retrieval and human relevance review remain release prerequisites.
 
 One PR per chat, latest merged main, no concurrent checkout edits. Push, wait for checks and verify the merge. Use the authorized direct merge if auto-merge is unavailable. The existing GitHub keyring works with credential and network permissions. PLAN-06 PR #20 merged at `7fdb9197ae34f282624417451b0d6269afa5544e` with final Linux CI 42254837392 passing.
