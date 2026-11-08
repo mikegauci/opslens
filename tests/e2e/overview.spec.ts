@@ -39,15 +39,18 @@ const app = createApp(
   },
 );
 async function oracle(page: Page) {
-  await page.route("**/api/{summary,trend,contributions}?*", async (route) => {
-    const url = new URL(route.request().url());
-    const response = await app.request(url.pathname + url.search);
-    await route.fulfill({
-      status: response.status,
-      contentType: "application/json",
-      body: await response.text(),
-    });
-  });
+  await page.route(
+    "**/api/{summary,trend,contributions,activity}?*",
+    async (route) => {
+      const url = new URL(route.request().url());
+      const response = await app.request(url.pathname + url.search);
+      await route.fulfill({
+        status: response.status,
+        contentType: "application/json",
+        body: await response.text(),
+      });
+    },
+  );
 }
 const base =
   "/?from=2026-09-22T00%3A00%3A00.000Z&to=2026-09-29T00%3A00%3A00.000Z";
@@ -130,12 +133,21 @@ test("literal oracle renders four totals, daily values, signed provider changes 
     comparisonTo: "2026-09-22T00:00:00.000Z",
     datasetHash: "a".repeat(64),
   });
+  const transactionButtons = page
+    .getByRole("region", { name: "Transactions", exact: true })
+    .locator("tbody th button");
+  await expect(transactionButtons).toHaveText([
+    "Details f",
+    "Details l",
+    "Details d",
+  ]);
   await page.reload();
   await expect(page.getByText(/harbor · nova · Settled/)).toBeVisible();
   await page.getByRole("link", { name: "Switch to comparison period" }).click();
   expect(new URL(page.url()).searchParams.get("from")).toBe(
     "2026-09-15T00:00:00.000Z",
   );
+  await expect(transactionButtons).toHaveText(["Details c", "Details a"]);
   await page.getByRole("link", { name: "Return to original overview" }).click();
   await ready(page);
   await page
@@ -145,6 +157,7 @@ test("literal oracle renders four totals, daily values, signed provider changes 
     "2026-09-23T00:00:00.000Z",
   );
   expect(new URL(page.url()).searchParams.get("brand")).toBe("harbor");
+  await expect(transactionButtons).toHaveText(["Details l", "Details d"]);
 });
 
 test("URL filters reload and navigate back/forward; invalid and out-of-window scopes are actionable", async ({

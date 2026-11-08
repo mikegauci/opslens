@@ -26,6 +26,7 @@
     "db:seed": "node --env-file-if-exists=.env --import tsx scripts/db/seed.ts",
     "db:verify": "node --env-file-if-exists=.env --import tsx scripts/db/verify.ts",
     "benchmark:api": "node --env-file-if-exists=.env --import tsx scripts/benchmark-api.ts",
+    "benchmark:activity": "node --env-file-if-exists=.env --import tsx scripts/benchmark-activity.ts",
     "db:verify:superset": "node --env-file-if-exists=.env --import tsx scripts/db/verify-superset.ts"
   },
   "devDependencies": {

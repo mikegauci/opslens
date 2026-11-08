@@ -1,0 +1,551 @@
+{
+  "capturedAt": "2026-11-08T09:28:35.883Z",
+  "node": "v24.20.0",
+  "os": "Darwin 22.6.0",
+  "cpu": "Intel(R) Core(TM) i7-7660U CPU @ 2.50GHz",
+  "logicalCpus": 4,
+  "memoryGiB": 16,
+  "browser": "156.0.8078.80",
+  "conditions": "Production Node on loopback; fresh browser, warmed pool and PostgreSQL/OS caches; concurrency one; no network/CPU throttling or ingress compression. Heap after explicit GC is total browser JS heap, not retained-row size or process RSS. Timings are single observations, not percentiles. SQL EXPLAIN samples separate from browser samples.",
+  "manifest": {
+    "to": "2026-09-29T00:00:00.000Z",
+    "asOf": "2026-09-30T00:00:00.000Z",
+    "file": "transactions-100000.csv",
+    "from": "2026-07-01T00:00:00.000Z",
+    "seed": 20261106,
+    "spike": {
+      "provider": "nova",
+      "payoutMultiplier": 10
+    },
+    "sha256": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+    "current": {
+      "to": "2026-09-29T00:00:00.000Z",
+      "from": "2026-09-22T00:00:00.000Z"
+    },
+    "currency": "EUR",
+    "emptyDay": "2026-08-15",
+    "encoding": "UTF-8; LF; header; empty field = null",
+    "previous": {
+      "to": "2026-09-22T00:00:00.000Z",
+      "from": "2026-09-15T00:00:00.000Z"
+    },
+    "rowCount": 100000,
+    "schemaVersion": 1,
+    "generatorVersion": 1,
+    "reportingTimezone": "UTC"
+  },
+  "firstReadyMs": 606.2746360000001,
+  "incrementalReadyMs": [
+    141.81227500000023, 83.36355400000002, 93.10647000000017, 67.69011499999988,
+    81.33287799999971, 110.5060539999995, 75.48261300000013, 88.84208699999999,
+    123.21247299999959
+  ],
+  "firstDomRows": 14,
+  "loadedDomRows": 14,
+  "scrolledDomRows": 14,
+  "scrollToLastMs": 55.155893000000106,
+  "first": {
+    "Nodes": 580,
+    "LayoutDuration": 0.092415,
+    "RecalcStyleDuration": 0.024117,
+    "ScriptDuration": 0.223166,
+    "JSHeapUsedSize": 3339012,
+    "JSHeapTotalSize": 4001792
+  },
+  "loaded": {
+    "Nodes": 587,
+    "LayoutDuration": 0.100005,
+    "RecalcStyleDuration": 0.029914,
+    "ScriptDuration": 0.260859,
+    "JSHeapUsedSize": 4480184,
+    "JSHeapTotalSize": 5050368
+  },
+  "scrolled": {
+    "Nodes": 592,
+    "LayoutDuration": 0.101034,
+    "RecalcStyleDuration": 0.030548,
+    "ScriptDuration": 0.264008,
+    "JSHeapUsedSize": 4999920,
+    "JSHeapTotalSize": 5382144
+  },
+  "transfers": [
+    {
+      "bytes": 27052,
+      "offset": "0"
+    },
+    {
+      "bytes": 27003,
+      "offset": "100"
+    },
+    {
+      "bytes": 27039,
+      "offset": "200"
+    },
+    {
+      "bytes": 26986,
+      "offset": "300"
+    },
+    {
+      "bytes": 27030,
+      "offset": "400"
+    },
+    {
+      "bytes": 27045,
+      "offset": "500"
+    },
+    {
+      "bytes": 27075,
+      "offset": "600"
+    },
+    {
+      "bytes": 27032,
+      "offset": "700"
+    },
+    {
+      "bytes": 27042,
+      "offset": "800"
+    },
+    {
+      "bytes": 27030,
+      "offset": "900"
+    }
+  ],
+  "resources": [
+    {
+      "name": "?from=2026-09-22T00%3A00%3A00.000Z&to=2026-09-29T00%3A00%3A00.000Z&basis=settlement&sort=date&direction=desc&limit=100&offset=0",
+      "durationMs": 78.7000000178814,
+      "transferSize": 27352,
+      "encodedBodySize": 27052,
+      "decodedBodySize": 27052
+    },
+    {
+      "name": "?from=2026-09-22T00%3A00%3A00.000Z&to=2026-09-29T00%3A00%3A00.000Z&basis=settlement&sort=date&direction=desc&limit=100&offset=100&datasetHash=375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "durationMs": 30.899999976158142,
+      "transferSize": 27303,
+      "encodedBodySize": 27003,
+      "decodedBodySize": 27003
+    },
+    {
+      "name": "?from=2026-09-22T00%3A00%3A00.000Z&to=2026-09-29T00%3A00%3A00.000Z&basis=settlement&sort=date&direction=desc&limit=100&offset=200&datasetHash=375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "durationMs": 30,
+      "transferSize": 27339,
+      "encodedBodySize": 27039,
+      "decodedBodySize": 27039
+    },
+    {
+      "name": "?from=2026-09-22T00%3A00%3A00.000Z&to=2026-09-29T00%3A00%3A00.000Z&basis=settlement&sort=date&direction=desc&limit=100&offset=300&datasetHash=375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "durationMs": 34.10000002384186,
+      "transferSize": 27286,
+      "encodedBodySize": 26986,
+      "decodedBodySize": 26986
+    },
+    {
+      "name": "?from=2026-09-22T00%3A00%3A00.000Z&to=2026-09-29T00%3A00%3A00.000Z&basis=settlement&sort=date&direction=desc&limit=100&offset=400&datasetHash=375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "durationMs": 24.700000017881393,
+      "transferSize": 27330,
+      "encodedBodySize": 27030,
+      "decodedBodySize": 27030
+    },
+    {
+      "name": "?from=2026-09-22T00%3A00%3A00.000Z&to=2026-09-29T00%3A00%3A00.000Z&basis=settlement&sort=date&direction=desc&limit=100&offset=500&datasetHash=375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "durationMs": 31.099999994039536,
+      "transferSize": 27345,
+      "encodedBodySize": 27045,
+      "decodedBodySize": 27045
+    },
+    {
+      "name": "?from=2026-09-22T00%3A00%3A00.000Z&to=2026-09-29T00%3A00%3A00.000Z&basis=settlement&sort=date&direction=desc&limit=100&offset=600&datasetHash=375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "durationMs": 30,
+      "transferSize": 27375,
+      "encodedBodySize": 27075,
+      "decodedBodySize": 27075
+    },
+    {
+      "name": "?from=2026-09-22T00%3A00%3A00.000Z&to=2026-09-29T00%3A00%3A00.000Z&basis=settlement&sort=date&direction=desc&limit=100&offset=700&datasetHash=375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "durationMs": 26.30000001192093,
+      "transferSize": 27332,
+      "encodedBodySize": 27032,
+      "decodedBodySize": 27032
+    },
+    {
+      "name": "?from=2026-09-22T00%3A00%3A00.000Z&to=2026-09-29T00%3A00%3A00.000Z&basis=settlement&sort=date&direction=desc&limit=100&offset=800&datasetHash=375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "durationMs": 25.5,
+      "transferSize": 27342,
+      "encodedBodySize": 27042,
+      "decodedBodySize": 27042
+    },
+    {
+      "name": "?from=2026-09-22T00%3A00%3A00.000Z&to=2026-09-29T00%3A00%3A00.000Z&basis=settlement&sort=date&direction=desc&limit=100&offset=900&datasetHash=375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "durationMs": 40.400000005960464,
+      "transferSize": 27330,
+      "encodedBodySize": 27030,
+      "decodedBodySize": 27030
+    }
+  ],
+  "queryResults": [
+    {
+      "input": {
+        "from": "2026-09-22T00:00:00.000Z",
+        "to": "2026-09-29T00:00:00.000Z",
+        "limit": "100"
+      },
+      "query": {
+        "text": "SELECT * FROM opslens_private.transactions WHERE settled_at >= $1 AND settled_at < $2 AND status = $3 ORDER BY settled_at DESC, id DESC LIMIT $4 OFFSET $5",
+        "values": [
+          "2026-09-22T00:00:00.000Z",
+          "2026-09-29T00:00:00.000Z",
+          "settled",
+          101,
+          0
+        ]
+      },
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 3618.93,
+            "Total Cost": 3619.18,
+            "Plan Rows": 101,
+            "Plan Width": 83,
+            "Actual Startup Time": 20.89,
+            "Actual Total Time": 20.914,
+            "Actual Rows": 101,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 1652,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 3618.93,
+                "Total Cost": 3633.49,
+                "Plan Rows": 5822,
+                "Plan Width": 83,
+                "Actual Startup Time": 20.887,
+                "Actual Total Time": 20.898,
+                "Actual Rows": 101,
+                "Actual Loops": 1,
+                "Sort Key": ["settled_at DESC", "id DESC"],
+                "Sort Method": "top-N heapsort",
+                "Sort Space Used": 48,
+                "Sort Space Type": "Memory",
+                "Shared Hit Blocks": 1652,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Relation Name": "transactions",
+                    "Alias": "transactions",
+                    "Startup Cost": 0,
+                    "Total Cost": 3396,
+                    "Plan Rows": 5822,
+                    "Plan Width": 83,
+                    "Actual Startup Time": 0.019,
+                    "Actual Total Time": 19.514,
+                    "Actual Rows": 6865,
+                    "Actual Loops": 1,
+                    "Filter": "((settled_at >= '2026-09-22 02:00:00+02'::timestamp with time zone) AND (settled_at < '2026-09-29 02:00:00+02'::timestamp with time zone) AND (status = 'settled'::text))",
+                    "Rows Removed by Filter": 93135,
+                    "Shared Hit Blocks": 1646,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 87,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.413,
+          "Triggers": [],
+          "Execution Time": 20.957
+        }
+      ]
+    },
+    {
+      "input": {
+        "from": "2026-09-22T00:00:00.000Z",
+        "to": "2026-09-29T00:00:00.000Z",
+        "limit": "100",
+        "provider": "nova",
+        "brand": "harbor"
+      },
+      "query": {
+        "text": "SELECT * FROM opslens_private.transactions WHERE settled_at >= $1 AND settled_at < $2 AND status = $3 AND brand_id = $4 AND provider_id = $5 ORDER BY settled_at DESC, id DESC LIMIT $6 OFFSET $7",
+        "values": [
+          "2026-09-22T00:00:00.000Z",
+          "2026-09-29T00:00:00.000Z",
+          "settled",
+          "harbor",
+          "nova",
+          101,
+          0
+        ]
+      },
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 3933.18,
+            "Total Cost": 3933.43,
+            "Plan Rows": 101,
+            "Plan Width": 83,
+            "Actual Startup Time": 12.399,
+            "Actual Total Time": 12.421,
+            "Actual Rows": 101,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 1646,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 3933.18,
+                "Total Cost": 3935.61,
+                "Plan Rows": 971,
+                "Plan Width": 83,
+                "Actual Startup Time": 12.398,
+                "Actual Total Time": 12.408,
+                "Actual Rows": 101,
+                "Actual Loops": 1,
+                "Sort Key": ["settled_at DESC", "id DESC"],
+                "Sort Method": "top-N heapsort",
+                "Sort Space Used": 47,
+                "Sort Space Type": "Memory",
+                "Shared Hit Blocks": 1646,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Relation Name": "transactions",
+                    "Alias": "transactions",
+                    "Startup Cost": 0,
+                    "Total Cost": 3896,
+                    "Plan Rows": 971,
+                    "Plan Width": 83,
+                    "Actual Startup Time": 0.015,
+                    "Actual Total Time": 12.088,
+                    "Actual Rows": 1155,
+                    "Actual Loops": 1,
+                    "Filter": "((settled_at >= '2026-09-22 02:00:00+02'::timestamp with time zone) AND (settled_at < '2026-09-29 02:00:00+02'::timestamp with time zone) AND (status = 'settled'::text) AND (brand_id = 'harbor'::text) AND (provider_id = 'nova'::text))",
+                    "Rows Removed by Filter": 98845,
+                    "Shared Hit Blocks": 1646,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 0,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.079,
+          "Triggers": [],
+          "Execution Time": 12.451
+        }
+      ]
+    },
+    {
+      "input": {
+        "from": "2026-07-01T00:00:00.000Z",
+        "to": "2026-09-29T00:00:00.000Z",
+        "limit": "100",
+        "offset": "50000",
+        "sort": "stake",
+        "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1"
+      },
+      "query": {
+        "text": "SELECT * FROM opslens_private.transactions WHERE settled_at >= $1 AND settled_at < $2 AND status = $3 ORDER BY stake_minor DESC, id DESC LIMIT $4 OFFSET $5",
+        "values": [
+          "2026-07-01T00:00:00.000Z",
+          "2026-09-29T00:00:00.000Z",
+          "settled",
+          101,
+          50000
+        ]
+      },
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Limit",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 13277.52,
+            "Total Cost": 13277.78,
+            "Plan Rows": 101,
+            "Plan Width": 83,
+            "Actual Startup Time": 131.149,
+            "Actual Total Time": 131.183,
+            "Actual Rows": 101,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 1649,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 861,
+            "Temp Written Blocks": 1117,
+            "Plans": [
+              {
+                "Node Type": "Sort",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 13152.52,
+                "Total Cost": 13341.75,
+                "Plan Rows": 75692,
+                "Plan Width": 83,
+                "Actual Startup Time": 114.001,
+                "Actual Total Time": 127.771,
+                "Actual Rows": 50101,
+                "Actual Loops": 1,
+                "Sort Key": ["stake_minor DESC", "id DESC"],
+                "Sort Method": "external merge",
+                "Sort Space Used": 8912,
+                "Sort Space Type": "Disk",
+                "Shared Hit Blocks": 1649,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 861,
+                "Temp Written Blocks": 1117,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Relation Name": "transactions",
+                    "Alias": "transactions",
+                    "Startup Cost": 0,
+                    "Total Cost": 3396,
+                    "Plan Rows": 75692,
+                    "Plan Width": 83,
+                    "Actual Startup Time": 0.016,
+                    "Actual Total Time": 22.165,
+                    "Actual Rows": 87052,
+                    "Actual Loops": 1,
+                    "Filter": "((settled_at >= '2026-07-01 02:00:00+02'::timestamp with time zone) AND (settled_at < '2026-09-29 02:00:00+02'::timestamp with time zone) AND (status = 'settled'::text))",
+                    "Rows Removed by Filter": 12948,
+                    "Shared Hit Blocks": 1646,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          "Planning": {
+            "Shared Hit Blocks": 10,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          },
+          "Planning Time": 0.12,
+          "Triggers": [],
+          "Execution Time": 133.004
+        }
+      ]
+    }
+  ]
+}
