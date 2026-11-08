@@ -1,8 +1,10 @@
 import { type FormEvent, type ReactNode, useEffect, useState } from "react";
+import { Activity } from "./activity";
 import {
   activityUrl,
   day,
   defaultQuery,
+  money,
   overviewUrl,
   parseOverview,
   type Query,
@@ -12,10 +14,6 @@ import {
 } from "./scope";
 import { usePanel } from "./use-panel";
 
-export const money = (value: number) =>
-  new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR" }).format(
-    value / 100,
-  );
 const signed = (value: number, players = false) =>
   `${value > 0 ? "+" : ""}${players ? value.toLocaleString("en-IE") : money(value)}`;
 const names = { nova: "Nova", orbit: "Orbit", pulse: "Pulse" };
@@ -195,92 +193,6 @@ function Filters({
     </form>
   );
 }
-function ActivityScope() {
-  const params = new URLSearchParams(location.search);
-  const q = parseOverview(
-    new URLSearchParams(
-      [...params].filter(([key]) =>
-        ["from", "to", "brand", "provider"].includes(key),
-      ),
-    ).toString(),
-  );
-  const comparison = parseOverview(
-    new URLSearchParams({
-      from: params.get("comparisonFrom") ?? "",
-      to: params.get("comparisonTo") ?? "",
-    }).toString(),
-  );
-  const origin = params.get("origin") ?? "";
-  const hash = params.get("datasetHash") ?? "";
-  const validOrigin = origin.startsWith("/?") && parseOverview(origin.slice(2));
-  const valid =
-    q &&
-    params.has("from") &&
-    params.has("to") &&
-    comparison &&
-    validOrigin &&
-    /^[a-f0-9]{64}$/.test(hash) &&
-    params.get("basis") === "settlement" &&
-    params.get("status") === "settled" &&
-    params.get("sort") === "date" &&
-    params.get("direction") === "desc" &&
-    [...params.keys()].every(
-      (k) =>
-        params.getAll(k).length === 1 &&
-        [
-          "from",
-          "to",
-          "brand",
-          "provider",
-          "basis",
-          "status",
-          "sort",
-          "direction",
-          "comparisonFrom",
-          "comparisonTo",
-          "datasetHash",
-          "origin",
-        ].includes(k),
-    );
-  if (!valid)
-    return (
-      <section className="panel">
-        <h1>Invalid activity scope</h1>
-        <p>Open a current chart link to preserve its settlement filters.</p>
-        <a href="/">Return to overview</a>
-      </section>
-    );
-  return (
-    <section className="panel">
-      <p className="eyebrow">Investigation / exact scope</p>
-      <h1>Activity</h1>
-      <p>{scopeLabel(q)}</p>
-      <p className="caption">Date descending · Dataset {hash.slice(0, 12)}</p>
-      <h2>Comparison scope</h2>
-      <p>
-        {range(comparison)} · Same brand and provider · Settled / settlement
-        time
-      </p>
-      <p>
-        The transaction explorer arrives in PLAN-07. This shareable scope is
-        ready for that explorer.
-      </p>
-      <a
-        href={activityUrl(
-          { ...q, from: comparison.from, to: comparison.to },
-          q,
-          hash,
-          validOrigin,
-        )}
-      >
-        Switch to comparison period
-      </a>
-      <p>
-        <a href={origin}>Return to original overview</a>
-      </p>
-    </section>
-  );
-}
 export function Overview() {
   const [search, setSearch] = useState(location.search);
   useEffect(() => {
@@ -302,12 +214,20 @@ export function Overview() {
           >
             Overview
           </a>
+          <a
+            aria-current={
+              location.pathname === "/activity" ? "page" : undefined
+            }
+            href="/activity"
+          >
+            Activity
+          </a>
         </nav>
         <span className="badge">Synthetic data</span>
       </header>
       <main id="main-content">
         {location.pathname === "/activity" ? (
-          <ActivityScope />
+          <Activity />
         ) : query ? (
           <Dashboard
             query={query}

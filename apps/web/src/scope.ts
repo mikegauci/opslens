@@ -60,3 +60,9 @@ export function activityUrl(
 ) {
   return `/activity?${new URLSearchParams({ ...q, basis: "settlement", status: "settled", sort: "date", direction: "desc", comparisonFrom: comparison.from, comparisonTo: comparison.to, datasetHash: hash, origin: overviewUrl(origin) })}`;
 }
+
+const euros = new Intl.NumberFormat("en-IE", {
+  style: "currency",
+  currency: "EUR",
+});
+export const money = (value: number) => euros.format(value / 100);

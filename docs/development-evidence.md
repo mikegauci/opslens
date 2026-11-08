@@ -39,3 +39,7 @@ The stale-response test deliberately removes fetch cancellation so a delayed Har
 ## PLAN-05 Superset baseline (self-review)
 
 Accepted independent SQL reconciled every unchanged literal scope and the real 100k API, then six actual Superset chart responses at default/Harbor. Corrected nullable SQL parameter typing after PostgreSQL rejected untyped null parameters. Actual startup found missing `rich` and `cachetools` imports and cache API incompatibility; explicit compatible pins were installed and frozen before metadata initialization succeeded. Screenshots and export were inspected; connection configuration was replaced before the ZIP was written. No peer review or export import round-trip is claimed.
+
+## PLAN-07 — 8 November 2026
+
+AI-assisted self-review resumed the existing explorer. The first browser run rejected the expected provider row list. Checking the original fixture by timestamp and provider confirmed `f`, `l`, `d` for Harbor/Nova and exposed a useful boundary case in `l`: placement falls just before the period and settlement falls exactly at its start. The comparison and day paths now assert their own literal row IDs. Keyboard review added focus on the results heading after page changes and retained focus on the virtual load button while the next request runs.
