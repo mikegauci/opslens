@@ -4,10 +4,18 @@
 
 - Private [mikegauci/opslens](https://github.com/mikegauci/opslens). PLAN-01/02/03/04 merged in PRs #16/#17/#18/#19; PLAN-04 merged main was `6fd94630181156ad45e61080af19f42f73c465f5`, with final Linux CI run [42250942482](https://github.com/mikegauci/opslens/actions/runs/42250942482) passing.
 - PLAN-06 ([PR #20](https://github.com/mikegauci/opslens/pull/20)) implements [#6](https://github.com/mikegauci/opslens/issues/6): `/` now shows four metrics and two linked charts through the generated client. URL dates are inclusive-start/exclusive-end UTC, with brand/provider filters, reload and Back/Forward. Summary and charts have independent retry, validated responses, cancellation and scope ownership; stale results retain their original scope/as-of. Mixed dataset hashes pause drill-down.
-- PLAN-07 ([#7](https://github.com/mikegauci/opslens/issues/7)) adds the Activity explorer. Provider and day drill-downs carry the exact UTC interval, settlement basis, settled status, brand/provider, sort, dataset hash and original overview URL. The explorer uses server-filtered and sorted pages, with a default semantic table, optional TanStack Virtual and a modal transaction drawer.
+- PLAN-07 ([PR #22](https://github.com/mikegauci/opslens/pull/22), [#7](https://github.com/mikegauci/opslens/issues/7)) adds the Activity explorer. Provider and day drill-downs carry the exact UTC interval, settlement basis, settled status, brand/provider, sort, dataset hash and original overview URL. The explorer uses server-filtered and sorted pages, with a default semantic table, optional TanStack Virtual and a modal transaction drawer.
 - The five-package React/Node/Hono workspace, same-origin PostgreSQL API, deterministic 10k/100k data, independent twelve-row oracle, generated OpenAPI contracts and CI remain established. [Runtime](runtime.md), [data setup](../data/README.md), [analytics API](analytics-api.md).
-- Restricted runtime `DATABASE_URL` uses `opslens_app`; separate owner `MIGRATION_DATABASE_URL` is only for setup/seeds/rollback-only verification. No `.env` was created. PostgreSQL 17.11 cluster `/tmp/opslens-plan02-pg/data` is running on loopback 54329; disposable `opslens_plan03` remains verified 100k. Owner `opslens`; development runtime password is in `.env.example`. Docker daemon unavailable.
-- PLAN-05 establishes the local Superset baseline below. Hosting, Storybook and AI remain future work.
+- Restricted runtime `DATABASE_URL` uses `opslens_app`; separate owner `MIGRATION_DATABASE_URL` is only for setup/seeds/rollback-only verification. No `.env` was created. Local PostgreSQL 17.11 cluster `/tmp/opslens-plan02-pg/data` listens on loopback 54329 when running; disposable `opslens_plan03` remains verified 100k. Owner `opslens`; development runtime password is in `.env.example`. Docker daemon unavailable.
+- PLAN-05 establishes the local Superset baseline below.
+- PLAN-08 ([#8](https://github.com/mikegauci/opslens/issues/8)) adds five typed UI components and a scoped theme. Overview and Activity share panels, filters, badges and feedback. Overview and the Support inbox story also use metric cards. Data requests, UTC filters and transaction interactions live in the app. Storybook and the consumer workflow are documented in the [UI package](../packages/ui/README.md).
+
+## Actual PLAN-08 verification
+
+- Started from merged PR #22 at `1009015`. Node 24.20.0, pnpm 12.11.2, PostgreSQL 17.11 and local Chrome 156 on Intel macOS 13.7.8. Frozen install passed with Storybook 10.6.6 and Vite 8.3.6.
+- Full local `PLAYWRIGHT_CHANNEL=chrome pnpm check` passed with 16 unit/API tests, 13 production browser/HTTP checks and 3 Storybook browser checks. The gate verified deterministic hashes, unchanged oracle/API/Superset reconciliation and generated contracts, then built the app and the static Storybook.
+- Reviewed Overview and Activity at 1280 px and 390 px, and the Support inbox at 1000 px and 390 px. The Storybook checks verify the guide, loading and disabled refresh at 390 px, visible focus, keyboard retry, preserved focus and an empty result after keyboard submission. The first check used End to select Archive, which Chrome on this Mac did not apply to the native select. The final check sets Archive through Playwright and still uses the keyboard to submit.
+- Storybook runs locally and in CI. The package is consumed as workspace source. Screen-reader speech, a hosted Storybook and a registry release remain unverified.
 
 ## Actual PLAN-07 verification
 
@@ -35,6 +43,6 @@
 
 ## Next work and workflow
 
-After verified PLAN-07 merge, the next item is **PLAN-08 / [#8](https://github.com/mikegauci/opslens/issues/8)**. Extract the small shared component set used by Overview and Activity and document its variants, states and consumer workflow in Storybook. Start in a fresh chat from merged main after reading `AGENTS.md`, `docs/build-plan.md`, `docs/github-backlog.md` and this handoff.
+After verifying the PLAN-08 merge, the next backlog item is **PLAN-09 / [#9](https://github.com/mikegauci/opslens/issues/9)**. Curate the versioned knowledge corpus and verify retrieval against it. Start in a fresh chat from merged main after reading the relevant plan, metric contract and backlog issue.
 
 One PR per chat, latest merged main, no concurrent checkout edits. Push, wait for checks and verify the merge. Use the authorized direct merge if auto-merge is unavailable. The existing GitHub keyring works with credential and network permissions. PLAN-06 PR #20 merged at `7fdb9197ae34f282624417451b0d6269afa5544e` with final Linux CI 42254837392 passing.

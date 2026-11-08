@@ -1,5 +1,6 @@
 import { activitySchema } from "@opslens/analytics/schemas";
 import { api, type paths } from "@opslens/contracts";
+import { AsyncState, FilterBar, Panel, StatusBadge } from "@opslens/ui";
 import { defaultRangeExtractor, useVirtualizer } from "@tanstack/react-virtual";
 import { type FormEvent, useEffect, useRef, useState } from "react";
 import {
@@ -44,14 +45,13 @@ export function Activity() {
       resultsHeading={resultsHeading}
     />
   ) : (
-    <section className="panel">
-      <h1>Invalid activity scope</h1>
+    <Panel title="Invalid activity scope" headingLevel={1}>
       <p role="alert">
         Use unique known filters, an ordered UTC range, and compatible
         status/date basis.
       </p>
       <a href="/activity">Reset activity filters</a>
-    </section>
+    </Panel>
   );
 }
 function Explorer({
@@ -256,8 +256,8 @@ function Explorer({
           </a>
         </p>
       ) : null}
-      <form
-        className="filters activity-filters"
+      <FilterBar
+        className="activity-filters"
         aria-label="Activity filters"
         onSubmit={change}
       >
@@ -325,16 +325,13 @@ function Explorer({
         <button type="submit">Apply activity filters</button>
         <a href="/activity">Reset activity filters</a>
         {formError ? (
-          <p role="alert" className="error">
-            {formError}
-          </p>
+          <AsyncState variant="error">{formError}</AsyncState>
         ) : null}
-      </form>
-      <section className="panel" aria-label="Transactions">
-        <div className="panel-heading">
-          <h2 ref={resultsHeading} tabIndex={-1}>
-            Transactions
-          </h2>
+      </FilterBar>
+      <Panel
+        title="Transactions"
+        headingRef={resultsHeading}
+        actions={
           <label>
             Table view
             <select
@@ -351,28 +348,33 @@ function Explorer({
               <option value="virtual">Virtual scrolling</option>
             </select>
           </label>
-        </div>
+        }
+      >
         <p className="caption">
           Accessible pages shows a complete page for screen readers. Virtual
           scrolling renders rows near the viewport and keeps up to 1,000 loaded.
           Filtering and sorting run on the server.
         </p>
-        <p role="status">
-          {loading
-            ? "Loading activity…"
-            : error
-              ? rows.length
+        <div role="status">
+          {loading ? (
+            <AsyncState variant="loading">Loading activity…</AsyncState>
+          ) : error ? (
+            <p>
+              {rows.length
                 ? "Activity is unavailable. Displayed rows are stale and details are paused."
-                : "Activity is unavailable."
-              : rows.length
-                ? `${rows.length} rows loaded · ${virtualMode ? "Window" : "Page"} starts at row ${scope.query.offset + 1}${nextOffset === null ? " · End of results" : ""}`
-                : "No matching transactions. Adjust or reset filters."}
-        </p>
-        {error ? (
-          <p role="alert" className="error">
-            {error}
-          </p>
-        ) : null}
+                : "Activity is unavailable."}
+            </p>
+          ) : rows.length ? (
+            <p>
+              {`${rows.length} rows loaded · ${virtualMode ? "Window" : "Page"} starts at row ${scope.query.offset + 1}${nextOffset === null ? " · End of results" : ""}`}
+            </p>
+          ) : (
+            <AsyncState variant="empty">
+              No matching transactions. Adjust or reset filters.
+            </AsyncState>
+          )}
+        </div>
+        {error ? <AsyncState variant="error">{error}</AsyncState> : null}
         <button
           type="button"
           onClick={() => {
@@ -479,7 +481,7 @@ function Explorer({
                       {row.brand_id} / {row.provider_id}
                     </td>
                     <td>
-                      <span className="badge">{row.status}</span>
+                      <StatusBadge>{row.status}</StatusBadge>
                     </td>
                     <td>{money(row.stake_minor)}</td>
                     <td>
@@ -551,7 +553,7 @@ function Explorer({
             </p>
           ) : null}
         </nav>
-      </section>
+      </Panel>
       <dialog
         ref={dialog}
         className="drawer"

@@ -3,8 +3,25 @@
   "type": "module",
   "version": "0.0.0",
   "name": "@opslens/ui",
-  "exports": "./src/index.tsx",
+  "exports": {
+    ".": "./src/index.tsx",
+    "./theme.css": "./src/theme.css"
+  },
   "peerDependencies": {
     "react": "19.3.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-docs": "10.6.6",
+    "@storybook/react-vite": "10.6.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "storybook": "10.6.6",
+    "typescript": "5.9.3",
+    "vite": "8.3.6"
+  },
+  "scripts": {
+    "storybook": "storybook dev --host 127.0.0.1 --port 6006 --disable-telemetry",
+    "storybook:build": "storybook build --disable-telemetry",
+    "storybook:preview": "vite preview --outDir storybook-static --host 127.0.0.1 --port 6006 --strictPort"
   }
 }

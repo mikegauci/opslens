@@ -1,3 +1,10 @@
+import {
+  AsyncState,
+  FilterBar,
+  MetricCard,
+  Panel,
+  StatusBadge,
+} from "@opslens/ui";
 import { type FormEvent, type ReactNode, useEffect, useState } from "react";
 import { Activity } from "./activity";
 import {
@@ -18,7 +25,7 @@ const signed = (value: number, players = false) =>
   `${value > 0 ? "+" : ""}${players ? value.toLocaleString("en-IE") : money(value)}`;
 const names = { nova: "Nova", orbit: "Orbit", pulse: "Pulse" };
 
-function Panel({
+function AnalyticsPanel({
   title,
   children,
   loading,
@@ -36,36 +43,36 @@ function Panel({
   snapshot?: string;
 }) {
   return (
-    <section className="panel" aria-label={title} aria-busy={loading}>
-      <div className="panel-heading">
-        <h2>{title}</h2>
-        <button className="quiet" type="button" onClick={retry}>
+    <Panel
+      title={title}
+      busy={loading}
+      actions={
+        <button className="ops-quiet" type="button" onClick={retry}>
           {error ? "Retry" : "Refresh"} {title.toLowerCase()}
         </button>
-      </div>
+      }
+    >
       <div role="status">
         {loading ? (
-          <p className="state">
+          <AsyncState variant="loading">
             {stale
               ? "Refreshing… Previous results are stale."
               : "Loading analytics…"}
-          </p>
+          </AsyncState>
         ) : null}
         {stale && !loading ? (
-          <p className="state">Stale results · Drill-down paused</p>
+          <AsyncState variant="notice">
+            Stale results · Drill-down paused
+          </AsyncState>
         ) : null}
       </div>
-      {error ? (
-        <p role="alert" className="error">
-          {error}
-        </p>
-      ) : null}
+      {error ? <AsyncState variant="error">{error}</AsyncState> : null}
       {snapshot ? <p className="caption snapshot">{snapshot}</p> : null}
       {children}
       {loading && !snapshot ? (
         <div className="skeleton" aria-hidden="true" />
       ) : null}
-    </section>
+    </Panel>
   );
 }
 function ScopeLink({
@@ -127,7 +134,7 @@ function Filters({
     apply(next);
   }
   return (
-    <form className="filters" onSubmit={submit} aria-label="Overview filters">
+    <FilterBar onSubmit={submit} aria-label="Overview filters">
       <label>
         From (UTC)
         <input
@@ -185,12 +192,8 @@ function Filters({
       </div>
       <button type="submit">Apply filters</button>
       <a href={overviewUrl(defaultQuery)}>Reset filters</a>
-      {error ? (
-        <p className="error" role="alert">
-          {error}
-        </p>
-      ) : null}
-    </form>
+      {error ? <AsyncState variant="error">{error}</AsyncState> : null}
+    </FilterBar>
   );
 }
 export function Overview() {
@@ -223,7 +226,7 @@ export function Overview() {
             Activity
           </a>
         </nav>
-        <span className="badge">Synthetic data</span>
+        <StatusBadge>Synthetic data</StatusBadge>
       </header>
       <main id="main-content">
         {location.pathname === "/activity" ? (
@@ -238,14 +241,13 @@ export function Overview() {
             }}
           />
         ) : (
-          <section className="panel">
-            <h1>Invalid overview filters</h1>
+          <Panel title="Invalid overview filters" headingLevel={1}>
             <p role="alert">
               Use unique, known filters and complete UTC days with a range of at
               most 90 days.
             </p>
             <a href={overviewUrl(defaultQuery)}>Reset filters</a>
-          </section>
+          </Panel>
         )}
         <footer>
           Final-status synthetic snapshot · EUR · UTC reporting · No live wagers
@@ -322,7 +324,7 @@ function Dashboard({
       <Filters key={JSON.stringify(query)} query={query} apply={apply} />
       <p className="active-scope">Active scope: {scopeLabel(query)}</p>
       {mismatch ? (
-        <p role="alert" className="error">
+        <AsyncState variant="error">
           Dataset changed between panels. Drill-down paused.{" "}
           <button
             type="button"
@@ -336,9 +338,9 @@ function Dashboard({
           >
             Refresh all panels
           </button>
-        </p>
+        </AsyncState>
       ) : null}
-      <Panel
+      <AnalyticsPanel
         title="Period metrics"
         loading={summary.loading}
         stale={summary.stale}
@@ -352,10 +354,10 @@ function Dashboard({
               Compared with {range(summary.data.comparison)}
             </p>
             {summary.data.comparison.unavailableReason ? (
-              <p className="state">
+              <AsyncState variant="notice">
                 Comparison unavailable · Previous period is outside the dataset
                 window.
-              </p>
+              </AsyncState>
             ) : null}
             <div className="metrics">
               {(
@@ -366,30 +368,28 @@ function Dashboard({
                   ["Active settled players", "players"],
                 ] as const
               ).map(([title, key]) => (
-                <article
+                <MetricCard
                   key={key}
-                  className={`metric ${key === "ggr" ? "primary" : ""}`}
-                  aria-label={title}
-                >
-                  <h3>{title}</h3>
-                  <p className="metric-value">
-                    {key === "players"
+                  title={title}
+                  variant={key === "ggr" ? "featured" : "default"}
+                  value={
+                    key === "players"
                       ? summary.data?.current[key].toLocaleString("en-IE")
-                      : money(summary.data?.current[key] ?? 0)}
-                  </p>
-                  <p className="delta">
-                    {summary.data?.previous
+                      : money(summary.data?.current[key] ?? 0)
+                  }
+                  detail={
+                    summary.data?.previous
                       ? `${signed(summary.data.current[key] - summary.data.previous[key], key === "players")} vs previous`
-                      : "Comparison unavailable"}
-                  </p>
-                </article>
+                      : "Comparison unavailable"
+                  }
+                />
               ))}
             </div>
             {summary.data.current.players === 0 ? (
-              <p className="state">
+              <AsyncState variant="empty">
                 No matching settled transactions. These are available zero
                 totals. <a href={overviewUrl(defaultQuery)}>Reset filters</a>
-              </p>
+              </AsyncState>
             ) : null}
             <p className="caption">
               GGR = settled stakes − settled payouts. Players are distinct
@@ -397,9 +397,9 @@ function Dashboard({
             </p>
           </>
         ) : null}
-      </Panel>
+      </AnalyticsPanel>
       <div className="charts">
-        <Panel
+        <AnalyticsPanel
           title="Daily GGR"
           loading={trend.loading}
           stale={trend.stale}
@@ -492,8 +492,8 @@ function Dashboard({
               </details>
             </>
           ) : null}
-        </Panel>
-        <Panel
+        </AnalyticsPanel>
+        <AnalyticsPanel
           title="Provider contribution"
           loading={contributions.loading}
           stale={contributions.stale}
@@ -510,10 +510,10 @@ function Dashboard({
             </p>
           ) : null}
           {contributions.data?.comparison.unavailableReason ? (
-            <p className="state">
+            <AsyncState variant="notice">
               Comparison unavailable · Previous period is outside the dataset
               window.
-            </p>
+            </AsyncState>
           ) : contributions.data ? (
             <>
               <figure
@@ -596,7 +596,9 @@ function Dashboard({
                 </div>
               </details>
               {contributions.data.providers.length === 0 ? (
-                <p className="state">No providers active in either period.</p>
+                <AsyncState variant="empty">
+                  No providers active in either period.
+                </AsyncState>
               ) : null}
               <p className="caption">
                 Contributions describe the observed change. They do not
@@ -604,7 +606,7 @@ function Dashboard({
               </p>
             </>
           ) : null}
-        </Panel>
+        </AnalyticsPanel>
       </div>
     </>
   );
