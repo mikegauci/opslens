@@ -64,7 +64,13 @@ const metadata = {
   scope,
   dataset,
 };
-const current = { stakes: 3600, payouts: 4000, ggr: -400, players: 4 };
+const current = {
+  stakes: 3600,
+  payouts: 4000,
+  ggr: -400,
+  players: 4,
+  holdPercent: -11.11111111111111,
+};
 const comparison = {
   from: "2026-09-15T00:00:00.000Z",
   to: scope.from,
@@ -74,7 +80,13 @@ const summary = {
   current,
   metadata,
   comparison,
-  previous: { stakes: 1300, payouts: 1000, ggr: 300, players: 2 },
+  previous: {
+    stakes: 1300,
+    payouts: 1000,
+    ggr: 300,
+    players: 2,
+    holdPercent: 23.076923076923077,
+  },
   ggrChange: -700,
   ggrChangePercent: -700 / 3,
   percentageUnavailableReason: null,

@@ -28,8 +28,9 @@ export async function verifyApi(client: pg.Client, hash: string) {
       ...(slice.provider ? { provider: slice.provider } : {}),
     };
     const summary = await request("summary", query);
+    const { holdPercent, ...totals } = summary.current;
     assert.deepEqual(
-      summary.current,
+      totals,
       {
         stakes: slice.stakes,
         payouts: slice.payouts,
@@ -38,6 +39,12 @@ export async function verifyApi(client: pg.Client, hash: string) {
       },
       slice.name,
     );
+    if (slice.holdPercent === null) {
+      assert.equal(holdPercent, null, slice.name);
+    } else {
+      assert.equal(typeof holdPercent, "number", slice.name);
+      assert.ok(Math.abs(holdPercent - slice.holdPercent) < 1e-10, slice.name);
+    }
     assert.equal(summary.metadata.dataset.sha256, hash);
     assert.equal(summary.metadata.scope.basis, "settlement");
     assert.equal(summary.metadata.scope.status, "settled");
@@ -91,6 +98,7 @@ export async function verifyApi(client: pg.Client, hash: string) {
     payouts: 1200,
     ggr: 300,
     players: 2,
+    holdPercent: 20,
   });
   assert.equal(summary.ggrChange, -700);
   const contributions = await request("contributions", current);
@@ -152,6 +160,6 @@ export async function verifyApi(client: pg.Client, hash: string) {
   );
   assert.equal(changed.status, 409);
   console.log(
-    "API reconciled all literal oracle slices, comparisons, daily values, contributions, placement/status and stable pagination",
+    "API reconciled all literal oracle slices, hold, comparisons, daily values, contributions, placement/status and stable pagination",
   );
 }

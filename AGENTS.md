@@ -14,7 +14,7 @@ The user has given standing authorization for the following workflow:
 - When continuing authorized work, create the next chat with the available Codex chat tools. This is user-authorized chat creation, not subagent delegation. Do not create speculative chats or start work outside the requested scope.
 - Keep the new chat prompt short: repository path, one backlog item, acceptance criteria, and references to this file, `docs/build-plan.md`, `docs/github-backlog.md`, and `docs/progress.md`. Include other documents only when relevant. Do not copy the previous conversation history.
 - Start from the latest merged main branch. Finish the preceding PR before starting another chat against the same checkout.
-- Reference the plan and backlog item in every PR. Push the branch, open the PR, and enable automatic merging after required checks pass. If auto-merge is unavailable, wait for the checks and merge directly using a supported merge method.
+- Reference the plan and backlog item in every PR. Push the branch and open the PR. Before issuing any merge command, including auto-merge, confirm every required check passed for the current PR head SHA. If the head moves, verify the new SHA. If auto-merge is unavailable, wait for the checks and merge directly using a supported merge method.
 - No additional user confirmation is needed to push or merge work within the authorized scope. Fix failed checks and conflicts; preserve required repository checks and rules.
 - Verify the PR actually merged; enabling auto-merge alone is not completion. Report an authentication, permission, or required-review blocker accurately if it prevents completion.
 - GitHub sign-in for `mikegauci` was verified using the existing keyring on 6 November 2026. A restricted execution can misleadingly report invalid authentication. If that recurs, retry the read-only authentication check with the tool's required credential/network permissions before asking the user to log in again. Never request pasted credentials.
@@ -24,7 +24,7 @@ This policy does not by itself authorize implementing every item in the backlog.
 
 ## Current state
 
-PLAN-02 establishes the five-package workspace, Node runtime spike, generated contracts and CI. Read `docs/runtime.md` for actual setup and limits. PLAN-03 adds deterministic data, an independent metric oracle, repeatable migrations/seeds and restricted database reads. PLAN-04 adds validated analytics endpoints, generated client contracts, snapshot/dataset evidence and measured query plans; see `docs/analytics-api.md`. Dashboard features, hosted deployment, AI and reusable skills remain future work.
+PLAN-02 establishes the five-package workspace, Node runtime spike, generated contracts and CI. Read `docs/runtime.md` for actual setup and limits. PLAN-03 adds deterministic data, an independent metric oracle, repeatable migrations/seeds and restricted database reads. PLAN-04 adds validated analytics endpoints, generated client contracts, snapshot/dataset evidence and measured query plans; see `docs/analytics-api.md`. For the current feature and release state, use `docs/progress.md`. Hosted document evidence stays disabled pending the documented release checks.
 
 ## Implementation conventions
 
@@ -36,6 +36,8 @@ PLAN-02 establishes the five-package workspace, Node runtime spike, generated co
 - Generate API types from the OpenAPI contract. Validate untrusted inputs at runtime; TypeScript types alone do not validate network data.
 - Filter, sort, aggregate, and paginate the realistic dataset on the server. Virtualisation reduces rendered rows; it does not solve transfer or query costs.
 - Design loading, empty, unavailable, error, keyboard, and responsive states alongside the successful state.
+- Keep request identities separate from React's special `key` prop. Pass explicit props into panel components and prove that a superseded response cannot replace the active scope even when fetch ignores cancellation (PLAN-06).
+- Use the project skills under `.agents/skills/` for metric delivery and chart review. Extend the literal oracle before changing calculations and keep independent baseline checks tied to the metrics those baselines cover (PLAN-04/05/12).
 - Use meaningful domain, interaction, accessibility, and end-to-end checks. Do not add tests that merely restate implementation details.
 - Verify current library APIs against installed version-matched documentation and commit the lockfile.
 

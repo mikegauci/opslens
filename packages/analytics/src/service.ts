@@ -88,6 +88,14 @@ function totals(row: Record<string, unknown>) {
     players: safeInteger(row.players),
   };
 }
+function periodTotals(row: Record<string, unknown>) {
+  const period = totals(row);
+  return {
+    ...period,
+    holdPercent:
+      period.stakes === 0 ? null : (period.ggr / period.stakes) * 100,
+  };
+}
 export type QueryClient = Pick<pg.PoolClient, "query">;
 export type AnalyticsService = (
   kind: Kind,
@@ -184,9 +192,9 @@ export async function analyze(
     };
   }
   if (kind === "summary") {
-    const current = totals(rows[0]);
+    const current = periodTotals(rows[0]);
     const previous = available
-      ? totals(
+      ? periodTotals(
           (
             await run(
               buildQuery("summary", { ...q, from: previousFrom, to: q.from }),

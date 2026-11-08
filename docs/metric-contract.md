@@ -28,7 +28,9 @@ The simulated record is a final-status snapshot at a fixed dataset timestamp. It
 | Settled payouts | Sum of payout minor units for the same eligible rows | Payout includes returned stake; settled rows require a valid payout |
 | GGR | Settled stakes minus settled payouts | May be negative; use integer arithmetic before formatting |
 | Active settled players | Distinct synthetic player IDs with an eligible settled transaction | A player appearing in multiple providers counts once in the overall total |
-| Hold percentage, added through the development skill | GGR divided by settled stakes, multiplied by 100 | Unavailable when stakes are zero; may be negative |
+| Hold percentage | Period GGR divided by period settled stakes, multiplied by 100 | Unavailable when settled stakes are zero. Zero GGR with positive stakes gives 0%. Hold may be negative. |
+
+Calculate hold from the aggregate minor-unit amounts for each filtered period. The summary exposes hold in percentage units without rounding. The Overview displays two decimal places and compares current minus previous hold in percentage points when both values exist. A period with zero settled stakes has unavailable hold even if it contains settled transactions.
 
 Provider contribution to a period change is provider GGR in the current period minus provider GGR in the previous period. Contributions sum to the overall GGR difference, including providers present in only one period. Use absolute EUR contributions to avoid misleading percentage shares when contributions have mixed signs.
 

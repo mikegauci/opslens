@@ -50,8 +50,11 @@ try {
       assert.equal(response.status, 200);
       return response.json();
     };
+    // Superset's four-card baseline predates Overview hold.
+    const { stakes, payouts, ggr, players } = (await request("summary"))
+      .current;
     assert.deepEqual(
-      (await request("summary")).current,
+      { stakes, payouts, ggr, players },
       Object.fromEntries(
         Object.entries(summary).map(([k, v]) => [k, Number(v)]),
       ),

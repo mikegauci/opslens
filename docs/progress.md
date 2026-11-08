@@ -16,6 +16,14 @@
 
 - PLAN-11 ([#11](https://github.com/mikegauci/opslens/issues/11)) reserves 32 copilot evaluation cases, including nine held out before behavior changes, and adds a bounded live runner. The public analytics opt-in uses persistent PostgreSQL quotas. When live answers are unavailable, the drawer shows a labelled recorded example pinned to the 100,000-row snapshot. [Evaluation workflow](../evals/copilot/README.md) · [Public demo configuration](ai-copilot.md#plan-11-operation).
 
+- PLAN-12 ([#12](https://github.com/mikegauci/opslens/issues/12)) adds [add-dashboard-metric](../.agents/skills/add-dashboard-metric/SKILL.md) and [chart-review](../.agents/skills/chart-review/SKILL.md) and updates AGENTS.md with lessons from stale-response testing and independent baseline reconciliation. Overview shows hold for the selected settlement scope, with an explicit unavailable state for zero stakes and a percentage-point comparison when both periods have hold.
+
+## Actual PLAN-12 verification
+
+- Started from merged PLAN-11 PR #26 at `4c9b995`. Both project skills passed the skill-creator validator. The metric skill was used for the hold change and chart-review was exercised on the Overview's charts in the running production build.
+- `PLAYWRIGHT_CHANNEL=chrome pnpm check` passed 30 unit/API tests, 15 production browser/HTTP checks and three Storybook checks. The gate used Node 24.20.0, Chrome and the existing PostgreSQL 17.11 loopback cluster with the 100,000-row `opslens_plan11` database. The older `opslens_plan03` database lacks the PLAN-11 quota migration. Hold matched independent literal expectations, the four Superset baseline metrics reconciled, and production captures were reviewed at 1240 px and 390 px. The separate copilot check passed all 19 scripted cases and quota checks.
+- AI-assisted self-review and the accepted, corrected and rejected approaches are recorded in [development evidence](development-evidence.md). The owner was invited to try chart-review. No developer trial feedback has been received. Hosted document evidence remains disabled.
+
 ## Actual PLAN-11 verification
 
 - Started from merged PLAN-10 PR #25 at `69b9285`. Evaluation suite v1 SHA-256 is `31c5bee81af89a7f2a02839d52fb3ed4f7f8075c0a664a9a40e7c56e7f0c059a`. Prompt version is `evidence-selection-v1` with AI SDK 7.0.163 and OpenAI provider 4.0.109. The 100,000-row dataset SHA-256 is `375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1` and corpus SHA-256 is `c74f9718222be51677a426d665b37614d297dd17baef4e2a707c14c7fd8f40dc`.
@@ -70,6 +78,6 @@
 
 ## Next work and workflow
 
-The next backlog item is **PLAN-12 / [#12](https://github.com/mikegauci/opslens/issues/12)** for reusable agent guidance. Start from merged main in a fresh authorized chat. Live analytics evaluation, hosted retrieval and human relevance review remain release prerequisites.
+After PLAN-12 merges, the next backlog item is **PLAN-13 / [#13](https://github.com/mikegauci/opslens/issues/13)** for accessibility, performance and release verification. Start that work only when authorized, from merged main in a fresh chat. Live analytics evaluation, hosted retrieval and human relevance review remain release prerequisites.
 
-One PR per chat, latest merged main, no concurrent checkout edits. Push, wait for checks and verify the merge. Use the authorized direct merge if auto-merge is unavailable. The existing GitHub keyring works with credential and network permissions. PLAN-06 PR #20 merged at `7fdb9197ae34f282624417451b0d6269afa5544e` with final Linux CI 42254837392 passing.
+One PR per chat, latest merged main, no concurrent checkout edits. Push, confirm CI passed for the exact PR head before any merge command, then verify the merge and issue closure. Use the authorized direct merge if auto-merge is unavailable. The existing GitHub keyring works with credential and network permissions.
