@@ -146,6 +146,18 @@ test("production overview renders the selected bulk dataset and preserves provid
       }).format(result.current[key] / 100),
     );
   }
+  const hold = page.getByRole("article", { name: "Hold percentage" });
+  await expect(hold.locator(".ops-metric-value")).toHaveText("-280.60%");
+  await page.setViewportSize({ width: 1240, height: 720 });
+  expect(
+    await page.locator(".metrics .ops-metric-value").evaluateAll((values) =>
+      values.map((value) => {
+        const range = document.createRange();
+        range.selectNodeContents(value);
+        return range.getClientRects().length;
+      }),
+    ),
+  ).toEqual([1, 1, 1, 1, 1]);
   expect(result.metadata.dataset.rowCount).toBe(100000);
   await page.screenshot({
     path: "/tmp/opslens-overview-100k-desktop.png",
@@ -175,6 +187,7 @@ test("production overview renders the selected bulk dataset and preserves provid
     "2026-09-25T00:00:00.000Z",
   );
   await page.setViewportSize({ width: 390, height: 844 });
+  await expect(hold).toBeVisible();
   expect(
     await page.evaluate(
       () => document.documentElement.scrollWidth <= innerWidth,

@@ -294,13 +294,19 @@
                         },
                         "players": {
                           "type": "integer"
+                        },
+                        "holdPercent": {
+                          "type": "number",
+                          "nullable": true,
+                          "description": "Period GGR divided by settled stakes × 100, or null when stakes are zero."
                         }
                       },
                       "required": [
                         "stakes",
                         "payouts",
                         "ggr",
-                        "players"
+                        "players",
+                        "holdPercent"
                       ]
                     },
                     "previous": {
@@ -318,13 +324,19 @@
                         },
                         "players": {
                           "type": "integer"
+                        },
+                        "holdPercent": {
+                          "type": "number",
+                          "nullable": true,
+                          "description": "Period GGR divided by settled stakes × 100, or null when stakes are zero."
                         }
                       },
                       "required": [
                         "stakes",
                         "payouts",
                         "ggr",
-                        "players"
+                        "players",
+                        "holdPercent"
                       ]
                     },
                     "comparison": {

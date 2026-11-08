@@ -8,12 +8,14 @@ All four GET routes require canonical millisecond UTC `from` and `to` timestamps
 
 | Route | Behaviour |
 | --- | --- |
-| `/api/summary` | Current settled stakes, payouts, GGR and distinct players; equal immediately preceding period, absolute GGR change and comparative percentage |
+| `/api/summary` | Current settled stakes, payouts, GGR, distinct players and hold percentage; equal immediately preceding period, absolute GGR change and comparative percentage |
 | `/api/trend` | The same settled metrics by UTC day, including explicit zero days. Daily distinct players must not be summed into a period player total |
 | `/api/contributions` | Current/previous GGR and absolute minor-unit change by provider present in either period, ordered by provider ID. Changes reconcile to overall GGR change |
 | `/api/activity` | Transaction snapshot rows with explicit date basis, status, allow-listed sorting and bounded pages |
 
-Metric eligibility is always settled status and settlement timestamp. A comparison extending before the dataset window is unavailable: previous totals/change are `null` with `outside_dataset_window`. A GGR percentage is unavailable for zero or negative previous GGR (`nonpositive_baseline`); absolute change remains available. No percentage shares or hold metric are added. Contributions identify observed differences, not external causes.
+Metric eligibility is always settled status and settlement timestamp. A comparison extending before the dataset window is unavailable: previous totals/change are `null` with `outside_dataset_window`. A GGR percentage is unavailable for zero or negative previous GGR (`nonpositive_baseline`); absolute change remains available. Contribution values are signed EUR differences and describe observed changes.
+
+The summary includes `current.holdPercent` and, when the previous period exists, `previous.holdPercent`. Each is a number in percentage units (for example, `20` means 20%) or `null` if that period's settled stakes are zero. Each uses its own aggregate GGR and stakes. The Overview shows the difference in percentage points only when both hold values are available. See the [metric contract](metric-contract.md).
 
 Every success includes `metadata`: effective dates, brand/provider filters, basis/status, `synthetic: true`, EUR, UTC, dataset schema/generator versions, seed, hash, row count, window and as-of timestamp. An omitted brand/provider means all; activity `status: null` means all final snapshot statuses. Each request uses a read-only repeatable-read transaction so figures and metadata share one snapshot, including during atomic reseeding. Dataset version identifies this final-status snapshot, not an event ledger. [PostgreSQL snapshot semantics](https://www.postgresql.org/docs/17/transaction-iso.html).
 

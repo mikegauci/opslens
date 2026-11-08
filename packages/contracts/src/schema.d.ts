@@ -246,12 +246,16 @@ export interface operations {
                             payouts: number;
                             ggr: number;
                             players: number;
+                            /** @description Period GGR divided by settled stakes × 100, or null when stakes are zero. */
+                            holdPercent: number | null;
                         };
                         previous: {
                             stakes: number;
                             payouts: number;
                             ggr: number;
                             players: number;
+                            /** @description Period GGR divided by settled stakes × 100, or null when stakes are zero. */
+                            holdPercent: number | null;
                         } | null;
                         comparison: {
                             /** Format: date-time */

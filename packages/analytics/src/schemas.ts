@@ -86,10 +86,18 @@ const comparisonSchema = z.object({
   to: timestamp,
   unavailableReason: z.enum(["outside_dataset_window"]).nullable(),
 });
+const periodTotalsSchema = totalsSchema.extend({
+  holdPercent: z
+    .number()
+    .nullable()
+    .describe(
+      "Period GGR divided by settled stakes × 100, or null when stakes are zero.",
+    ),
+});
 export const summarySchema = z.object({
   metadata: metadataSchema,
-  current: totalsSchema,
-  previous: totalsSchema.nullable(),
+  current: periodTotalsSchema,
+  previous: periodTotalsSchema.nullable(),
   comparison: comparisonSchema,
   ggrChange: integer.nullable(),
   ggrChangePercent: z.number().nullable(),

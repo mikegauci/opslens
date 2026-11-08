@@ -60,7 +60,7 @@ async function ready(page: Page) {
   ).toBeVisible();
 }
 
-test("literal oracle renders four totals, daily values, signed provider changes and exact keyboard drill-down", async ({
+test("literal oracle renders period metrics, daily values, signed provider changes and exact keyboard drill-down", async ({
   page,
 }) => {
   await oracle(page);
@@ -71,6 +71,7 @@ test("literal oracle renders four totals, daily values, signed provider changes 
     "Settled stakes": "€36.00",
     "Settled payouts": "€40.00",
     "Active settled players": "4",
+    "Hold percentage": "-11.11%",
   };
   for (const [name, value] of Object.entries(expected))
     await expect(
@@ -82,6 +83,8 @@ test("literal oracle renders four totals, daily values, signed provider changes 
   await expect(
     page.getByRole("article", { name: "Active settled players" }),
   ).toContainText("+2 vs previous");
+  const hold = page.getByRole("article", { name: "Hold percentage" });
+  await expect(hold).toContainText("-31.11 percentage points vs previous");
   const daily = page.getByRole("region", { name: "Daily GGR", exact: true });
   await expect(daily.locator("tbody tr")).toHaveCount(7);
   await expect(daily.locator("tbody tr td:nth-child(2)")).toHaveText([
@@ -110,6 +113,7 @@ test("literal oracle renders four totals, daily values, signed provider changes 
       .getByRole("article", { name: "Gross gaming revenue" })
       .locator(".ops-metric-value"),
   ).toHaveText("-€24.00");
+  await expect(hold.locator(".ops-metric-value")).toHaveText("-150.00%");
   const provider = page.getByRole("link", {
     name: "Investigate Nova, change -€32.00",
     exact: true,
@@ -178,6 +182,9 @@ test("URL filters reload and navigate back/forward; invalid and out-of-window sc
       .getByRole("article", { name: "Settled stakes" })
       .locator(".ops-metric-value"),
   ).toHaveText("€0.00");
+  const hold = page.getByRole("article", { name: "Hold percentage" });
+  await expect(hold.locator(".ops-metric-value")).toHaveText("Unavailable");
+  await expect(hold).toContainText("No settled stakes");
   await page.reload();
   await expect(page.getByLabel("Provider", { exact: true })).toHaveValue(
     "pulse",
@@ -209,10 +216,16 @@ test("URL filters reload and navigate back/forward; invalid and out-of-window sc
   await expect(page.getByRole("link", { name: "Reset filters" })).toBeVisible();
 });
 
-test("zero activity and unavailable comparison remain distinct", async ({
+test("break-even hold, empty activity and unavailable comparison remain distinct", async ({
   page,
 }) => {
   await oracle(page);
+  const hold = page.getByRole("article", { name: "Hold percentage" });
+  await page.goto(
+    "/?from=2026-09-24T00:00:00.000Z&to=2026-09-25T00:00:00.000Z&provider=nova",
+  );
+  await expect(hold.locator(".ops-metric-value")).toHaveText("0.00%");
+  await expect(hold).toContainText("Hold comparison unavailable");
   await page.goto(
     "/?from=2026-09-26T00:00:00.000Z&to=2026-09-27T00:00:00.000Z",
   );
@@ -224,6 +237,7 @@ test("zero activity and unavailable comparison remain distinct", async ({
       .getByRole("article", { name: "Gross gaming revenue" })
       .locator(".ops-metric-value"),
   ).toHaveText("€0.00");
+  await expect(hold.locator(".ops-metric-value")).toHaveText("Unavailable");
   await page.goto(
     "/?from=2026-07-01T00:00:00.000Z&to=2026-07-02T00:00:00.000Z",
   );
@@ -284,6 +298,10 @@ test("initial loading, isolated failure, retry, stale scope and superseded respo
       .getByRole("article", { name: "Gross gaming revenue" })
       .locator(".ops-metric-value"),
   ).toHaveText("-€4.00");
+  const hold = page
+    .getByRole("article", { name: "Hold percentage" })
+    .locator(".ops-metric-value");
+  await expect(hold).toHaveText("-11.11%");
   await page.unroute("**/api/summary?*");
   await page.getByRole("button", { name: "Retry period metrics" }).click();
   await ready(page);
@@ -335,6 +353,7 @@ test("initial loading, isolated failure, retry, stale scope and superseded respo
       .getByRole("article", { name: "Gross gaming revenue" })
       .locator(".ops-metric-value"),
   ).toHaveText("€20.00");
+  await expect(hold).toHaveText("100.00%");
 });
 
 test("dataset mismatch and malformed transport fail closed; narrow view has no page overflow", async ({

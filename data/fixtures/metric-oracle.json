@@ -166,6 +166,7 @@
       "payouts": 1200,
       "ggr": 300,
       "players": 2,
+      "holdPercent": 20,
       "from": "2026-09-15T00:00:00.000Z"
     },
     {
@@ -176,6 +177,7 @@
       "payouts": 4000,
       "ggr": -400,
       "players": 4,
+      "holdPercent": -11.11111111111111,
       "from": "2026-09-22T00:00:00.000Z"
     },
     {
@@ -187,6 +189,7 @@
       "payouts": 4000,
       "ggr": -2400,
       "players": 4,
+      "holdPercent": -150,
       "from": "2026-09-22T00:00:00.000Z"
     },
     {
@@ -198,7 +201,32 @@
       "payouts": 0,
       "ggr": 0,
       "players": 1,
+      "holdPercent": null,
       "from": "2026-09-22T00:00:00.000Z"
+    },
+    {
+      "name": "payout without stakes",
+      "from": "2026-09-20T00:00:00.000Z",
+      "to": "2026-09-21T00:00:00.000Z",
+      "provider": "nova",
+      "ids": ["c"],
+      "stakes": 0,
+      "payouts": 200,
+      "ggr": -200,
+      "players": 1,
+      "holdPercent": null
+    },
+    {
+      "name": "break even",
+      "from": "2026-09-24T00:00:00.000Z",
+      "to": "2026-09-25T00:00:00.000Z",
+      "provider": "nova",
+      "ids": ["f"],
+      "stakes": 500,
+      "payouts": 500,
+      "ggr": 0,
+      "players": 1,
+      "holdPercent": 0
     },
     {
       "name": "empty",
@@ -208,6 +236,7 @@
       "payouts": 0,
       "ggr": 0,
       "players": 0,
+      "holdPercent": null,
       "from": "2026-09-26T00:00:00.000Z"
     }
   ],

@@ -14,7 +14,7 @@ The build prioritises a polished, explainable result over a fixed deadline. It u
 
 ## Planned experience
 
-- An overview with four metrics, two linked charts, and meaningful period comparisons.
+- An overview with five metrics, including hold percentage, and two linked charts for investigating period changes.
 - An activity explorer with server filtering, incremental loading, a virtualised table, and transaction details.
 - An operations copilot that combines retrieved documentation with validated analytics queries and cites its evidence.
 - A shared component package documented in Storybook.

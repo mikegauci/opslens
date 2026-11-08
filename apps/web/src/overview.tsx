@@ -24,6 +24,17 @@ import { usePanel } from "./use-panel";
 
 const signed = (value: number, players = false) =>
   `${value > 0 ? "+" : ""}${players ? value.toLocaleString("en-IE") : money(value)}`;
+const holdPercentFormat = new Intl.NumberFormat("en-IE", {
+  style: "percent",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+const holdChangeFormat = new Intl.NumberFormat("en-IE", {
+  signDisplay: "exceptZero",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
 const names = { nova: "Nova", orbit: "Orbit", pulse: "Pulse" };
 
 function AnalyticsPanel({
@@ -290,6 +301,8 @@ function Dashboard({
     panel.data && panel.scope
       ? `${scopeLabel(panel.scope)} · As of ${panel.data.metadata.dataset.asOf} · Dataset ${panel.data.metadata.dataset.sha256.slice(0, 12)}`
       : undefined;
+  const currentHold = summary.data?.current.holdPercent ?? null;
+  const previousHold = summary.data?.previous?.holdPercent ?? null;
   const previous = summary.data?.comparison;
   const hash = summary.data?.metadata.dataset.sha256 ?? "";
   const comparison = previous ?? {
@@ -393,16 +406,31 @@ function Dashboard({
                   }
                 />
               ))}
+              <MetricCard
+                title="Hold percentage"
+                value={
+                  currentHold === null
+                    ? "Unavailable"
+                    : holdPercentFormat.format(currentHold / 100)
+                }
+                detail={
+                  currentHold === null
+                    ? "No settled stakes"
+                    : previousHold === null
+                      ? "Hold comparison unavailable"
+                      : `${holdChangeFormat.format(currentHold - previousHold)} percentage points vs previous`
+                }
+              />
             </div>
             {summary.data.current.players === 0 ? (
               <AsyncState variant="empty">
-                No matching settled transactions. These are available zero
-                totals. <a href={overviewUrl(defaultQuery)}>Reset filters</a>
+                No matching settled transactions. Settled totals are zero.{" "}
+                <a href={overviewUrl(defaultQuery)}>Reset filters</a>
               </AsyncState>
             ) : null}
             <p className="caption">
               GGR = settled stakes − settled payouts. Players are distinct
-              across the whole period.
+              across the whole period. Hold = GGR ÷ settled stakes × 100.
             </p>
           </>
         ) : null}
