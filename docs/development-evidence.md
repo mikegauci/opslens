@@ -43,3 +43,7 @@ Accepted independent SQL reconciled every unchanged literal scope and the real 1
 ## PLAN-07 — 8 November 2026
 
 AI-assisted self-review resumed the existing explorer. The first browser run rejected the expected provider row list. Checking the original fixture by timestamp and provider confirmed `f`, `l`, `d` for Harbor/Nova and exposed a useful boundary case in `l`: placement falls just before the period and settlement falls exactly at its start. The comparison and day paths now assert their own literal row IDs. Keyboard review added focus on the results heading after page changes and retained focus on the virtual load button while the next request runs.
+
+## PLAN-09 — 8 November 2026
+
+The installed OpenAI provider exposes a File Search tool result separately from the file citation annotations on answer text. A fixture at the Responses HTTP boundary verified both and rejected a citation for an unretrieved file. Type checking caught that the generic tool result was unknown, so the adapter now parses it before trusting any excerpt, score or file metadata. Simulating a failed attach after upload verified recovery by deterministic filename and no writes on a complete rerun. These checks use the installed SDK and simulated responses. Hosted behaviour and independent relevance judgement require separate evidence.

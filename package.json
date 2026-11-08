@@ -17,7 +17,7 @@
     "test:e2e": "playwright test",
     "contracts:generate": "tsx scripts/generate-contracts.ts",
     "contracts:check": "pnpm contracts:generate && git diff --exit-code -- packages/contracts/openapi.json packages/contracts/src/schema.d.ts",
-    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm data:check && pnpm db:verify && pnpm db:verify:superset && pnpm contracts:check && pnpm build && pnpm test:e2e && pnpm check:storybook",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm knowledge:check && pnpm data:check && pnpm db:verify && pnpm db:verify:superset && pnpm contracts:check && pnpm build && pnpm test:e2e && pnpm check:storybook",
     "benchmark": "tsx scripts/benchmark.ts",
     "data:generate": "node --import tsx scripts/data/generate.ts",
     "data:check": "node --import tsx scripts/data/generate.ts --check",
@@ -28,20 +28,26 @@
     "benchmark:api": "node --env-file-if-exists=.env --import tsx scripts/benchmark-api.ts",
     "benchmark:activity": "node --env-file-if-exists=.env --import tsx scripts/benchmark-activity.ts",
     "db:verify:superset": "node --env-file-if-exists=.env --import tsx scripts/db/verify-superset.ts",
-    "check:storybook": "pnpm --filter @opslens/ui storybook:build && playwright test --config playwright.storybook.config.ts"
+    "check:storybook": "pnpm --filter @opslens/ui storybook:build && playwright test --config playwright.storybook.config.ts",
+    "knowledge:check": "node --import tsx scripts/knowledge/cli.ts check",
+    "knowledge:ingest": "node --env-file-if-exists=.env --import tsx scripts/knowledge/cli.ts ingest",
+    "knowledge:eval": "node --env-file-if-exists=.env --import tsx scripts/knowledge/cli.ts eval"
   },
   "devDependencies": {
+    "@ai-sdk/openai": "4.0.109",
     "@biomejs/biome": "2.6.6",
     "@playwright/test": "1.65.0",
     "@types/node": "24.10.1",
     "@types/pg": "8.15.6",
     "@types/react": "19.2.7",
     "@types/react-dom": "19.2.3",
+    "ai": "7.0.163",
     "esbuild": "0.28.2",
     "openapi-typescript": "7.13.0",
     "pg": "8.23.1",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
-    "vitest": "5.1.0"
+    "vitest": "5.1.0",
+    "zod": "4.6.7"
   }
 }

@@ -24,6 +24,8 @@ File Search provides hosted semantic and keyword retrieval through the Responses
 
 Use the AI SDK OpenAI provider after checking its installed version's Responses/File Search integration. Confirm retrieval results and citation metadata are exposed to the client through a safe, typed response adapter. Verify whether the selected provider path supports all required features before adding routing layers.
 
+PLAN-09 adds the [corpus and hosted commands](../knowledge/README.md) and the [retrieval review cases](../evals/retrieval/README.md). The runner exercises the installed Responses provider and resolves citations to local source versions. See [actual verification](progress.md#actual-plan-09-verification) for the live and review status.
+
 ### Numerical analytics: read-only tools
 
 Expose a small allow-listed tool set:
