@@ -45,8 +45,14 @@ export async function retrieve(
   {
     scope,
     historical,
-  }: { scope: z.infer<typeof scopeSchema> | null; historical: boolean },
+    signal,
+  }: {
+    scope: z.infer<typeof scopeSchema> | null;
+    historical: boolean;
+    signal?: AbortSignal;
+  },
 ) {
+  const deadline = AbortSignal.timeout(60_000);
   const { content, toolResults, text, usage, response, finishReason } =
     await generateText({
       model: provider.responses(model),
@@ -84,7 +90,7 @@ export async function retrieve(
       },
       maxOutputTokens: 800,
       maxRetries: 0,
-      abortSignal: AbortSignal.timeout(60_000),
+      abortSignal: signal ? AbortSignal.any([signal, deadline]) : deadline,
     });
 
   const fileSearch = toolResults.filter(

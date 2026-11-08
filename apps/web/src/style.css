@@ -380,3 +380,57 @@ dd {
   padding: 6px 8px;
   flex-shrink: 0;
 }
+
+.copilot-drawer {
+  width: min(540px, 100%);
+  color: var(--ops-text);
+  background: var(--ops-surface, white);
+}
+.copilot-heading,
+.copilot-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.copilot-heading {
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.copilot-heading h2,
+.copilot-card h4 {
+  margin: 4px 0;
+}
+.copilot-card {
+  margin: 12px 0;
+  padding: 14px;
+  border: 1px solid var(--ops-border);
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+}
+.copilot-card blockquote {
+  margin: 12px 0;
+  padding-inline-start: 12px;
+  border-inline-start: 3px solid var(--ops-border);
+  white-space: pre-wrap;
+}
+.copilot-card small {
+  color: var(--ops-muted);
+}
+.copilot-form {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0;
+}
+.copilot-form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px;
+  font: inherit;
+  border: 1px solid var(--ops-border);
+  border-radius: 6px;
+}
+.copilot-drawer :focus-visible {
+  outline: 2px solid var(--ops-primary);
+  outline-offset: 3px;
+}

@@ -47,3 +47,9 @@ AI-assisted self-review resumed the existing explorer. The first browser run rej
 ## PLAN-09 — 8 November 2026
 
 The installed OpenAI provider exposes a File Search tool result separately from the file citation annotations on answer text. A fixture at the Responses HTTP boundary verified both and rejected a citation for an unretrieved file. Type checking caught that the generic tool result was unknown, so the adapter now parses it before trusting any excerpt, score or file metadata. Simulating a failed attach after upload verified recovery by deterministic filename and no writes on a complete rerun. These checks use the installed SDK and simulated responses. Hosted behaviour and independent relevance judgement require separate evidence.
+
+## PLAN-10 — 8 November 2026
+
+Self-review uses server-derived evidence cards and a model-selected list of verified evidence IDs. The first production browser launch exposed a dynamic `require("path")` in the AI SDK's bundled transitive dependency. The API now declares the pinned SDK packages as runtime dependencies and loads them through Node, which preserves their native module boundaries. The malformed tool-call test also exposed an SDK recovery step after validation failed. The copilot now treats the SDK's invalid call event as an unsupported request and keeps any prior checks labelled incomplete.
+
+Chrome keyboard verification found that changing a focused Stop button into a submit button during Enter could submit the preserved question again. Distinct controls and a cancelled default action now make retry deliberate. The browser test also checks that a citation focuses its excerpt and the transaction link preserves the filtered dataset.
