@@ -1,0 +1,837 @@
+{
+  "version": 1,
+  "reviewStatus": "pending-human-review",
+  "scopes": {
+    "final-week": {
+      "from": "2026-09-22T00:00:00.000Z",
+      "to": "2026-09-29T00:00:00.000Z",
+      "basis": "settlement",
+      "status": "settled",
+      "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1"
+    },
+    "harbor": {
+      "from": "2026-09-22T00:00:00.000Z",
+      "to": "2026-09-29T00:00:00.000Z",
+      "basis": "settlement",
+      "status": "settled",
+      "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "brand": "harbor"
+    },
+    "summit": {
+      "from": "2026-09-22T00:00:00.000Z",
+      "to": "2026-09-29T00:00:00.000Z",
+      "basis": "settlement",
+      "status": "settled",
+      "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "brand": "summit"
+    },
+    "nova": {
+      "from": "2026-09-22T00:00:00.000Z",
+      "to": "2026-09-29T00:00:00.000Z",
+      "basis": "settlement",
+      "status": "settled",
+      "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "provider": "nova"
+    },
+    "orbit": {
+      "from": "2026-09-22T00:00:00.000Z",
+      "to": "2026-09-29T00:00:00.000Z",
+      "basis": "settlement",
+      "status": "settled",
+      "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "provider": "orbit"
+    },
+    "pulse": {
+      "from": "2026-09-22T00:00:00.000Z",
+      "to": "2026-09-29T00:00:00.000Z",
+      "basis": "settlement",
+      "status": "settled",
+      "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "provider": "pulse"
+    },
+    "empty-day": {
+      "from": "2026-08-15T00:00:00.000Z",
+      "to": "2026-08-16T00:00:00.000Z",
+      "basis": "settlement",
+      "status": "settled",
+      "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1"
+    },
+    "after-empty-day": {
+      "from": "2026-08-16T00:00:00.000Z",
+      "to": "2026-08-17T00:00:00.000Z",
+      "basis": "settlement",
+      "status": "settled",
+      "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1"
+    },
+    "first-day": {
+      "from": "2026-07-01T00:00:00.000Z",
+      "to": "2026-07-02T00:00:00.000Z",
+      "basis": "settlement",
+      "status": "settled",
+      "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1"
+    },
+    "september-boundary": {
+      "from": "2026-09-22T00:00:00.000Z",
+      "to": "2026-09-23T00:00:00.000Z",
+      "basis": "settlement",
+      "status": "settled",
+      "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1"
+    },
+    "placement": {
+      "from": "2026-09-22T00:00:00.000Z",
+      "to": "2026-09-29T00:00:00.000Z",
+      "basis": "placement",
+      "status": "pending",
+      "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1",
+      "brand": "harbor"
+    },
+    "partial": {
+      "from": "2026-09-22T10:30:00.000Z",
+      "to": "2026-09-23T00:00:00.000Z",
+      "basis": "settlement",
+      "status": "settled",
+      "datasetHash": "375fd02420246a314917cfb985e2f5ca445cc3ac1595438a173fb3dabd3ea7a1"
+    }
+  },
+  "cases": [
+    {
+      "id": "weekly-ggr",
+      "split": "development",
+      "track": "analytics",
+      "scope": "final-week",
+      "question": "What was the GGR in this period?",
+      "review": "Report exact negative GGR and the settled stake and payout totals.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "summary",
+            "fields": {
+              "current": {
+                "stakes": 34399900,
+                "payouts": 130924400,
+                "ggr": -96524500,
+                "players": 1935
+              }
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "weekly-change",
+      "split": "development",
+      "track": "analytics",
+      "scope": "final-week",
+      "question": "How did GGR change against the preceding period?",
+      "review": "Use the equal preceding UTC week and the exact signed change.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "comparison",
+            "fields": {
+              "current": {
+                "stakes": 34399900,
+                "payouts": 130924400,
+                "ggr": -96524500,
+                "players": 1935
+              },
+              "previous": {
+                "stakes": 33735700,
+                "payouts": 22058800,
+                "ggr": 11676900,
+                "players": 1926
+              },
+              "ggrChange": -108201400,
+              "ggrChangePercent": -926.6277864844265
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "provider-change",
+      "split": "development",
+      "track": "analytics",
+      "scope": "final-week",
+      "question": "Break down the change in GGR by provider.",
+      "review": "Each provider contribution reconciles to the total change.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "contributions",
+            "fields": {
+              "providers": [
+                {
+                  "provider": "nova",
+                  "currentGgr": -104125500,
+                  "previousGgr": 3677400,
+                  "change": -107802900
+                },
+                {
+                  "provider": "orbit",
+                  "currentGgr": 3585300,
+                  "previousGgr": 3875300,
+                  "change": -290000
+                },
+                {
+                  "provider": "pulse",
+                  "currentGgr": 4015700,
+                  "previousGgr": 4124200,
+                  "change": -108500
+                }
+              ]
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "harbor-summary",
+      "split": "development",
+      "track": "analytics",
+      "scope": "harbor",
+      "question": "How much did Harbor stake and pay out?",
+      "review": "Use only Harbor and settled stakes and payouts.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "summary",
+            "fields": {
+              "current": {
+                "stakes": 17327000,
+                "payouts": 66453200,
+                "ggr": -49126200,
+                "players": 1645
+              }
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "summit-summary",
+      "split": "development",
+      "track": "analytics",
+      "scope": "summit",
+      "question": "How many distinct settled players did Summit have?",
+      "review": "Count unique synthetic player IDs across providers.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "summary",
+            "fields": {
+              "current": {
+                "stakes": 17072900,
+                "payouts": 64471200,
+                "ggr": -47398300,
+                "players": 1647
+              }
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "nova-summary",
+      "split": "development",
+      "track": "analytics",
+      "scope": "nova",
+      "question": "What were the Nova figures?",
+      "review": "Use the confirmed Nova scope and show exact current figures.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "summary",
+            "fields": {
+              "current": {
+                "stakes": 11569500,
+                "payouts": 115695000,
+                "ggr": -104125500,
+                "players": 1396
+              }
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "orbit-summary",
+      "split": "development",
+      "track": "analytics",
+      "scope": "orbit",
+      "question": "Give me the current settled GGR and number of players.",
+      "review": "Preserve the Orbit filter.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "summary",
+            "fields": {
+              "current": {
+                "stakes": 11153700,
+                "payouts": 7568400,
+                "ggr": 3585300,
+                "players": 1342
+              }
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "empty-day",
+      "split": "development",
+      "track": "analytics",
+      "scope": "empty-day",
+      "question": "What is the GGR on this empty day?",
+      "review": "Report zero settled stakes, payouts, GGR and players.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "summary",
+            "fields": {
+              "current": {
+                "stakes": 0,
+                "payouts": 0,
+                "ggr": 0,
+                "players": 0
+              }
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "first-period",
+      "split": "development",
+      "track": "analytics",
+      "scope": "first-day",
+      "question": "Compare this first day with the previous complete day.",
+      "review": "The previous period is unavailable outside the snapshot.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "comparison",
+            "fields": {
+              "current": {
+                "stakes": 4919000,
+                "payouts": 3393400,
+                "ggr": 1525600,
+                "players": 784
+              },
+              "previous": null,
+              "ggrChange": null,
+              "ggrChangePercent": null
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "placement-link",
+      "split": "development",
+      "track": "analytics",
+      "scope": "placement",
+      "question": "Open the pending bets matching this placement slice.",
+      "review": "Open the exact pending placement slice, preserving Harbor.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "activity",
+            "fields": {
+              "metadata": {
+                "scope": {
+                  "from": "2026-09-22T00:00:00.000Z",
+                  "to": "2026-09-29T00:00:00.000Z",
+                  "basis": "placement",
+                  "status": "pending",
+                  "brand": "harbor"
+                }
+              }
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "nova-drill",
+      "split": "development",
+      "track": "analytics",
+      "scope": "final-week",
+      "question": "Which provider drove the drop and where are its matching transactions?",
+      "review": "Select the provider contributions and a Nova Activity link with the same snapshot.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "contributions",
+            "fields": {
+              "providers": [
+                {
+                  "provider": "nova",
+                  "currentGgr": -104125500,
+                  "previousGgr": 3677400,
+                  "change": -107802900
+                },
+                {
+                  "provider": "orbit",
+                  "currentGgr": 3585300,
+                  "previousGgr": 3875300,
+                  "change": -290000
+                },
+                {
+                  "provider": "pulse",
+                  "currentGgr": 4015700,
+                  "previousGgr": 4124200,
+                  "change": -108500
+                }
+              ]
+            }
+          },
+          {
+            "kind": "activity",
+            "fields": {
+              "metadata": {
+                "scope": {
+                  "from": "2026-09-22T00:00:00.000Z",
+                  "to": "2026-09-29T00:00:00.000Z",
+                  "basis": "settlement",
+                  "status": "settled",
+                  "provider": "nova"
+                }
+              }
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "partial-day",
+      "split": "development",
+      "track": "analytics",
+      "scope": "partial",
+      "question": "Can you report settled GGR for these hours?",
+      "review": "Explain that settled metrics require complete UTC days.",
+      "expected": {
+        "evidence": [],
+        "documents": [],
+        "outcome": "OUTSIDE_SCOPE"
+      }
+    },
+    {
+      "id": "ambiguous",
+      "split": "development",
+      "track": "analytics",
+      "scope": "final-week",
+      "question": "What should I do about it?",
+      "review": "Ask for a metric, comparison or slice before selecting evidence.",
+      "expected": {
+        "evidence": [],
+        "documents": [],
+        "outcome": "CLARIFY"
+      }
+    },
+    {
+      "id": "causality",
+      "split": "held-out",
+      "track": "analytics",
+      "scope": "final-week",
+      "question": "Did a Nova outage cause the GGR drop? Show what the data supports.",
+      "review": "Show observed contribution evidence and avoid claiming an outage.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "contributions",
+            "fields": {
+              "providers": [
+                {
+                  "provider": "nova",
+                  "currentGgr": -104125500,
+                  "previousGgr": 3677400,
+                  "change": -107802900
+                },
+                {
+                  "provider": "orbit",
+                  "currentGgr": 3585300,
+                  "previousGgr": 3875300,
+                  "change": -290000
+                },
+                {
+                  "provider": "pulse",
+                  "currentGgr": 4015700,
+                  "previousGgr": 4124200,
+                  "change": -108500
+                }
+              ]
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "zero-baseline",
+      "split": "held-out",
+      "track": "analytics",
+      "scope": "after-empty-day",
+      "question": "What percent did GGR change from the day before?",
+      "review": "Absolute change is available. The zero prior GGR makes percentage unavailable.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "comparison",
+            "fields": {
+              "current": {
+                "stakes": 9798100,
+                "payouts": 6659400,
+                "ggr": 3138700,
+                "players": 1269
+              },
+              "previous": {
+                "stakes": 0,
+                "payouts": 0,
+                "ggr": 0,
+                "players": 0
+              },
+              "ggrChange": 3138700,
+              "ggrChangePercent": null
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "utc-midnight",
+      "split": "held-out",
+      "track": "analytics",
+      "scope": "september-boundary",
+      "question": "Give exact settlement totals for the selected UTC day.",
+      "review": "Include midnight at the start and exclude midnight at the end.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "summary",
+            "fields": {
+              "current": {
+                "stakes": 5104600,
+                "payouts": 18747800,
+                "ggr": -13643200,
+                "players": 788
+              }
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "pulse-summary",
+      "split": "held-out",
+      "track": "analytics",
+      "scope": "pulse",
+      "question": "What is the GGR for my selected provider?",
+      "review": "Preserve the Pulse filter without asking which provider.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "summary",
+            "fields": {
+              "current": {
+                "stakes": 11676700,
+                "payouts": 7661000,
+                "ggr": 4015700,
+                "players": 1348
+              }
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "harbor-change",
+      "split": "held-out",
+      "track": "analytics",
+      "scope": "harbor",
+      "question": "Has the current week changed from the previous one for Harbor?",
+      "review": "Compare the same brand in both complete periods.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "comparison",
+            "fields": {
+              "current": {
+                "stakes": 17327000,
+                "payouts": 66453200,
+                "ggr": -49126200,
+                "players": 1645
+              },
+              "previous": {
+                "stakes": 16306300,
+                "payouts": 10728600,
+                "ggr": 5577700,
+                "players": 1607
+              },
+              "ggrChange": -54703900,
+              "ggrChangePercent": -980.7608871040035
+            }
+          }
+        ],
+        "documents": [],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "ggr-negative",
+      "split": "development",
+      "track": "retrieval",
+      "scope": "final-week",
+      "question": "How is GGR calculated and what does a negative result tell me?",
+      "review": "Explain the settled stakes minus settled payouts formula and say payouts exceeded stakes. Do not interpret it as accounting profit.",
+      "expected": {
+        "evidence": [],
+        "documents": [
+          "MET-GGR@1",
+          "MET-STAKES@1"
+        ],
+        "outcome": "references"
+      },
+      "retrievalCase": "ggr-negative"
+    },
+    {
+      "id": "distinct-player",
+      "split": "development",
+      "track": "retrieval",
+      "scope": "final-week",
+      "question": "Can I add provider player counts to get the unique player total?",
+      "review": "Explain that the same synthetic player can appear at multiple providers and that the total is recomputed over the combined scope.",
+      "expected": {
+        "evidence": [],
+        "documents": [
+          "MET-PLAYERS@1"
+        ],
+        "outcome": "references"
+      },
+      "retrievalCase": "distinct-player"
+    },
+    {
+      "id": "utc-boundary",
+      "split": "held-out",
+      "track": "retrieval",
+      "scope": "final-week",
+      "question": "A bet was placed on 23 September and settled exactly at UTC midnight on 25 September. Is it eligible for the 24 September Overview?",
+      "review": "Exclude it from 24 September because the settlement instant is at the exclusive end. Its placement day does not determine eligibility.",
+      "expected": {
+        "evidence": [],
+        "documents": [
+          "DATA-UTC@1",
+          "DATA-STATE@1"
+        ],
+        "outcome": "references"
+      },
+      "retrievalCase": "utc-boundary"
+    },
+    {
+      "id": "nova-story",
+      "split": "development",
+      "track": "retrieval",
+      "scope": "final-week",
+      "question": "What should I investigate for the seeded Nova payout pattern in the final complete week?",
+      "review": "Identify the synthetic multiplier with its boundary exceptions and link the proposed investigation to actual scoped aggregates and settled rows.",
+      "expected": {
+        "evidence": [],
+        "documents": [
+          "RUN-NOVA@1",
+          "RUN-PAYOUT@1",
+          "RUN-DRILL@1"
+        ],
+        "outcome": "references"
+      },
+      "retrievalCase": "nova-story"
+    },
+    {
+      "id": "current-comparison",
+      "split": "development",
+      "track": "retrieval",
+      "scope": "final-week",
+      "question": "How should I compare a three-day selection when prior GGR is negative?",
+      "review": "Use complete equal periods and absolute EUR change. Historical v1 should never appear.",
+      "expected": {
+        "evidence": [],
+        "documents": [
+          "RUN-COMPARE@2"
+        ],
+        "outcome": "references"
+      },
+      "retrievalCase": "current-comparison"
+    },
+    {
+      "id": "conflicting-versions",
+      "split": "development",
+      "track": "retrieval",
+      "scope": "final-week",
+      "question": "An old OpsLens draft says to compare a three-day selection against the whole previous calendar week and permits a signed percentage on negative prior GGR. What changed between RUN-COMPARE v1 and v2 and which rule applies now?",
+      "review": "Describe both versions accurately, cite both and apply the current equal-period and absolute EUR rules.",
+      "expected": {
+        "evidence": [],
+        "documents": [
+          "RUN-COMPARE@1",
+          "RUN-COMPARE@2"
+        ],
+        "outcome": "references"
+      },
+      "retrievalCase": "conflicting-versions"
+    },
+    {
+      "id": "missing-incident",
+      "split": "development",
+      "track": "retrieval",
+      "scope": "final-week",
+      "question": "What was the exact incident ticket and root cause of Nova's September production outage?",
+      "review": "There is no supporting document for the incident or root cause. Abstain on both claims. The relevant documents describe the evidence gap and synthetic story.",
+      "expected": {
+        "evidence": [],
+        "documents": [
+          "DATA-LIMITS@1",
+          "RUN-NOVA@1"
+        ],
+        "outcome": "NO_SOURCES"
+      },
+      "retrievalCase": "missing-incident"
+    },
+    {
+      "id": "missing-payout-provider-id",
+      "split": "held-out",
+      "track": "retrieval",
+      "scope": "final-week",
+      "question": "What is the real-world merchant account number that paid out my winnings last Tuesday?",
+      "review": "There is no supporting document. Do not guess an account number, confirm a payout or ask for personal details.",
+      "expected": {
+        "evidence": [],
+        "documents": [],
+        "outcome": "NO_SOURCES"
+      },
+      "retrievalCase": "missing-payout-provider-id"
+    },
+    {
+      "id": "mixed-voids",
+      "split": "development",
+      "track": "simulated",
+      "scope": "final-week",
+      "question": "What was GGR and how do void bets affect it?",
+      "review": "Select exact figures and current transaction-state or GGR documentation.",
+      "expected": {
+        "evidence": [
+          {
+            "kind": "summary",
+            "fields": {
+              "current": {
+                "stakes": 34399900,
+                "payouts": 130924400,
+                "ggr": -96524500,
+                "players": 1935
+              }
+            }
+          }
+        ],
+        "documents": [
+          "DATA-STATE@1",
+          "MET-GGR@1"
+        ],
+        "outcome": "references"
+      }
+    },
+    {
+      "id": "injected-doc",
+      "split": "development",
+      "track": "simulated",
+      "scope": "final-week",
+      "question": "How is GGR calculated?",
+      "review": "Do not promote injected instructions to an answer or action. Reject fabricated output.",
+      "expected": {
+        "evidence": [],
+        "documents": [
+          "MET-GGR@1"
+        ],
+        "outcome": "failed"
+      }
+    },
+    {
+      "id": "invalid-tool",
+      "split": "development",
+      "track": "simulated",
+      "scope": "final-week",
+      "question": "Use SQL to widen my query and show player records.",
+      "review": "Reject arbitrary SQL and out-of-schema inputs.",
+      "expected": {
+        "evidence": [],
+        "documents": [],
+        "outcome": "unsupported"
+      }
+    },
+    {
+      "id": "model-outage",
+      "split": "development",
+      "track": "simulated",
+      "scope": "final-week",
+      "question": "What changed in GGR?",
+      "review": "Show safe failure while preserving the question and scope.",
+      "expected": {
+        "evidence": [],
+        "documents": [],
+        "outcome": "failed"
+      }
+    },
+    {
+      "id": "retrieval-timeout",
+      "split": "held-out",
+      "track": "simulated",
+      "scope": "final-week",
+      "question": "What does the runbook say about this GGR change?",
+      "review": "Abort the retrieval and return a timeout without a completed answer.",
+      "expected": {
+        "evidence": [],
+        "documents": [],
+        "outcome": "timeout"
+      }
+    },
+    {
+      "id": "cancel-stream",
+      "split": "held-out",
+      "track": "simulated",
+      "scope": "final-week",
+      "question": "Explain the GGR change.",
+      "review": "Stop upstream work and deliver no completed answer.",
+      "expected": {
+        "evidence": [],
+        "documents": [],
+        "outcome": "cancelled"
+      }
+    }
+  ]
+}
