@@ -214,6 +214,9 @@ importers:
 
   apps/api:
     dependencies:
+      '@ai-sdk/openai':
+        specifier: 4.0.109
+        version: 4.0.109(zod@4.6.7)
       '@hono/node-server':
         specifier: 2.1.6
         version: 2.1.6(hono@4.13.16)
@@ -223,6 +226,9 @@ importers:
       '@opslens/analytics':
         specifier: workspace:*
         version: link:../../packages/analytics
+      ai:
+        specifier: 7.0.163
+        version: 7.0.163(zod@4.6.7)
       hono:
         specifier: 4.13.16
         version: 4.13.16

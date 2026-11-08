@@ -8,6 +8,7 @@ import {
   explorerUrl,
   parseActivity,
 } from "./activity-scope";
+import { Copilot } from "./copilot";
 import { day, money, range } from "./scope";
 
 type Result =
@@ -37,14 +38,44 @@ export function Activity() {
       focusResults.current = false;
     }
   });
-  return scope ? (
-    <Explorer
-      key={explorerUrl(scope)}
-      scope={scope}
-      navigate={navigate}
-      resultsHeading={resultsHeading}
-    />
-  ) : (
+  if (scope) {
+    const { from, to, brand, provider, basis, status, datasetHash } =
+      scope.query;
+    return (
+      <>
+        <div className="page-heading">
+          <div>
+            <p className="eyebrow">Investigation / exact scope</p>
+            <h1>Activity</h1>
+            <p className="intro">Inspect the transactions behind the change.</p>
+          </div>
+          <div className="copilot-actions">
+            <a href={scope.context.origin ?? "/"}>
+              Return to original overview
+            </a>
+            <Copilot
+              dashboardScope={{
+                from,
+                to,
+                brand,
+                provider,
+                basis,
+                status,
+                datasetHash,
+              }}
+            />
+          </div>
+        </div>
+        <Explorer
+          key={explorerUrl(scope)}
+          scope={scope}
+          navigate={navigate}
+          resultsHeading={resultsHeading}
+        />
+      </>
+    );
+  }
+  return (
     <Panel title="Invalid activity scope" headingLevel={1}>
       <p role="alert">
         Use unique known filters, an ordered UTC range, and compatible
@@ -215,14 +246,6 @@ function Explorer({
     : rows.map((_, index) => ({ index, start: 0 }));
   return (
     <>
-      <div className="page-heading">
-        <div>
-          <p className="eyebrow">Investigation / exact scope</p>
-          <h1>Activity</h1>
-          <p className="intro">Inspect the transactions behind the change.</p>
-        </div>
-        <a href={scope.context.origin ?? "/"}>Return to original overview</a>
-      </div>
       <p className="active-scope">
         {completeDays ? range(scope.query) : `${from} → ${to} exclusive`} ·{" "}
         {brand ?? "All brands"} · {provider ?? "All providers"} ·{" "}

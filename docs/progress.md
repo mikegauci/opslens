@@ -12,6 +12,15 @@
 
 - PLAN-09 ([#9](https://github.com/mikegauci/opslens/issues/9)) adds 16 versioned evidence documents and eight retrieval cases covering definitions, investigations, missing evidence and a conflict between current and historical guidance. The hosted commands, local manifest and review procedure are documented in the [evidence library](../knowledge/README.md).
 
+- PLAN-10 ([#10](https://github.com/mikegauci/opslens/issues/10)) adds **Ask Copilot** to Overview and Activity, with confirmed filters, streamed read-only metric evidence, source excerpts, scoped transaction links, stop, retry and error states. Numerical explanations use verified cards and the model selects evidence IDs. The normal dashboard runs without AI credentials. Live analytics requires a private loopback opt-in, and hosted document evidence remains disabled. [Copilot setup and boundaries](ai-copilot.md#plan-10-implementation).
+
+## Actual PLAN-10 verification
+
+- Started from merged PLAN-09 PR #24 at `4ef4481`. The frozen pnpm install passed using the existing AI SDK 7.0.163 and OpenAI provider 4.0.109 pins.
+- Local `PLAYWRIGHT_CHANNEL=chrome pnpm check` passed on Node 24.20.0, PostgreSQL 17.11 and Chrome with AI credentials unset. It covered 25 unit/API checks, 15 production browser/HTTP checks, three Storybook checks, data and Superset SQL reconciliation, and contract drift. The browser covered mobile keyboard stop and retry, explicit scope confirmation, focus on source excerpts, a working scoped Activity URL and credential-free Activity. The browser copilot responses were simulated.
+- Five mocked model/API checks verify evidence before completion, exact values and filters for all four analytics tools, placement scope isolation, cancellation, quota errors, invalid tool requests, fabricated references, changed datasets and citation-to-current-excerpt matching.
+- `pnpm knowledge:eval ggr-negative` exited unavailable because OpenAI credentials and model configuration were absent. Hosted retrieval, real citation metadata and human relevance scoring remain pending. Live model output and public demo operation are unevaluated.
+
 ## Actual PLAN-09 verification
 
 - Started from merged PR #23 at `432392e`. Frozen install and peer checks passed with AI SDK 7.0.163 and OpenAI provider 4.0.109. Corpus SHA-256 is `c74f9718222be51677a426d665b37614d297dd17baef4e2a707c14c7fd8f40dc`.
@@ -51,6 +60,6 @@
 
 ## Next work and workflow
 
-The next backlog item is **PLAN-10 / [#10](https://github.com/mikegauci/opslens/issues/10)**, the contextual copilot and validated analytics tools. Complete the outstanding hosted retrieval and human relevance checks before enabling live document evidence. Start PLAN-10 in a fresh chat from merged main after reading the plan, metric contract, AI copilot plan and backlog issue.
+The next backlog item is **PLAN-11 / [#11](https://github.com/mikegauci/opslens/issues/11)** for evaluation, persistent quotas and hardening. Complete the outstanding hosted retrieval and human relevance checks before enabling live document evidence. Start from merged main in a fresh authorized chat.
 
 One PR per chat, latest merged main, no concurrent checkout edits. Push, wait for checks and verify the merge. Use the authorized direct merge if auto-merge is unavailable. The existing GitHub keyring works with credential and network permissions. PLAN-06 PR #20 merged at `7fdb9197ae34f282624417451b0d6269afa5544e` with final Linux CI 42254837392 passing.

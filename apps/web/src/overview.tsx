@@ -7,6 +7,7 @@ import {
 } from "@opslens/ui";
 import { type FormEvent, type ReactNode, useEffect, useState } from "react";
 import { Activity } from "./activity";
+import { Copilot } from "./copilot";
 import {
   activityUrl,
   day,
@@ -319,6 +320,14 @@ function Dashboard({
         <div className="period">
           <strong>{range(query)}</strong>
           <span>Settled activity · EUR</span>
+          <Copilot
+            dashboardScope={{
+              ...query,
+              basis: "settlement",
+              status: "settled",
+              datasetHash: !summary.stale ? hash || undefined : undefined,
+            }}
+          />
         </div>
       </div>
       <Filters key={JSON.stringify(query)} query={query} apply={apply} />

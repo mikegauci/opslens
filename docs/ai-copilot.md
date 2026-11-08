@@ -60,6 +60,16 @@ The rest of the application works without the model. A recorded guided example m
 - Cancel upstream work when supported and handle the fact that already-completed API work may still be billed.
 - No database mutations, account decisions, user uploads, arbitrary SQL, or external actions are part of this feature.
 
+## PLAN-10 implementation
+
+Open **Ask Copilot** on Overview or Activity. The drawer pins the dates, brand, provider, basis and status. Close it to change the dashboard filters, then reopen it and choose **Use current dashboard filters** to confirm the change. The question is preserved. Placement scopes can open matching transactions. Settled metrics require complete UTC settlement days.
+
+`POST /api/copilot` streams validated server-sent events through the generated API client. Read-only tool cards carry exact amounts, comparison bounds, effective filters, dataset hash, as-of timestamp and query time. The model selects evidence IDs or a supported clarification. The panel renders explanations from verified figures and cited excerpts, and keeps completed checks visible as incomplete evidence after an interrupted answer. Activity links are constructed from validated metadata and pin the dataset. A provider drill-down can narrow an unfiltered link only when the provider appears in the contribution evidence. Raw transaction rows stay server-side.
+
+The dashboard runs with the database configuration alone. For a private local analytics session, set `OPSLENS_COPILOT_LOCAL=1`, `OPSLENS_COPILOT_MODEL` to an available OpenAI Responses model, and `OPENAI_API_KEY` in the server environment. Use `http://127.0.0.1:3000` with the default port. Public live access awaits persistent quotas and evaluation in PLAN-11. Requests are limited to 600 question characters, 4 KiB of JSON, six model steps, 400 output tokens per step and 40 seconds of upstream work.
+
+Live document evidence is disabled in the production entry point. The citation adapter and source links are exercised with simulated retrieval. Enable hosted sources only after the PLAN-09 retrieval and citation checks and human relevance review succeed for the selected corpus and provider.
+
 ## Evaluation plan
 
 Create 30 or more human-reviewed cases. Each specifies its dataset scope, expected tool evidence, acceptable document IDs, expected numerical values when applicable, and desired clarification/uncertainty behaviour. Reserve a held-out subset before tuning prompts. Store expected source relevance for retrieval-only cases so retrieval quality can be assessed separately from prose quality.

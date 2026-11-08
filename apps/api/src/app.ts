@@ -11,6 +11,7 @@ import {
   type AnalyticsService,
 } from "@opslens/analytics/service";
 import { streamSSE } from "hono/streaming";
+import { type CopilotProvider, registerCopilot } from "./copilot";
 
 export type DatabaseProbe = () => Promise<number>;
 const responseSchema = z.object({
@@ -23,7 +24,11 @@ const responseSchema = z.object({
 const unavailableSchema = z.object({
   error: z.literal("Database unavailable"),
 });
-export function createApp(probe: DatabaseProbe, analytics?: AnalyticsService) {
+export function createApp(
+  probe: DatabaseProbe,
+  analytics?: AnalyticsService,
+  copilot?: CopilotProvider,
+) {
   const app = new OpenAPIHono();
   app.openapi(
     createRoute({
@@ -182,6 +187,7 @@ export function createApp(probe: DatabaseProbe, analytics?: AnalyticsService) {
       },
     );
   }
+  registerCopilot(app, analytics, copilot);
   app.doc("/api/openapi.json", {
     openapi: "3.0.0",
     info: { title: "OpsLens API", version: "0.2.0" },
