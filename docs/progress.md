@@ -2,7 +2,7 @@
 
 ## Current state
 
-- Private [mikegauci/opslens](https://github.com/mikegauci/opslens). PLAN-01/02/03/04 merged in PRs #16/#17/#18/#19; PLAN-04 merged main was `6fd94630181156ad45e61080af19f42f73c465f5`, with final Linux CI run [42250942482](https://github.com/mikegauci/opslens/actions/runs/42250942482) passing.
+- [mikegauci/opslens](https://github.com/mikegauci/opslens). PLAN-01/02/03/04 merged in PRs #16/#17/#18/#19; PLAN-04 merged main was `6fd94630181156ad45e61080af19f42f73c465f5`, with final Linux CI run [42250942482](https://github.com/mikegauci/opslens/actions/runs/42250942482) passing.
 - PLAN-06 ([PR #20](https://github.com/mikegauci/opslens/pull/20)) implements [#6](https://github.com/mikegauci/opslens/issues/6): `/` now shows four metrics and two linked charts through the generated client. URL dates are inclusive-start/exclusive-end UTC, with brand/provider filters, reload and Back/Forward. Summary and charts have independent retry, validated responses, cancellation and scope ownership; stale results retain their original scope/as-of. Mixed dataset hashes pause drill-down.
 - PLAN-07 ([PR #22](https://github.com/mikegauci/opslens/pull/22), [#7](https://github.com/mikegauci/opslens/issues/7)) adds the Activity explorer. Provider and day drill-downs carry the exact UTC interval, settlement basis, settled status, brand/provider, sort, dataset hash and original overview URL. The explorer uses server-filtered and sorted pages, with a default semantic table, optional TanStack Virtual and a modal transaction drawer.
 - The five-package React/Node/Hono workspace, same-origin PostgreSQL API, deterministic 10k/100k data, independent twelve-row oracle, generated OpenAPI contracts and CI remain established. [Runtime](runtime.md), [data setup](../data/README.md), [analytics API](analytics-api.md).
@@ -17,6 +17,11 @@
 - PLAN-11 ([#11](https://github.com/mikegauci/opslens/issues/11)) reserves 32 copilot evaluation cases, including nine held out before behavior changes, and adds a bounded live runner. The public analytics opt-in uses persistent PostgreSQL quotas. When live answers are unavailable, the drawer shows a labelled recorded example pinned to the 100,000-row snapshot. [Evaluation workflow](../evals/copilot/README.md) · [Public demo configuration](ai-copilot.md#plan-11-operation).
 
 - PLAN-12 ([#12](https://github.com/mikegauci/opslens/issues/12)) adds [add-dashboard-metric](../.agents/skills/add-dashboard-metric/SKILL.md) and [chart-review](../.agents/skills/chart-review/SKILL.md) and updates AGENTS.md with lessons from stale-response testing and independent baseline reconciliation. Overview shows hold for the selected settlement scope, with an explicit unavailable state for zero stakes and a percentage-point comparison when both periods have hold.
+
+## PLAN-14 portfolio launch follow-up
+
+- Deployed merged PLAN-15 at `0230e72`: [same-origin app and API](https://opslens-3xy1.onrender.com/) on Render Free, [static Storybook](https://opslens-storybook.vercel.app/) on Vercel Hobby, and the 100k snapshot on Supabase Free. Hosted browser checks verified the Nova drill-down, Activity reload, recorded Copilot evidence, Storybook keyboard recovery, mobile loading, and component guide. Live Copilot and document evidence are off.
+- Completed the source publication review and selected MIT. [Hosted checks, publication review, and remaining gates](portfolio/launch.md).
 
 ## PLAN-15 migration exercise
 
@@ -97,6 +102,6 @@
 
 ## Next work and workflow
 
-PLAN-14 is the final core package. PLAN-15 is the final optional exercise. Once this PR merges and closes #15, zero core and zero optional backlog plans remain. The [launch checklist](portfolio/launch.md) carries the pending publication decisions and verification, including native desktop keyboard and screen-reader review. Live analytics and hosted document evidence have separate evaluation gates.
+PLAN-14 is the final core package. PLAN-15 is the final optional exercise. Both are merged and no backlog plans remain. The [launch record](portfolio/launch.md) carries hosted verification and remaining review, including manual desktop keyboard and screen-reader checks. Live analytics and hosted document evidence have separate evaluation gates.
 
 One PR per chat, latest merged main, no concurrent checkout edits. Push, confirm CI passed for the exact PR head before any merge command, then verify the merge and issue closure. Use the authorized direct merge if auto-merge is unavailable. The existing GitHub keyring works with credential and network permissions.
